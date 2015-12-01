@@ -1,6 +1,6 @@
 My Personal Web Page, built with [Hyde](http://hyde.github.io/)
 
-See the rendered version at http://www.http://www.utdallas.edu/~o'molu/
+See the rendered version at http://www.utdallas.edu/~opo140030/
 
 Building
 ========
