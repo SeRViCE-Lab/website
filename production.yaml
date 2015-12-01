@@ -1,0 +1,13 @@
+extends: site.yaml
+
+mode: production
+media_url: /users/ogunmolu/media
+base_url: /users/ogunmolu
+deploy_root: deploy_production
+
+publisher:
+    ssh:
+        type: hyde.ext.publishers.ssh.SSH
+        username: lakehanne
+        server: gateway.ecs.utdallas.edu
+        target: /www/ecs/users/ogunmolu/html

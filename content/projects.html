@@ -1,0 +1,95 @@
+---
+extends: minimal.j2
+default_block: main
+title: Open Source Projects
+description: Projects I have worked on and currently working on
+---
+<h1>Open Source Projects</h1>
+<hr/>
+<h2><center><a href="https://github.com/SeRViCE-Lab/Matlab-Files/blob/master/ident_data/Filtered%20GWN/carimaFWGN.m"><b>Black-Box System Identification for Control</b></a></center></h2>
+
+<p>Based on a finite-dimensional data that was acquired during an identification for a SISO control system experiment, this code demonstrates how to go about the determination of structure in chaotic data and reconstructs generative linear system identification models typically used in control systems design. Feedbacks are welcome.</p>
+<hr/>
+
+<h2><center><a href="https://github.com/lakehanne/Vicon"><b>Vicon Listener (ROScpp)</b></a></center></h2>
+
+<p>Based on <a href="https://github.com/markusachtelik">Markus Achtelik&#39;s</a> <a href="https://github.com/ethz-asl/vicon_bridge">ROS bridge</a> to the Vicon <a href="http://www.vicon.com/products/software/datastream-sdk">Data Stream SDK</a>, this is a ROS Metapackage system that computes the rotation and translation coordinates of Vicon <strong>mocap</strong> segment markers (using the numerically stable or modified Gram-Schmidt orthonormalization procedure). I have provided an example for markers on a manikin head after subscribing to the published topic &quot;vicon/markers&quot; from the ros bridge to vicon sdk. It&#39;s been tested and verified on ROS Indigo running Ubuntu Trusty. If you can verify that it works on Jade or Hydro, kindly leave a feedback on the <a href="https://github.com/lakehanne/vicon/issues">project&#39;s issues page</a>. </p>
+<hr/>
+
+<h2><center><a href="https://github.com/lakehanne/Sheaf-M-Files/blob/master/Lab_bI_whole.m"><b>Faults Detection/PCA/Machine Learning Classification for Control (Matlab)</b></a></center></h2>
+
+<p>Based on acquired data from a gas turbine bearing, and gearmesh rigs in Sheffield, England, we perform the frequency-domain analysis of the time-domain data using pwelch&#39;s method; we perform piece-wise smoothing of data from each rig and eliminate the curse of dimensionality using greedy layerwise features extraction after respective filters are applied to smooth out the data. We visualize the data by further using principal components analysis to extract correlated features. Classification is done using classical neural network backpropagation mechanism.</p>
+<hr/>
+
+<h3><center><a href="https://github.com/lakehanne/Savitzky-Golay"><b>Savitzky-Golay Filter (C++)</b></a></center></h3>
+
+<p>Nicely computes the <a href="http://www.math.umn.edu/%7Egarrett/m/algebra/notes/17.pdf">Vandermonde matrix</a>, Savitzky-Golay <a href="http://www.wire.tu-bs.de/OLDWEB/mameyer/cmr/savgol.pdf">differentiation filters</a> and smoothing coefficients for any noisy, and sequential signal. It is a textbook implementation of the Savitzky-Golay filter algorithm following Sophocles and Orfanidis treatment in their book. </p>
+
+<p>It can be run offline with collected data but needs slight tweaking if it must be run with on-line data in real time. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort. Please submit all feedbacks via my <a href="https://github.com/lakehanne/Savitzky-Golay/issues">github repo issues page</a>.</p>
+
+
+<p>Reference: Sophocles J. Orfanidis, INTRODUCTION TO SIGNAL PROCESSING, Prentice-Hall, 1995, Chapter 8.</p>
+<hr/>
+ 
+<!-- <h1>Open Source Projects</h1>
+<hr/>
+
+<h2><a href="http://astroml.org">AstroML</a></h2>
+<p>AstroML is a Python module for machine learning and data mining in
+Astronomy and Astrophysics.  It contains many commonly-used tools from
+the astronomical literature, and hundreds of examples of their use.  I
+wrote this package to accompany our textbook, <i><a href="http://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691151687/" target="tab">Statistics, Data Mining,
+and Machine Learning in Astronomy</a></i>.</p>
+<hr/>
+
+<h2><a href="http://scikit-learn.org">Scikit-Learn</a></h2>
+<p>Scikit-Learn is a powerful and extensive machine learning library
+written in Python.  I have
+contributed in many areas of the project, but primarily in the area of
+generalized N-point problems & manifold learning.</p>
+<hr/>
+
+<h2><a href="http://github.com/jakevdp/mpld3">mpld3</a></h2>
+<p>mpld3 is a project which leverages <a href="http://d3js.org/">D3js</a> to
+produce interactive browser-based visualizations from matplotlib figures.
+Though interactive, the resulting figures are not tied to the Python kernel,
+so they can be used statically on web pages and blogs.
+To see mpld3 in action, take a look at my initial
+<a href="http://jakevdp.github.io/blog/2013/12/19/a-d3-viewer-for-matplotlib/">blog post</a>, or see some examples
+<a href="http://nbviewer.ipython.org/github/jakevdp/mpld3/tree/master/examples/">here</a> and
+<a href="http://nbviewer.ipython.org/gist/mwaskom/8066418">here</a>.</p>
+<hr/>
+
+<h2><a href="http://github.com/jakevdp/scidb-py">SciDB-Py</a></h2>
+<p>SciDB-Py is a set of python wrappers for the
+<a href="http://scidb.org/">SciDB</a> project which provides a natural,
+numpy-like interface to large-scale array-based computations.  The project is
+a collaboration between myself and the 
+folks at <a href="http://www.paradigm4.com/">Paradigm4</a>.</p>
+<hr/>
+
+<h2><a href="http://scipy.org">Scipy</a></h2>
+<p>Scipy is a collection of Python tools for scientific computing.  My main
+contributions have been in the sparse matrix toolkit, primarily in iterative
+sparse matrix decompositions and fast graph algorithms.</p>
+<hr/>
+
+<h2><a href="http://github.com/jakevdp/JSAnimation">JSAnimation</a></h2>
+<p>JSAnimation includes an HTML5/Javascript viewer for matplotlib animations,
+created via a new matplotlib animation writer.  It also has an IPython
+display hook for ease of use with IPython notebook and qtconsole.  See
+an example of the code in action <a href="http://nbviewer.ipython.org/urls/raw.github.com/jakevdp/JSAnimation/master/animation_example.ipynb">here</a>.</p>
+<hr/>
+
+<h2><a href="http://github.com/jakevdp">Other Packages</a></h2>
+<p>I also have made numerous small contributions to projects such as
+<a href="http://www.numpy.org">NumPy</a>,
+<a href="http://matplotlib.org">Matplotlib</a>,
+<a href="http://ipython.org">IPython</a>,
+<a href="http://hyde.github.io/">Hyde</a>,
+<a href="http://getpelican.com">Pelican</a>,
+and others, and have open-sourced much of my other code and teaching materials.
+See my <a href="http://github.com/jakevdp">GitHub profile</a> for details.</p>
+
+<hr/>
+ -->
