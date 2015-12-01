@@ -1,0 +1,6 @@
+{
+  "name": "my webpage",
+  "dependencies": {
+    "octicons": "*"
+  }
+}

@@ -1,13 +1,14 @@
 extends: site.yaml
 
 mode: production
-media_url: /users/ogunmolu/media
-base_url: /users/ogunmolu
+media_url: /~opo140030/media
+base_url: /~opo140030
 deploy_root: deploy_production
+repository_url: https://github.com/SeRViCE-Lab/website
 
 publisher:
     ssh:
         type: hyde.ext.publishers.ssh.SSH
         username: lakehanne
-        server: gateway.ecs.utdallas.edu
-        target: /www/ecs/users/ogunmolu/html
+        server: www.utdallas.edu
+        target: /www/opo140030/ogunmolu/html
