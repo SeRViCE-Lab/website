@@ -21,4 +21,4 @@ gen-production: clean
 
 publish: CV gen-production	
 	rsync -e ssh -r deploy_production/ 
-www.utdallas.edu/~opo140030:/pubssh.utdallas.edu
+www.utdallas.edu/~opo140030:opo140030@giant.utdallas.edu
