@@ -21,4 +21,23 @@ gen-production: clean
 
 publish: CV gen-production	
 	rsync -e ssh -r deploy_production/ 
-www.utdallas.edu/~opo140030:opo140030@giant.utdallas.edu
+	#TODO
+	#www.utdallas.edu/~opo140030:opo140030@giant.utdallas.edu
+
+sync: 
+	sftp opo140030@giant.utdallas.edu;	
+	#TODO
+	# wait;
+	# pwd = --print-directory;
+	# $(info I am now in the directory)\
+	# $(echo $(--print-directory))
+	# #$(read -p $(pwd) REPLY; echo $$)
+
+	# dwd = /home/eng/o/opo140030/public_html
+
+	# ifeq $((pwd), (dwd))
+	# 	$(info path correct. Moving html files over);
+	# 	put /home/lex/Dropbox/ogunmolu/deploy_production/*.html $(dwd)
+	# else
+	# 	cd $(dwd); put /home/lex/Dropbox/ogunmolu/deploy_production/*.html $(dwd)
+	# endif
