@@ -26,6 +26,8 @@ publish: CV gen-production
 
 sync: 
 	sftp opo140030@giant.utdallas.edu;	
+	$(info Enter your password then)
+	$(info put /home/lex/Dropbox/ogunmolu/deploy_production/*.html /home/eng/o/opo140030/public_html)
 	#TODO
 	# wait;
 	# pwd = --print-directory;
@@ -37,7 +39,7 @@ sync:
 
 	# ifeq $((pwd), (dwd))
 	# 	$(info path correct. Moving html files over);
-	# 	put /home/lex/Dropbox/ogunmolu/deploy_production/*.html $(dwd)
+	# 	put /home/lex/Dropbox/ogunmolu/deploy_production/*.html /home/eng/o/opo140030/public_html
 	# else
 	# 	cd $(dwd); put /home/lex/Dropbox/ogunmolu/deploy_production/*.html $(dwd)
 	# endif

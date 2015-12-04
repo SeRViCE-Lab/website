@@ -1,6 +1,6 @@
-My Personal Web Page, built with [Hyde](http://hyde.github.io/)
+My academic webpage, built with [Hyde](http://hyde.github.io/) and inspired by Jake Vanderplas.
 
-See the rendered version at http://www.utdallas.edu/~opo140030/
+See the rendered version at http://www.utdallas.edu/~olalekan.ogunmolu/
 
 Building
 ========
@@ -25,7 +25,9 @@ Generate site for production:
 
 Publish site via SSH (SSH publisher requires hyde version > 0.8.6):
 
-    make publish
+    make sync
+
+Remember to change your user name in the make file as well as ssh server domain name.
 
 License
 =======
