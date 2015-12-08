@@ -1,4 +1,4 @@
-My academic webpage, built with [Hyde](http://hyde.github.io/) and inspired by Jake Vanderplas.
+My academic webpage, built with [Hyde](http://hyde.github.io/) and inspired by [@jakevdp](https://twitter.com/jakevdp).
 
 See the rendered version at http://www.utdallas.edu/~olalekan.ogunmolu/
 

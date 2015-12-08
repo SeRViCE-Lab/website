@@ -24,21 +24,45 @@ publish: CV gen-production
 	#TODO
 	#www.utdallas.edu/~opo140030:opo140030@giant.utdallas.edu
 
-sync: 
-	sftp opo140030@giant.utdallas.edu;	
-	$(info Enter your password then)
-	$(info put /home/lex/Dropbox/ogunmolu/deploy_production/*.html /home/eng/o/opo140030/public_html)
-	#TODO
-	# wait;
-	# pwd = --print-directory;
-	# $(info I am now in the directory)\
-	# $(echo $(--print-directory))
-	# #$(read -p $(pwd) REPLY; echo $$)
+sftp: 
+	$(echo Present directory:) $(@pwd)	
+	sftp opo140030@giant.utdallas.edu;
+	dwd := /home/eng/o/opo140030/public_html
+	$(info @pwd))
+	$(info Enter your password: )
+	sleep 10
+	read	
 
-	# dwd = /home/eng/o/opo140030/public_html
+	$(info _____________________________________________________________________________)
+	$(info                                  Fast FILE Move:                             )
+	$(info  put /home/lex/Dropbox/ogunmolu/	deploy_production/*.html /home/eng/o/opo140030/public_html)
+	$info	                                                                            )
+	$(info _____________________________________________________________________________)
+	#TODO
+
+	@pwd
+	$(read -p $(pwd) REPLY; echo $$)
+
+scp:
+	$(info                                FOLDER MOVE                              )
+	$(info  Example: scp -r /home/lex/Dropbox/fortworthTalk opo140030@giant.utdallas.edu:\
+		/home/eng/o/opo140030/public_html/dfwslides                                     )
+	$(info _____________________________________________________________________________)
+
+lftp:
+	$(info  lftp sftp://opo140030@giant.utdallas.edu)
+	$(info 	Enter password then                    \
+		    <mirror -R> to recursively upload      \
+		    or                                      \
+		    <mirror> to just upload                 )
+	$(info  Remember to <cd> into directories you want\
+	                                       to mirror)
+	lftp sftp://opo140030@giant.utdallas.edu
+
+
+
 
 	# ifeq $((pwd), (dwd))
-	# 	$(info path correct. Moving html files over);
 	# 	put /home/lex/Dropbox/ogunmolu/deploy_production/*.html /home/eng/o/opo140030/public_html
 	# else
 	# 	cd $(dwd); put /home/lex/Dropbox/ogunmolu/deploy_production/*.html $(dwd)
