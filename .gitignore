@@ -12,3 +12,9 @@ MathJax/
 *.log
 *.out
 *.pdf
+
+CV/*.out
+CV/*.log
+CV/*.pdf
+CV/*.aux
+CV/*.gz

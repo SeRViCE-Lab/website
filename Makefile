@@ -19,18 +19,13 @@ clean:
 prod: clean
 	hyde gen -c production.yaml
 
-	#TODO
-	#www.utdallas.edu/~opo140030:opo140030@giant.utdallas.edu
-
 web: deploy
-	$(echo Present directory:) $(@pwd)	
-	lftp opo140030@giant.utdallas.edu/home/eng/o/opo140030/public_html/
-
-	$(info _____________________________________________________________________________)
-	$(info                                  Fast FILE Move:                             )
-	$(info                        lcd deploy_production && put *.html                   )
-	$info	                                                                            )
-	$(info _____________________________________________________________________________)
+		lftp sftp://opo140030@giant.utdallas.edu/home/eng/o/opo140030/public_html
+		$(info _____________________________________________________________________________)
+		$(info                                  Fast FILE Move:                             )
+		$(info                        lcd deploy_production && put *.html                   )
+		$info	                                                                            )
+		$(info _____________________________________________________________________________)
 	
 deploy:
 	cd deploy_production/;
