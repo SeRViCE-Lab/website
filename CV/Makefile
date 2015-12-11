@@ -1,4 +1,4 @@
-all: CV.pdf
+all: Resume_Work.pdf
 
-CV.pdf: CV.tex
-	pdflatex CV.tex
+Resume_Work.pdf: Resume_Work.tex
+	texliveonfly Resume_Work.tex

@@ -1,11 +1,11 @@
 all: gen
 
-CV: content/media/pdfs/CV.pdf
+CV: content/media/pdfs/Resume_Work.pdf
 
-content/media/pdfs/CV.pdf: CV/CV.tex
-	cd CV; make
+content/media/pdfs/Resume_Work.pdf: CV/Resume_Work.tex
+	cd CV; make 
 	mkdir -p content/media/pdfs/
-	cp CV/CV.pdf content/media/pdfs/
+	cp CV/Resume_Work.pdf content/media/pdfs/CV.pdf
 
 gen: CV
 	hyde gen
@@ -16,54 +16,43 @@ serve: clean gen
 clean:
 	rm -rf deploy
 
-gen-production: clean
+prod: clean
 	hyde gen -c production.yaml
 
-publish: CV gen-production	
-	rsync -e ssh -r deploy_production/ 
 	#TODO
 	#www.utdallas.edu/~opo140030:opo140030@giant.utdallas.edu
 
-sftp: 
+web: deploy
 	$(echo Present directory:) $(@pwd)	
-	sftp opo140030@giant.utdallas.edu;
-	dwd := /home/eng/o/opo140030/public_html
-	$(info @pwd))
-	$(info Enter your password: )
-	sleep 10
-	read	
+	lftp opo140030@giant.utdallas.edu/home/eng/o/opo140030/public_html/
 
 	$(info _____________________________________________________________________________)
 	$(info                                  Fast FILE Move:                             )
-	$(info  put /home/lex/Dropbox/ogunmolu/	deploy_production/*.html /home/eng/o/opo140030/public_html)
+	$(info                        lcd deploy_production && put *.html                   )
 	$info	                                                                            )
 	$(info _____________________________________________________________________________)
-	#TODO
+	
+deploy:
+	cd deploy_production/;
 
-	@pwd
-	$(read -p $(pwd) REPLY; echo $$)
-
-scp:
-	$(info                                FOLDER MOVE                              )
-	$(info  Example: scp -r /home/lex/Dropbox/fortworthTalk opo140030@giant.utdallas.edu:\
-		/home/eng/o/opo140030/public_html/dfwslides                                     )
-	$(info _____________________________________________________________________________)
-
-lftp:
+slides: 
 	$(info  lftp sftp://opo140030@giant.utdallas.edu)
-	$(info 	Enter password then                    \
-		    <mirror -R> to recursively upload      \
+	$(info 	<mirror -R> to recursively upload      	\
+		    <mirror -n -R> to recursively upload  	\
+		    newer files     						\
 		    or                                      \
-		    <mirror> to just upload                 )
-	$(info  Remember to <cd> into directories you want\
-	                                       to mirror)
-	lftp sftp://opo140030@giant.utdallas.edu
+		    <mirror> to just upload                 \
+		    lcd /home/lex/Dropbox/forthworthTalk	\
+		    										\
+			put index.html                          )
+
+	lftp sftp://opo140030@giant.utdallas.edu/home/eng/o/opo140030/public_html/dfwslides;	
+	ldir;
+	moveind
+
+ldir: 
+	lcd /home/lex/Dropbox/forthworthTalk
 
 
-
-
-	# ifeq $((pwd), (dwd))
-	# 	put /home/lex/Dropbox/ogunmolu/deploy_production/*.html /home/eng/o/opo140030/public_html
-	# else
-	# 	cd $(dwd); put /home/lex/Dropbox/ogunmolu/deploy_production/*.html $(dwd)
-	# endif
+moveind:
+	put index.html

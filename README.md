@@ -8,11 +8,15 @@ Requires hyde:
 
     pip install hyde
 
-Also pdflatex (for CV to be auto-generated)
+	Also `texliveonfly` (for CV to be auto-generated)
 
 Generate version for local development:
 
     make gen
+
+Generate CV:
+
+    make CV
 
 Preview local version
 (this is previewable in the browser at localhost:8080 -- Kill with ctrl-C)
@@ -21,13 +25,13 @@ Preview local version
 
 Generate site for production:
 
-    make gen-production
+    make prod
 
-Publish site via SSH (SSH publisher requires hyde version > 0.8.6):
+Publish site via SFTP
 
-    make sync
+    make web
 
-Remember to change your user name in the make file as well as ssh server domain name.
+Remember to change your user name in the make file as well as SFTP server domain name.
 
 License
 =======
