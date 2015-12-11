@@ -56,3 +56,15 @@ ldir:
 
 moveind:
 	put index.html
+
+help:
+	$(info make <arg>)
+	$(info <arg> could be any of the following: 				 )
+	$(info 										<web>    -- to publish)
+	$(info 										<slides> -- to upload dfwslides)
+	$(info 										<prod>   -- to generate for production)
+	$(info 										<clean>  -- to clear deploy_production folder)
+	$(info 										<gen>    -- to generate files for local deployment)
+	$(info 										<serve>  -- to view locally)
+	$(info 										<CV>     -- to make pdf of CV)
+
