@@ -19,7 +19,7 @@ clean:
 prod: clean
 	hyde gen -c production.yaml
 
-web: deploy
+web: 
 		lftp sftp://opo140030@giant.utdallas.edu/home/eng/o/opo140030/public_html
 		$(info _____________________________________________________________________________)
 		$(info                                  Fast FILE Move:                             )
