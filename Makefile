@@ -3,9 +3,10 @@ all: gen
 CV: content/media/pdfs/Resume_Work.pdf
 
 content/media/pdfs/Resume_Work.pdf: CV/Resume_Work.tex
-	cd CV; make 
-	mkdir -p content/media/pdfs/
-	cp CV/Resume_Work.pdf content/media/pdfs/CV.pdf
+	cd CV; make all;
+	mkdir -p content/media/pdfs/;
+	cp CV/Resume_Work.pdf content/media/pdfs/CV.pdf; 
+	cp CV/Concise_CV.pdf content/media/pdfs/Concise_CV.pdf
 
 gen: CV
 	hyde gen

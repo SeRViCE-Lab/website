@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+<!-- Mathjax script -->
+	<head>
+		<script type="text/x-mathjax-config">
+				MathJax.Hub.Config({
+					  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+				});
+		</script>
+
+		<script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+
+		<!--<script type="text/javascript"
+		   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js">
+		</script>-->
+
+		<meta charset="utf-8">
+
+		<title>Towards accurate patient positioning in head and neck cancer radiotherapy. </title>
+
+		<meta name="description" content="A case for automating head and neck cancer radiotherapy treatment">
+		<meta name="author" content="Olalekan Ogunmolu">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/serif.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h2>Head and Neck Cancer Radiotherapy</h2>
+					<h3>Towards fine-precision automated immobilization in maskless radiosurgery</h3>
+					<p>
+						<small>Presented by <a href="http://ecs.utdallas.edu/~olalekan.ogunmolu">Olalekan Ogunmolu</a> / <a href="http://twitter.com/patmeansnoble">@patmeansnoble</a></small>
+					</p>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+					<section data-background="images/HNCancerRegions.png" style="display:block;background:#000;opacity:0.4;">
+						<h2>Background</h2>
+						<a href="#" class="navigate-down">
+							<img width="78" height="138" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="display:block;background:#000;opacity:0;">
+						</a>
+						<br>
+					</section>
+					<section>
+						<p>Head and neck (H&N) cancers are among the most fatal of major cancers in the United States</p>					
+						<br>
+						<p>2014: 35% of all pharynx and oral cavity cancers developed led to fatility [Siegal, R. et. al]</p>
+						<br>
+						<p>Cancer kills almost 600,000 people each year in the U.S. alone. <br><a href="See more at: https://news.developer.nvidia.com/university-of-torontos-gpu-accelerated-cancer-research-wins-nvidia-foundation-award/#sthash.1asn8CaE.g665SP03.dpuf"><small><br>Source: NVIDIA Foundation Award.</small></a></p>
+					<!-- 	<br>
+						<p>It therefore becomes paramount that treatment be as optimal as possible</p> -->
+						<a href="#/2" class="navigate-right">
+							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Right arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+						</a>
+					</section>				
+				</section>
+
+				<section>
+					<section data-transition="slide"  data-background="#737373" data-background-transition="zoom">
+						<h2>So how are H&N Cancers typically treated?</h2>		
+						<ol style="list-style-type:circle">
+						  <li>Surgery</li>					  
+						  <small>Pros: Oldest technique and most successful</small><br>
+						  <small>Cons: Only useful when cancer is localized (highly improbable in most cases)</small>
+
+						  <li>Chemos</li>
+						  <small>Pros: Kills cancer cells throughout the body</small><br>
+						  <small>Cons: Highly toxic; can kill healthy cells; highly carcinogenic<br>
+						  </small>
+						</ol>
+						 	<a href="#/2" class="navigate-down">
+						 		<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						 	</a>	
+					</section >
+					<section data-background="#737373">
+						<ol style="list-style-type:circle">
+						  <li>Radiation Therapy</li><br>
+						  <small>Pros: Good procedure for distributed cancer cells</small><br>
+						  <small>Pros: Palliative treatment when eliminating cancer tumors is impossible</small><br>
+						  <small>Pros: Helpful to shrink cancer tumors pre-surgery  or tumor leftovers post-surgery</small><br>
+						  <small>Pros: Minimal exposure of patient to radiation</small>
+						  <small> (treatment less than 15 mins typically)</small>
+						  <small>Often involves a combination of drugs and chemos</small><br>
+						  <small>Body cancer radiotherapy (RT) typically use IMRT & IGRT</small>
+						</ol>
+						<a href="#/2" class="navigate-right">
+							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+						</a>
+					</section>
+				</section>
+
+				<section>
+
+					<section data-background="#737373">
+						<h2>Wait, what is IMRT/IGRT?</h2><br>	
+						<p>IMRT: Intensity Modulated Radiation Therapy</p><br>
+						<ul>
+							<small><li>Deals with modulating the dosage and shaping of the radiation beam <u>to precise size of tumor cells</u></li></small><br>
+							<small><li>IMRT improves accuracy of carefully targeted radiation thereby minimizing exposure of healthy organs</li></small><br>
+							<small><li>Deviations still occur between planned dose and delivered dose of radiation</li></small><br>
+							<small><li>Enter IGRT</li></small><br>
+						</ul>
+
+						<a href="#4/1" class="navigate-down">
+							<img width="178" height="180" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>	
+					</section>
+
+					<section  data-background="#737373">
+						<p>IGRT: Image Guidance Radiation Therapy</p><br>
+						<ul>
+							<small>Deals with precise and accurate patient positioning on a treatment table to avoid dose deviations from planned targets</small>
+							<br></br>
+							<small>The uncertainty in dose measures to malignant tissues necessitated use of IGRT before treatment</small>
+							<br></br>
+							<small>Goal was to assure precise localization of the beam onto the target tumor cell</small>
+							<br></br>
+							<small><a href="http://www.prostatecancercenterpa.com/imrtigrtbenefits.html"><strong>Source</strong>: Prostrate Cancer Center</a></small>
+						</ul>
+
+						<a href="#4/2" class="navigate-down">
+							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+
+					<section data-background="images/IGRT.png" data-background="#737373">
+						<h2><small>Typical setup</small></h2>
+						<br>
+						<a href="#/2" class="navigate-down">
+							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" >
+						</a>
+					</section>
+					<section data-background="#737373">	
+							<h3>What it entails</h3>
+							<p>Accurate markers are placed inside a patient's body after consultation with a medic</p>
+							<br>
+							<p>Few days afterwards, a radiation-based scan (CT) of the markers is performed to localize the exact position of the markers in the gland</p>
+							<br>
+							<p>The scan provides the size and shape of the cancer cells for computerized treatment planning calculations</p>
+						<!-- <br> -->
+						<a href="#/2" class="navigate-down">
+							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" >
+						</a>
+					</section>
+					<section data-background="#737373">	
+							<p>Current IGRT radiation-based systems include <br><a href="http://ac.els-cdn.com/S0360301613002137/1-s2.0-S0360301613002137-main.pdf?_tid=dd1ca758-9953-11e5-9bd0-00000aab0f6c&acdnat=1449102297_262e84a8d76bc146866d3936a3390fce"><small>[Jennifer De Los Santos et.al., 2012]</small></a></p>
+							<br>
+							<ul>
+								<li>	
+										Electronic Portal imaging detectors <br><small>e.g. IGRT and MV imaging; 1 - 2 mm accuracy; does not acquire 3D volumetric info</small>
+								</li>
+								<br>
+								<li>	
+										Cone-beam CT <small>retractable conventional x-ray tube and amorphous silicon x-ray detectors mounted either orthogonal to the treatment beam axis; used in lung/throat/liver, brain, head and neck cancer</small>
+										<!-- <p><small></small></p> -->
+								</li>
+								<br>
+								<li>	
+										Fan-beam CT: <small>in-room gantry-moving CT linac system to move across the patient instead of couch moving patient into the scanner as in conventional CT designs</small>
+								</li>
+							</ul>
+							<a href="#/2" class="navigate-down">
+							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" >
+						</a>
+					</section>
+					<section data-background="#737373">	
+							<ul>
+								<li>	
+										Stereoscopic imaging <br><small>used in CyberKnife; 2D imaging system; accuracy < 1mm</small>
+								</li>
+								<br>	
+								<li>	
+										Combination alignment systems: optical imaging and 2-D kV orthogonal imaging<br>
+										<small>	Facilitates localization of rigid and mobile targets which may be volumetrically aligned with CBCT</small>
+								</li>							
+							</ul>
+							<br>
+							<a href="#/2" class="navigate-right">
+							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Right arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+						</a>
+					</section>
+				</section>
+
+				<section data-markdown data-background="#737373" data-background-transition="zoom">
+					###Motivation
+
+					-	Clinical studies have shown that small perturbations cause high sensitivity to IMRT treatment dose <font color="#8A2BE2">[L. Xing, 2000.]</font>
+
+					-	6D couch motion compensaion system is not time-optimal in treatments
+
+							- <small>Treatment is often stopped for a medical physicist to recalibrate patient set-up when there is a deviation from target pose</small>
+
+					- 	Evidence of treatment discomfort and severe pain from long hours of minimally invasive surgery <font color="#8A2BE2">[Takakura, T., et al., 2010]</font>
+						<br>
+						<a href="#/2" class="navigate-right">
+						<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Right arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+					</a>
+				</section>
+
+				<section>
+				<section data-background="#737373" data-background-transition="zoom">
+					<h2>Related Work</h2>
+					<ul>
+							<li>
+								Frameless and Maskless Cranial SRS <font color="purple">[Cervino et. al. 2010]</font>
+							</li>
+							<br>
+							<li>	
+								Idea was to verify accuracy of IGRT systems without rigid frames on face 
+								<!-- <br><small><p>Frameless and maskless stereoscopic radiosurgery</p></small> -->
+							</li>
+							<br>
+							<li>	
+								Employed deformable masks of the following sort:
+							</li>	
+							<br>
+					</ul>								
+									<img src="images/frame2.png" width="250", height = "200"/>
+									<img src="images/varian.png" width="250", height = "200" />
+									<img src="images/cbct.png" width="250", height = "200"/>
+									<!-- style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);" -->
+				</section>
+
+				<section id="fragments" data-background-color="#737373">
+					<h3>Pros</h3>
+						<ul>	
+							<li>
+								<p class="fragment fade-out" >
+								<small>Anthropomorphic head phantoms employed in checking the accuracy of a 3D surface imaging system (AlignRT Vision System)</small>
+								</p> 
+							</li>
+							<br>
+							<li>
+								<p class="fragment fade-out">
+								<small>Compared results from an infra-red optical tracking system with the AlignRT vision software system</small>
+								</p>
+							</li>
+							<br>
+							<li>	
+								<p class="fragment fade-out">
+								<small>For different couch angles, the difference between phantom positions recorded by the two systems were within 1mm 		displacement  and 1° rotation</small>
+								</p>
+							</li>
+							<br>
+							<li>
+								<p class="fragment fade-out">
+								<small>Patient motion due to couch motion was less than 0.2mm</small>
+								</p>
+							</li>
+								<!-- <br> -->
+								<a href="#/2" class="navigate-down">
+								<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+							</a>
+						</ul>				
+				</section>
+					<section id="fragments" data-background-color="#737373">
+						<h3>Cons</h3>
+							<ul>	
+								<li>
+									<p class="fragment fade-out" >
+									<small>6DOF positioning systems model the human body as a rigidly</small>
+									</p> 
+								</li>
+								<br>
+								<li>
+									<p class="fragment fade-out">
+									<small>No accounting for flexibility/curvature  of neck</small>
+									</p>
+								</li>
+								<br>
+								<li>	
+									<p class="fragment fade-out">
+									<small>Limited positioning of patient can reduce effectiveness</small>
+									</p>
+								</li>
+								<br>
+								<li>
+									<p class="fragment fade-out">
+									<small>Patient motion due to couch motion was less than 0.2mm</small>
+									</p>
+								</li>
+								<br>
+								<li>
+									<p class="fragment grow">
+								<small>If patient moves , therapy must be stopped, patient repositioned, costs time and money</small>
+								</p>
+								</li>
+									<br>
+									<a href="#/2" class="navigate-right">
+									<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Right 	arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+								</a>
+							</ul>				
+					</section>
+				</section>
+
+				<section data-background-color = "#737373">
+					<h2><a font-color = "blue">Research Goals</a></h2>
+					<h3><a font-color = "blue"> Aims</a></h3>
+
+						<p><small>Accurate and automatic patient positioning system (pre-treatment)</small></p>
+
+						<p><small>In-treatment automatic and accurate patient positioning with patient motion compensation</small></p>
+
+						<h3><a font-color = "blue">Objectives</a></h3>
+						<p><small>Surface-image control of the cranial flexion/extension motion of a patient during simulated H&N RT (pre-treatment)</small></p>
+						<p><small>Use radiation-transparent soft robot system for positioning/manipulation tasks</small> </p>
+
+							<br>
+							<a href="#/2" class="navigate-right">
+							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Right 	arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+						</a>
+
+						<!-- Hacks to swap themes after the page has loaded. Not flexible and only intended for the reveal.js demo deck. -->
+		<!-- 				<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/blood.css'); return false;">Blood</a> -
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
+						<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a> 
+							</p> -->
+				</section>
+
+				<section data-background = "#737373">	
+						<h3><a font-color = "blue">Overview</a></h3>
+						<p><small>Initial study and experiment demonstrating a 1-DOF intra-cranial control of patient motion during H&N Cancer RT</small></p>
+						<p><small>Testbed is a Mannequin head lying in a supine position on an inflatable air bladder (IAB)</small></p>
+						<p><small>Soft-robot consists of the IAB, two two-port SMC Pnematics Co. proportional valves, and silicone tubes for conveying air from a pressurized air canister</small></p>
+						<p><small>A Kinect RGB-D camera is employed for head motion sensing and feedback to a classical control network implemented on an NI myRIO hardware</small></p>
+						<p><small>Work in partnership with my advisor, Dr. Gans and Drs. Xuejun Gu and Steve Jiang of the Radiation Oncology Department of UT Southwestern, Dallas, TX, USA</small></p>
+						<br>
+									<a href="#/2" class="navigate-right">
+									<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Right 	arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+								</a>
+				</section>
+
+				<section>
+					<section data-background="#737373">
+						<h3>System Set-up</h3>
+						<p>
+							<img src="images/setup.png" />
+						</p>
+						<a href="#" class="navigate-down">
+							<img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<!-- <section data-markdown data-background="#737373"> -->					
+					<section data-markdown data-background="#737373" data-background-transition="zoom">		
+						###Vision-based Head Position Estimation
+						-	Kinect RGB-D Camera employed for position-based visual servoing					
+						
+						-	Better depth image and alignment; Skeleton tracking
+						
+						-	Real-time Human Pose Recognition in Parts from Single Depth Images.	<small>Jamie Shotton, et. al, CVPR 2011, Best Paper Award</small>
+						
+						-	Real-time 3D face-tracking based on active appearance model constrained	by depth data. Nikolai Smolyanski et. al, Image and Vision Computing, 2014, MS SDK v1.5.2
+						-	Generates 640 × 480 image at 30 fps with depth resolution of 40 centimeters
+						-	Roughly +/5 mm of quantization error
+
+							<a href="#" class="navigate-down">
+								<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+							</a>
+
+					</section>
+					<section data-markdown data-background="#737373">
+						-	3D face detection and tracking using active appearance model
+							-	AAM minimizes an energy function defined by distance between 3D face model vertices and depth data coming from a RGBD camera.
+						-	Residual errors are used to modify the model during run time
+						-	Vertices correspond to facial features and can be identified for consistent use
+						-	We use eyes, nose tip and edge of mouth for tracking in image
+						-	We use bridge of nose for depth in control algorithm
+						<a href="#" class="navigate-right">
+							<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Right arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+						</a>
+					</section>
+
+				</section>
+
+			<section>
+				<section data-markdown>
+					-	Process Flow in Face Tracking Procedure
+						-	Find a face rectangle in a video frame using a face detector
+						-	Find five points inside the face area – eye centers, mouth corners, and tip of the nose
+						-	Precompute scale of tracked face from the five points un-projected to 3D
+							camera space and scale 3D camera space appropriately.
+						- 	Initialize next frame’s 2D face shape based on the correspondences
+							found by a robust local feature matching between that frame and the previousframe.
+							<a href="#" class="navigate-down">
+								<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+							</a>
+				</section>
+
+				<section data-markdown>
+					####RESULTS
+					-	With the depth constrained 2D+3D AAM fitting, we found good position-
+						estimation results on a human subject when object is at a distance of 1 to
+						2.5m from the Kinect System
+
+					-	Generalization errors and hence incorrect position estimation errors with respect
+						to the mannequin head due to inconsistency in depth data
+
+						<a href="#" class="navigate-down">
+							<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+				</section>
+				<section data-background="#737373">
+					<p>
+						<div class="fig figcenter fighighlight">
+						<img src="images/metracked.png" width="450", height = "400"/>
+						<img src="images/manikintracked.png" width="450", height = "400" />
+						<div class="figcaption" align="middle"><small>Face Mesh and Tracker on (left) my face and (right) the manikin face.</small></i>
+						</div>
+					</p>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3>
+						<a font color = "blue">Modeling procedure</a>
+					</h3>
+					<ul>
+						<li>
+							Collect Data Set, $Z^N$ of input-output signals, at each time step $k$ for a total of $N$ samples
+						</li>
+						<li>
+							Objective: fit a continuous-time parametric model structure similar to a one-step ahead predictor 
+							
+							<p>$$y^n = -a_{n-1}y^{n-1} - \cdots - a_0 y + b_m u^m +$$</p>
+							<p> $$b_{m-1}u^{m-1} + \cdots b_1 \dot{u} + b_0 u$$</p>
+						</li>
+						<li>					
+							Therefore, form the parameter vector  $\theta = [a_{n-1}, \cdots, a_0, b_{m-1}, \cdots, b_0]$  
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>
+						<a font color = "blue">Modeling procedure cont'd</a>
+					</h3>
+					<ul>						
+						<li>
+							and a memory-fading vector of past input-output data:
+							$\phi(t) = [-y^{n-1} \cdots - \dot{y}, - y, u^m \cdots u]$  
+							<p>such that the estimated output can be written as </p>
+							$$\hat{y}(t|\theta) = \phi^T(t)\theta   $$
+						</li>
+						<li>
+							Choice of excitation signal important to reproduce desired properties of the system in model and avoid wide crests as much as we can
+						</li>
+						<li>
+							Identification Goal: identify the best model, χ, in the set guided by the rigorous freq. distribution analysis
+						</li>
+					</ul>
+				</section>
+			</section>
+
+			<section >
+
+				<section data-transition="slide" data-background-transition="zoom"
+				data-background="images/rawhead.jpg" style="display:block;background:#000;opacity:0.4;" width="550", height = "450">
+					<!-- <h3>Soft robot system model</h3> -->
+
+				</section>
+				<section>
+					<p>Excitation signal is sawtooth waveform</p>
+					<ul>
+						<li>
+							Integral and differential of a sawtooth waveform preserves the sawtooth
+							waveform with only phase and amplitude shifts
+						</li>
+					</ul>
+
+					<p>Spectrum contains both even and odd harmonics of the
+						fundamental frequency<br>
+						<small>:::to excite all frequency dynamics we want from model</small> </p>
+
+					<p>Waveform amplitude = 165mA (max. operating current to SMC valves)</p>
+
+					<p> Frequency was chosen to avoid aliasing [i.e. > 2 $\times$ sampling frequency (Nyquist Sampling theorem] </p>					
+				</section>
+				<section>
+					<p>Excitation signal should produce corresponding rise/decrease in head pitch motion<br>
+						<small>:::9,000 samples is not rich enough to avoid inherent noise which dwarfs data structure</small> </p>
+
+					<p>Therefore, we remove means and linear trends<br>
+					<small>::to remove outliers, high frequency spikes etc</small></p>
+
+					<p>The rest of the modeling stages is straightforward<br>
+					<small>::prewhiten input signals, estimate impulse response (to examine degree of delay in data), examine correlation functions (Wiener model)</small></p>
+
+					<p> Crosscorrelation from input to output should tell us about the dynamics of system<br>
+					<small>::since it is proportional to the kronecker delta function (impulse response)</small></p>				
+				</section>
+				
+				<section>
+					<h3>
+						Cross-Correlation Analysis
+					</h3>
+					<p>
+						The cross-correlation function provides an estimate of the system
+						impulse response and is defined as:
+					</p>
+						\begin{equation}
+						\psi_{uy}(\tau) = \dfrac{\sum\limits_{t=\tau+1}^N\left[u(t-\tau) - \bar{u}\right]\left[y(t)-\bar{y}\right]} {\sqrt{\sum\limits_{t=1}^N\left[u(t) - \bar{u}\right]^2}\sqrt{\sum\limits_{t=1}^N\left[y(t) - \bar{y}\right]^2}}
+						\end{equation}
+					<p>where $\tau = 0, \pm1, \cdots, \pm (N-1)$.</p>
+				</section>
+				<section>
+					<p> The cross-correlation function (CCF) is given by the convolution of the system
+					impulse response and the process auto-correlation function (Wiener-Hopf equation)</p>
+						\begin{equation}
+							\psi_{uy}(\tau)=\int h(\nu) \mathbb{E}[u(t)u(t+\tau - \nu)]d\nu \\
+										   = \int h(\nu) \psi_{uu}(\tau - \nu)d\nu	\label{eq. wiener-hopf}
+						\end{equation}
+				</section>
+				<section>
+					<div class="fig figcenter fighighlight">
+					  <img src="images/wiener.png" width="65%" height="250" align="middle" style="border-left: 1px solid black;">  
+					  <!-- <img src="images/acf_in.jpg" width="49%" height="250" style="border-left: 1px solid black;"> -->
+					  <div class="figcaption" align="middle"><small>Wiener Block-Structured Model</small>
+					  </div>
+					</div>
+					<p><small>CCF between the output and input is proportional to the system impulse response when the input is white noise</small></p>
+					<p><small>Prewhiten input-output signals to change structure of signals</small></p>
+					<p><small>$$U(t) = U_w(t) \dfrac{1}{F(Z^{-1})}$$ where  $U_w(t)$ is a zero mean white input sequence and $F(Z^{-1})$ is an autoregressive model filter </small></p>
+				</section>
+			</section>
+				
+				<section>
+					<h3>Nonparametric analysis</h3>
+					<div class="fig figcenter fighighlight">
+					  <img src="images/ccf_new.jpg" width="49%" height="250" align="middle">  
+					  <img src="images/acf_in.jpg" width="49%" height="250" style="border-left: 1px solid black;">
+					  <div class="figcaption" align="right"><small>(Left) Cross-Correlation of input-output signals and (Right) input signal auto-correlation function</small>.
+					  </div>
+					</div>
+				
+					<ul>
+						<li>
+							So we gained some intuition about system based on the non-parametric analysis
+						</li>
+						<li>
+							notice data has an 18-sample delay ($\approx$ 2 sec delay)
+						</li>
+					</ul>
+				</section>			
+
+		
+				<section data-background="#737373">
+					<h3>Correlation of Residuals</h3>
+					<ul>
+						<li>To determine the model structure of the system, we used the original detrended data</li>
+							<br>
+						<li>We chose a linear, second-order grey-box model set whose quality is measurable
+							by a mean-square error (MSE) guided by nonparametric estimate</li>
+							<br>
+						<li>Choice ensures cost of model is not too high in solving for $\hat{\theta}_N$
+						<small>a high−order complex model is more difficult to use for simulation and control
+								design. If it is not marginally better than a simpler model, it may not be worth the higher price [Llung, $\S$ 16.8]</small> </li>
+					</ul>
+				</section>
+				<section>						
+					<h3>Comparing Model Structure</h3>
+						<ul>
+							<small><li>The confidence interval compares the estimate with the estimated standard deviation from the
+							validation dataset</li></small><br>
+							<small><li>A 99% confidence region (yellow bands) encloses the model response informing us   we  have
+							a reliable model [Llung (1999), §16.6]</li></small><br>
+							<small><li>Evaluation of different model structures and comparing quality of offered models</li></small><br>
+
+							<small><li>Best fit:</li></small>  
+								<small>a second-order process model with delay and a RHP zero</small><br>
+									$$G(s) = \dfrac{-0.0006\left(s-1.7137\right)}{\left(s+0.01\right)\left(s+0.1028\right)}exp^{-2s}.$$    
+								<br>
+							<small><li>The model has an 87.35% fit to original data with a mean square error of 0.054982 and
+							a final prediction error of 1.672.</li></small> 
+						</ul>					
+
+				</section>
+				<section>
+					<section>
+						<h3>Sub-model Selection & Model Validation</h3>
+						<ul>
+							<li>A control system will perform well with an optimal linear sub-model, tolerate disturbances and nonlinearities.</li>
+							<br>
+							<li>We pick the linear frequency range based on intuition garnered from bode panalysis to represent the model.</li>
+							<br>
+							<li>Canonical correlation analysis of residuals from prediction, $\hat{y}(t)$ to true $y(t)$, and estimated position by the auto-regressive model we chose, i.e. the residual</li>
+							<!-- <br> -->
+							$$\epsilon(t, \hat{\theta}_N) = y(t) - \hat{y}(t | \hat{\theta}_N)$$
+						</ul>
+					</section>
+					<section>
+						<div class="fig figcenter fighighlight">
+						  <img src="images/bode.png" width="49%" height="250" align="left">  
+						  <img src="images/residuals.png" width="49%" height="250" align="right"> <br>
+						  <div class="figcaption" align="middle"><small>(Left). Bode plot of detrended data; (Right) Residuals from input to output</small>
+						  </div>
+						  <img src="images/corr.png" width="69%" height="250" style="border-left: 1px solid black;">
+						  <div class="figcaption" align="middle"><small>Frequency response plot of residuals to output. </small>
+						  </div>
+						</div>
+					</section>
+					<section>
+						<ul><li>The prediction errors are computed as a frequency response from the input to residuals</li></ul>
+						<br></br>
+						<h3>Control Design</h3>
+						<div class="fig figcenter fighighlight">
+						  <img src="images/openloopstep.png" width="69%" height="250" align="middle">  <br>
+						  <div class="figcaption" align="middle"><small>Open Loop Step Response of Identified System</small>
+						  </div>
+						</div>
+					</section>				
+
+				</section>
+
+				<section>
+					<section data-transition="slide" data-background="737373" data-background-transition="zoom">
+						<ul>
+							<li>
+								System is non-minimum phase with very slow transient response.							
+							</li>
+							<li>
+								We require a controller that will increase the response time, guarantee cloloop
+								stability whilst balancing robustness and controller aggressiveness.
+							</li>
+							<li>							
+								Approximating the delay with the second-order Pade function,<br>
+								\begin{align}
+								H(s) & = \dfrac{s^2 - 3s +3}{s^2 + 3s +3}.   \label{eq.pade}
+								\end{align}
+							</li>
+						</ul>
+					</section>
+
+					<select>
+						<ul>
+							<li>
+								and introduce the PI controller<br>
+								\begin{align}
+								G_c &= 3.79 + \dfrac{0.0344}{s}.  \label{eq.controller}
+								\end{align}
+							</li>
+							<li>
+								nested within a PID controller: <br>
+								\begin{align}
+									G_{PID}=3.4993 + \dfrac{0.054765}{s} + 55.8988s,          \label{eq.pd control}
+								\end{align}
+							</li>
+						</ul>
+					</select>
+					<section>						
+						<div class="fig figcenter fighighlight">
+						  <img src="images/Model3.png" width="69%" height="250" align="middle"> <br> 						  
+						  <div class="figcaption" align="middle"><small>Block Diagram of Control Network</small><br>				  
+						  <img src="images/PD_Lead_PI.png" width="49%" height="250" align="left">
+						  <img src="images/Step Reference Tracking.png" width="49%" height="250" align="right"> <br>
+						  <div class="figcaption" align="left"><small>CL Step Response of Simulated System.</small> &nbsp &nbsp <small>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp CL Step Reference Trajectory Tracking</small>
+						  </div>
+						</div>
+					</section>
+				</section>
+				<section data-background-video="videos/CASEvideo.mp4" data-background-color="#000000">
+					<!-- <div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;"> -->
+						
+					<!-- </div> -->
+				</section>
+<!-- 
+				</section>  -->
+			<section>
+				<section>
+					<h3>Conclusions and Ongoing Work</h3>					
+						<ul>
+							<li>
+								Deviations from desired positions during H&N Cancer RT cause dose variations and degenerate treatment efficacy
+							</li>
+							<li>
+								We have presented and demonstrated accurate control of cranial flexion/extension motion of a patient during maskless H&N RT
+							</li>
+							<li>
+								The soft robot system can track set trajectory within 14 seconds after start-up with the aid of a PID/PI cascaded network
+							</li>
+						</ul>	
+				</section>
+				<section data-markdown>
+					-	Extend results to deformable motions of the upper torso, and H&N. 
+					-	Improved bladder control: Adaptive Control, Gain Scheduling e.t.c. 
+					-	Incorporation of multi-bladders to accommodate multi-axis positioning
+					-	Benefits
+						-	Comprehensive and accurate control of the patient’s position 
+						-	Elimination of anatomical deformations as a result of positioning error
+				</section>
+			</section>
+
+			
+
+			<section data-background="purple">
+				<h3>References</h3>
+				<ul>
+					<li>
+						Cervino, L. I., et al. Frame-less and mask-less cranial stereotactic radiosurgery: a
+						feasibility study. 2010, Physics In Medicine And Biology 55(7): 1863-1873.
+					</li><br>
+					<li>
+						Jemal A, Siegel R, Xu J, Ward E. Cancer statistics, 2010. CA: A Cancer Journal for Clinicians2010; 60(5):277–300.
+					</li><br>
+					<li>
+						L. Llung, System Identification Theory for the User, 2nd Edition, Upper Saddle River,
+						NJ, USA. Prentice Hall, 1999.
+					</li><br>
+				</ul>
+			</section>
+			<section>
+				<h3>References Cont'd</h3>
+				<ul>
+					<li>
+						Xing, L. Dosimetric effects of patient displacement and collimator and gantry angle
+						misalignment on intensity modulated radiation therapy. Radiotherapy & Oncology, 2000. 56(1): p. 97 - 108
+					</li>
+				</ul>
+			</section>
+
+				<section>
+					<h2>Export to PDF</h2>
+					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
+					<iframe src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// // Full list of configuration options available at:
+			// // https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				// Display the page number of the current slide
+				slideNumber: false,
+
+				// Push each slide change to the browser history
+				history: true,
+
+				// Enable keyboard shortcuts for navigation
+				keyboard: true,
+				// Turns fragments on and off globally
+				fragments: true,
+				// Flags if speaker notes should be visible to all viewers
+				// showNotes: false,
+				// Number of milliseconds between automatically proceeding to the
+				// next slide, disabled when set to 0, this value can be overwritten
+				// by using a data-autoslide attribute on your slides
+				 autoSlide: 0,	
+				// Stop auto-sliding after user input
+				autoSlideStoppable: true,
+				// Enable slide navigation via mouse wheel
+				// mouseWheel: true
+				// // Hides the address bar on mobile devices
+				 hideAddressBar: true,
+
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+
+	</body>
+</html>
