@@ -25,14 +25,9 @@ description: Projects I have worked on and currently working on
 
 <h1>Open Source Projects</h1>
 <hr/>
-<h2><center><a href="https://github.com/SeRViCE-Lab/Matlab-Files/blob/master/ident_data/Filtered%20GWN/carimaFWGN.m"><b>Black-Box System Identification for Control (.m)</b></a></center></h2>
+<h3><center><a href="https://github.com/SeRViCE-Lab/Matlab-Files/blob/master/ident_data/Filtered%20GWN/carimaFWGN.m"><b>Black-Box System Identification for Control (.m)</b></a></center></h3>
 
 <p>Based on a finite-dimensional data that was acquired during an identification for a SISO control system experiment, this code demonstrates how to go about the determination of structure in chaotic data and reconstructs generative linear system identification models typically used in control systems design. Feedbacks are welcome.</p>
-<hr/>
-
-<h2><center><a href="https://github.com/lakehanne/Vicon/blob/master/vicon_listener/src/vicon_listener.cpp"><b>Vicon Listener (ROScpp)</b></a></center></h2>
-
-<p>Based on <a href="https://github.com/markusachtelik">Markus Achtelik&#39;s</a> <a href="https://github.com/ethz-asl/vicon_bridge">ROS bridge</a> to the Vicon <a href="http://www.vicon.com/products/software/datastream-sdk">Data Stream SDK</a>, this is a ROS Metapackage system that computes the rotation and translation coordinates of Vicon <strong>mocap</strong> segment markers (using the numerically stable or modified Gram-Schmidt orthonormalization procedure). I have provided an example for markers on a manikin head after subscribing to the published topic &quot;vicon/markers&quot; from the ros bridge to vicon sdk. It&#39;s been tested and verified on ROS Indigo running Ubuntu Trusty. If you can verify that it works on Jade or Hydro, kindly leave a feedback on the <a href="https://github.com/lakehanne/vicon/issues">project&#39;s issues page</a>. </p>
 <hr/>
 
 <h3><center><a href="https://github.com/lakehanne/Deep-Reinforcement-learning"><b>Human-Level Control through Deep Reinforcement Learning</b></a></center></h3>
@@ -43,24 +38,36 @@ described in the Mnih et. al. paper <a href="http://www.davidqiu.com:8888/resear
 <h3><center><a href="https://github.com/lakehanne/Savitzky-Golay/blob/master/savgol.cpp"><b>Savitzky-Golay Filter (C++)</b></a></center></h3>
 
 <p>Nicely computes the <a href="http://www.math.umn.edu/%7Egarrett/m/algebra/notes/17.pdf">Vandermonde matrix</a>, Savitzky-Golay <a href="http://www.wire.tu-bs.de/OLDWEB/mameyer/cmr/savgol.pdf">differentiation filters</a> and smoothing coefficients for a noisy, sequential signal. It is a textbook implementation of the Savitzky-Golay filter algorithm following Sophocles Orfanidis treatment in his book. </p>
-
+<!--
 <p>It can be run offline with collected data but needs slight tweaking if it must be run with on-line data in real time. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort. Please submit all feedbacks via my <a href="https://github.com/lakehanne/Savitzky-Golay/issues">github repo issues page</a>.</p>
-
+-->
 <p>Reference: Sophocles J. Orfanidis, Introduction to Signal Processing, Prentice-Hall, 1995, Chapter 8.</p>
 <hr/>
 
-<h3><center><b>Bash script for <a href="https://github.com/lakehanne/Shells/blob/master/Vivid_packages.sh">ubuntu vivid</a>/<a href="https://github.com/lakehanne/Shells/blob/master/packages.sh">ubuntu trusty</a> packages installer</b></center></h3>
+<h3><center><a href="https://github.com/Element-Research/rnn"><b>Recurrent Neural Networks [Torch 7]</center></b></a></h3>
+<p>Torch implementation of recurrent neural networks and LSTM's based on Ilya Sutsekever and Alex Grave's works at UToronto</p>
+<hr/>
+
+<h3><center><a href="https://github.com/kjw0612/awesome-rnn"><b>Awesome Recurrent Neural Networks</a></b></h3>
+<p>A curated list of resources dedicated torecurrent neural networks (with a deep learning focus)</center></p>
+<hr/>
+
+<h3><center><a href="https://github.com/lakehanne/Vicon/blob/master/vicon_listener/src/vicon_listener.cpp"><b>Vicon Listener (ROScpp)</b></a></center></h3>
+
+<p>Based on <a href="https://github.com/markusachtelik">Markus Achtelik&#39;s</a> <a href="https://github.com/ethz-asl/vicon_bridge">ROS bridge</a> to the Vicon <a href="http://www.vicon.com/products/software/datastream-sdk">Data Stream SDK</a>, this is a ROS Metapackage system that computes the rotation and translation coordinates of Vicon <strong>mocap</strong> segment markers (using the numerically stable or modified Gram-Schmidt orthonormalization procedure). I have provided an example for markers on a manikin head after subscribing to the published topic &quot;vicon/markers&quot; from the ros bridge to vicon sdk. It&#39;s been tested and verified on ROS Indigo running Ubuntu Trusty. If you can verify that it works on Jade or Hydro, kindly leave a feedback on the <a href="https://github.com/lakehanne/vicon/issues">project&#39;s issues page</a>. </p>
+<hr/>
+
+<h3><center><a href="https://github.com/lakehanne/Shells/blob/master/Vivid_packages.sh"><b>Packages installer for Ubuntu vivid/</b></a>/<a href="https://github.com/lakehanne/Shells/blob/master/packages.sh"><b>Trusty packages installer</b></a></center></h3>
 
 <p>Bourne Again Shell (bash) scripts  to get you started on a fresh installation of Ubuntu. I was tired of spending a whole day updating/installing my packages after a fresh format of my harddrive. So I put together this script to quickly get me started with my work rather than spending a day or two downloading and installing needed individual packages. Packages include</p>
 <ul>
 <li>ROS Jade (for Vivid) or ROS Indigo for (Trusty), Mendeley[you bet :)], Dropbox, xdotool, wmctrl, git, sublime-text2, opengl</li>
-<li>open-ni primesensor, skype, galculator, libfreenect2, libfreenect, opencl-headers, USB 3.0 Superspeed patch (from Josh Blake), texlive, ruby, rubygems, <a href="https://github.com/lakehanne/Shells/tree/master/OpenCV_cmake">opencv with cuda build</a>, jekyll, cuda 7.0, and google-chrome (unstable) among others</li><br>
-
-<li>TODO: Add torch libraries, lua, scikit-learn, scipy, pybrain etc.</li><small>Improvements certainly welcome.</small>
+<li>open-ni primesensor, skype, galculator, libfreenect2, libfreenect, opencl-headers, USB 3.0 Superspeed patch (from Josh Blake), texlive, ruby, rubygems, <a href="https://github.com/lakehanne/Shells/tree/master/OpenCV_cmake">opencv with cuda build</a>, jekyll, cuda 7.0, and google-chrome (unstable) among others</li>
+<li>Torch 7 package, Lua 5.1/5.2, scikit-learn, scipy, pybrain etc.</li>
 </ul>
 <hr/>
 
-<h2><center><a href="https://github.com/SeRViCE-Lab/Matlab-Files/blob/master/CASE-CODE/CASESim.m"><b> Soft Robot System Identification and Control  (.m)</b></a></center></h2>
+<h3><center><a href="https://github.com/SeRViCE-Lab/Matlab-Files/blob/master/CASE-CODE/CASESim.m"><b> Soft Robot System Identification and Control</b></a></center></h3>
 
 <p>A matlab simulation of my control design rambling in the 2015 CASE paper: <small><a href="http://arxiv.org/pdf/1506.04787v2.pdf">A Real-Time Soft Robotic Patient Positioning System for Maskless Head-and-Neck Cancer Radiotherapy: An Initial Investigation</small></a>  </p>
 <hr/>
