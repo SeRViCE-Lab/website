@@ -72,11 +72,11 @@ Rerum Cognoscere Causas: To know the causes of things.} }}                      
 	\cventry{2000--2005}{Bachelor Of Science in Physics \& Electronics}{Adekunle Ajasin University}{Akungba}{Nigeria}{\href{http://lakehanne.github.io/downloads/BS_Thesis.pdf}{\textcolor{blue}{Senior thesis}} advised by Ademola Amusa (\emph{MS, Columbia University, PhD UIUC}).| Dissertation Grade: 85\% $\equiv$ A+ | Graduated Magna Cum Laude.}
 
 	\section{Publications}
-	\cvitem{}{\textbf{Olalekan Ogunmolu}, Ajith Venkateswaran, and Nicholas Gans. \href{http://lakehanne.github.io/downloads/ICRA2016.pdf}{\textcolor{blue}{Deep dynamic neural network-based identification and control of a soft robot}}. To appear in: \emph{IEEE International Conference on Robotics and Automation (ICRA)}.}{}
+	\cvitem{}{\textbf{Olalekan Ogunmolu, and Nicholas Gans}. \href{http://lakehanne.github.io/downloads/ICRA2017.pdf}{\textcolor{blue}{Learning deep neural network policies for head and neck motion control in cancer radiotherapy}}. To appear in \textit{IEEE Robotics and Automation Letters} (RA-L)/\emph{IEEE International Conference on Robotics and Automation (ICRA 2017)}, Singapore, June 2017.}{}
 		
 	\cvitem{}{\textbf{Olalekan Ogunmolu}, Xuejun Gu, Steve Jiang, and Nicholas Gans. \href{http://lakehanne.github.io/downloads/CASE2016.pdf}{\textcolor{blue}{Visual-servoing control of a soft-robot}}. To appear in: \emph{IEEE Conference on Automation Science and Engineering (CASE)}, Fort-Worth, Texas, August 2016.}{}
 		
-	\cvitem{}{\textbf{Olalekan Ogunmolu}, Xuejun Gu, Steve Jiang, and Nicholas Gans. \href{http://lakehanne.github.io/downloads/CASE2015_Soft_Robot.pdf}{\textcolor{blue}{A Real-Time Soft-Robotic Patient Positioning System for Maskless Head-and-Neck Cancer Radiotherapy}}. \emph{IEEE Conference on Automation Science and Engineering (CASE)}, Gothenburg, Sweden, August 2015.}{}
+	\cvitem{}{\textbf{Olalekan Ogunmolu}, Xuejun Gu, Steve Jiang, and Nicholas Gans. \href{http://lakehanne.github.io/downloads/CASE2015_Soft_Robot.pdf}{\textcolor{blue}{A Real-Time Soft-Robotic Patient Positioning System for Maskless Head-and-Neck Cancer Radiotherapy}}. \emph{IEEE Conference on Automation Science and Engineering (CASE)}, Gothenburg, Sweden, August 2015. DOI: 10.1109/CoASE.2015.7294318}{}
 	
 	\cvitem{}{\textbf{Olalekan Ogunmolu}, Nicholas Gans, Steve Jiang, Xuejun Gu. \href{http://www.aapm.org/meetings/2015AM/PRAbs.asp?mid=99&aid=29621}{\textcolor{blue}{An Image-Guided Soft Robotic Patient Positioning System for Maskless Head-And-Neck Cancer Radiotherapy: A Proof-of-Concept Study}}. \emph{American Association of Physicists in Medicine (AAPM)} Annual Meeting, July 2015.}{}
 	
@@ -91,8 +91,8 @@ Rerum Cognoscere Causas: To know the causes of things.} }}                      
 	\section{Experience}
 	\subsection{Research}
 	\cventry{Spring - Summer '16 \newline \footnotesize}{\textbf{Hardware Integration Intern, Amazon Robotics LLC}}{North Reading}{MA. USA}{	\/* \footnotesize A wholly owned Amazon.com Subsidiary.*/}{
-	$\bullet$ Wrote the ROS codebase for line scanners used in robots' grasp tasks. 
-	\newline $\bullet$ Defined requirements and specified components for robots' vision prototype parts. Wrote test case specifications for the computer vision team's functional requirements for robots' grasp.
+	$\bullet$ Wrote the ROS codebase for line scanners used in robots' pick and place tasks. 
+	\newline $\bullet$ Wrote test cases, and defined test procedures for 2D and 3D sensors required on the new stow and sort robot development stations at Amazon Fulfillment Centers.
 	\newline
 	$\bullet$ Contributed wikis  to the kiva Systems confluence webpage and a model predictive controller "HowTO" to the kiva Systems knowledge base.
 %	\textbf{Job Description:}   Work as part of an interdisciplinary team to design and analyze mechanisms, modules or systems
@@ -106,11 +106,21 @@ Rerum Cognoscere Causas: To know the causes of things.} }}                      
 %		·      Support staff writing specifications and plans.
 }{}
 			
-		\cventry{Fall '14 - Spring '15}{\textbf{Research Assistant, Sensing, Robotics, Vision, Control, and Estimation (SeRViCE) Lab}}{University of Texas at Dallas}{}{}{Evaluation and determination of overall system requirements for proof-of-concept design of soft-robot system to be used in \textbf{intensity modulated radiotherapy (IMRT)}. Procured and integrated mechanical hardware, vision components and software design for controlling patient head motion during IMRT simulation.}
+		\cventry{Fall '14 - Spring '15}{\textbf{Research Assistant, Sensing, Robotics, Vision, Control, and Estimation (SeRViCE) Lab}}{University of Texas at Dallas}{}{}{
+	%	\newline
+		$\bullet$ Evaluation and determination of overall system requirements for proof-of-concept design of soft-robot system to be used in \textbf{intensity modulated radiotherapy (IMRT)}
+		\newline
+		$\bullet$ Procured and integrated mechanical hardware, vision components and software design for controlling patient head motion during IMRT simulation
+		\newline
+		$\bullet$ Implemented a classical control algorithm that mobilized patient head and neck 1-DOF motion during IMRT up to 5mm accuracy}
 		
-		\cventry{Summer '15}{\textbf{Research Assistant, Sensing, Robotics, Vision, Control, and Estimation (SeRViCE) Lab}}{University of Texas at Dallas}{}{}{Refinement of soft-robot IMRT vision sensing system to sub-millimeter accuracy, optimization and parallelization of patient real-time pose estimate scheme in CUDA/C++ and LabVIEW; implemented optimal regulator in LabVIEW and generated better results at head motion control in clinical radiotherapy.}
-		
-		\cventry{Fall '15}{\textbf{Research Assistant, Sensing, Robotics, Vision, Control, and Estimation (SeRViCE) Lab}}{University of Texas at Dallas}{}{}{Refinement of soft-robot model, adaptation of  Vicon motion capture in sensing system for control loop feedback for optimal head motion control. Currently exploring best predictive and adaptive control laws to best give clinically acceptable real-time control for head motion in IMRTs.}
+		\cventry{Summer - Fall '15}{\textbf{Research Assistant, Sensing, Robotics, Vision, Control, and Estimation (SeRViCE) Lab}}{University of Texas at Dallas}{}{}{
+	%	\newline 
+		$\bullet$ Achieved a sub-millimeter accuracy using multisensor kalman fusion in head motion tracking; optimized and parallelized algorithm in CUDA to speed up real-time head motion detection rates
+		\newline
+		$\bullet$ Implemented an LQG controller in LabVIEW based on the kalman filter estimate and achieved $\pm$1.5mm accuracy at head and neck 1-DOF motion control in clinical radiotherapy
+		\newline
+		$\bullet$ (Fall 2015)Developed ROS codebase for head motion sensing using the Vicon motion capture system}
 			
 		\subsection{Teaching}
 		\cventry{Spring '15}{\textbf{Teaching Assistant, Linear Systems (M.S. Class)}}{University of Texas at Dallas}{}{}{Responsible for helping Masters students with linear control theory applications; graded homeworks and midterms.}
@@ -170,9 +180,12 @@ Rerum Cognoscere Causas: To know the causes of things.} }}                      
 	\section{Computing}
 	\cvitem{\textcolor{light-blue}{Skills}}{Active programmer with experience in \textbf{C++} \textsf{(including the point cloud, opencv, boost, eigen, opengl libraries among others)}, \textbf{MATLAB} and \textbf{LabVIEW} \textsf{(system identification, control, signal processing, fpga, robotics modules/toolkits)}, \textbf{Python} (\textsf{sciPy tools including: \textcolor{light-blue}{matplotlib}, \textcolor{light-blue}{numpy}, \textcolor{light-blue}{scikit learn}, the \textcolor{light-blue}{pandas and pybrain} libraries, etc}). See my github profiles (\href{https://github.com/lakehanne}{\textcolor{light-blue}{github.com/lakehanne}} \& \href{https://github.com/service-lab}{\textcolor{light-blue}{github.com/service-lab}}) for details.} 
 
-	\cvitem{\textcolor{light-blue}{Linux}}{Linux distros: Debian (including Ubuntu) and openSUSE distros.}
+	\cvitem{\textcolor{light-blue}{*Nix OSes}}{Debian, Ubuntu, openSUSE}
 			
-	\cvitem{\textcolor{light-blue}{ROS}}{Proficient in ROS distros including ROS Hydro, Indigo, and Jade for vision and manipulation tasks.}
+	\cvitem{\textcolor{light-blue}{ROS}}{
+	ROS Hydro, ROS Indigo, and ROS Jade for vision and manipulation tasks
+	\newline
+	Visualization and Robot Protocol Tools: Xacro, URDF, and RViZ}
 		
 	\cvitem{\textcolor{light-blue}{Web}}{\textcolor{light-blue}{Jekyll/Ruby}, maintains \href{http://ecs.utdallas.edu/~opo140030/}{\textcolor{blue}{website}} with (\textcolor{light-blue}{Hyde}), proficient in \textcolor{light-blue}{Markdown} and \textcolor{light-blue}{HTML}.}
 		
@@ -181,9 +194,20 @@ Rerum Cognoscere Causas: To know the causes of things.} }}                      
 	\cvitem{\textcolor{light-blue}{Machine Learning}}{Torch/LUA (nn/dpnn/rnn/matio/cunn/cudnn/image/optim/xlua modules).}
 			
 	\cvitem{\textcolor{light-blue}{Et cetera.}}{MS DOS, Win ME, Win XP, 7, \& 8. I have made contributions to ROS and vision projects such as iai\_kinect2 and Openkinect's libfreenect2. ConvNets/RNNs/Deepnets aficionado.}
+%\iffalse	
+	\section{OpenSource Projects}
+ \cvitem{RBN}{My implementation of the Recurrent Batch Normalization of Cooijman et.al in Torch7. Unit tested with Element Research's Recurrent Language Model Example and FARNN (Available on lakehanne/FARNN)}
+   
+ \cvitem{FARNNs}{Training of multilayer perceptrons, simple recurrent neural networks, long short-term memory cells (with peep-hole connections), fast LSTMS (which are LSTMs with gates computed in one fell-swoop, and recurrent batch normalized Fast LSTMs to model the relationship between input and output data. Available on lakehanne/FARNN} 	
+ 
+ \cvitem{Keyence}{Source code (minimal) for retrieving profile map from the keyence LJV-7000 series line scanners. Available on lakehanne/keyence}
+ 
+ %\cvitem{Kinect2}{approximate sync policies within the message filters class of ROS Image Transport communication protocol that subscribes to the color_\rect, depth_\rect of Wiedemeyer's ROS bridge to libfreenect2 and creates a point cloud visualizer from the depth and colored images. Available on kinectsub repo of service lab}
 		
 	\section{Selected service and leadership}
-	\cventry{2015 -- Present}{Science instructor}{IEEE Dallas Shoulder of Giants Workshops}{Dallas, TX}{}{Regular participant in IEEE Dallas Young Professionals community outreaches in promoting STEM education and awareness in the Dallas/Fort-Worth Metroplex.}
+	\cventry{2016--present}{Member}{IEEE Boston}{Greater Boston/New England, USA}{}{}
+	
+	\cventry{2015 -- Present}{Science instructor}{IEEE Dallas Shoulder of Giants Workshops}{Dallas, TX}{}{Regular participant at IEEE Dallas Young Professionals community outreaches in promoting STEM education and awareness in the Dallas/Fort-Worth Metroplex.}
 	
 	\cventry{Summer 2015}{Summer Science Program}{University of Texas at Dallas}{Richardson, TX}{}{Trained high-school kids in basic robots control and programming with the Berkeley Snap! kit and arduino.}
 	
@@ -193,9 +217,11 @@ Rerum Cognoscere Causas: To know the causes of things.} }}                      
 	
 	\cventry{Summer 2012}{Workshop participant}{Farnborough International Airshow}{NE Hampshire, England}{}{Selected by Airbus (an EADS company) among participants at the \emph{UAV and Fighter Aircraft} workshop based on a competitive admission process.}
 	
-	%\section{Other interests and activities}
+	\section{Other interests and activities}
 	
-	%\cvline{}{I love anecdotal and simple communication of science and technical subjects to the broader population who are otherwise averse to bloated technical jargon. Since the summer of 2015, I have been running my \href{http://lakehanne.github.io/}{\textcolor{blue}{academic blog}} and I have readership from countries including Russia, China, Europe, the United States and the South Pacific numbering thousands of views.}{}
+	\cvline{}{Most-viewed writer in Control Engineering, \textbf{\textit{Quora}}
+	\newline
+	\textsf{-- Oct/Nov. 2015; March - April 2016}}{}
 	
 	\renewcommand{\listitemsymbol}{-}
 	\clearpage

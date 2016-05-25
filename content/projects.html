@@ -25,9 +25,36 @@ description: Projects I have worked on and currently working on
 
 <h1>Open Source Projects</h1>
 <hr/>
-<h3><center><a href="https://github.com/SeRViCE-Lab/Matlab-Files/blob/master/ident_data/Filtered%20GWN/carimaFWGN.m"><b>Black-Box System Identification for Control (.m)</b></a></center></h3>
+<h3><center><a href="https://github.com/lakehanne/FARNN/tree/repeater"><b>Nonlinear Systems Modeling using Recurrent Neural Networks</b></a></center></h3>
 
-<p>Based on a finite-dimensional data that was acquired during an identification for a SISO control system experiment, this code demonstrates how to go about the determination of structure in chaotic data and reconstructs generative linear system identification models typically used in control systems design. Feedbacks are welcome.</p>
+<p>Using stacked layers of neural networks, I trained multilayer perceptrons, simple recurrent neural networks, long short-term memory cells (with peep-hole connections), fast LSTMS (which are LSTMs with gates computed in one fell-swoop as (inspired by <a href="https://github.com/wojciechz/learning_to_execute"><b>Wojciech Zaremba's Learning to Execute paper</b></a>), and <a href="https://arxiv.org/1603.09025"><b>recurrent batch normalized Fast LSTMs</b></a> to model the relationship between input and output data</p>
+<hr/>
+
+<h3><center><a href="https://github.com/lakehanne/rnn/blob/master/FastLSTM.lua"><b>Recurrent Batch Normalization of Fast LSTMS</b></a></center></h3>
+
+<p>My implementation of Cooijman et. al's <a href="http://arxiv.org/abs/1603.09025"><b>Recurrent Batch Normalization</b></a> in Torch7. Submitted as a pull request into Torch7's RNN library on May 24, 2016. </p>
+<hr/>
+
+<h3><center><a href="https://github.com/SeRViCE-Lab/kinect_sub"><b>ROS Image Transport Subscriber to Kinect2</b></a></center></h3>
+<p>My implemention of approximate sync policies within the message filters class of ROS Image Transport communication protocol. This code subscribes to the color_rect, depth_rect and creates a point cloud visualizer from the depth and colored images.</p>
+<hr/>
+
+<h3><center><a href="https://github.com/lakehanne/Savitzky-Golay/blob/master/savgol.cpp"><b>Savitzky-Golay Filters (C++)</b></a></center></h3>
+
+<p>Nicely computes the <a href="http://www.math.umn.edu/%7Egarrett/m/algebra/notes/17.pdf">Vandermonde matrix</a>, Savitzky-Golay <a href="http://www.wire.tu-bs.de/OLDWEB/mameyer/cmr/savgol.pdf">differentiation filters</a> and smoothing coefficients for a noisy, sequential signal. It is a textbook implementation of the Savitzky-Golay filter algorithm following Sophocles Orfanidis treatment in his book. </p><!--
+<p>It can be run offline with collected data but needs slight tweaking if it must be run with on-line data in real time. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort. Please submit all feedbacks via my <a href="https://github.com/lakehanne/Savitzky-Golay/issues">github repo issues page</a>.</p>
+-->
+<p>Reference: Sophocles J. Orfanidis, Introduction to Signal Processing, Prentice-Hall, 1995, Chapter 8.</p>
+<hr/>
+
+<h3><center><a href="https://github.com/SeRViCE-Lab/Matlab-Files/blob/master/ident_data/Filtered%20GWN/carimaFWGN.m"><b>Black-Box Identification</b></a></center></h3>
+
+<p>Based on a finite-dimensional data that was acquired during an identification for a SISO control system experiment, this code is a unit test of determination of structure in chaotic data and reconstructs linear system identification models typically used in control systems design.</p>
+<hr/>
+
+<h3><center><a href="https://github.com/lakehanne/Vicon/blob/master/vicon_listener/src/vicon_listener.cpp"><b>Vicon Listener (ROScpp)</b></a></center></h3>
+
+<p>Based on <a href="https://github.com/markusachtelik">Markus Achtelik&#39;s</a> <a href="https://github.com/ethz-asl/vicon_bridge">ROS bridge</a> to the Vicon <a href="http://www.vicon.com/products/software/datastream-sdk">Data Stream SDK</a>, this is a ROS Metapackage system that computes the rotation and translation coordinates of Vicon <strong>mocap</strong> segment markers (using the numerically stable or modified Gram-Schmidt orthonormalization procedure). I have provided an example for markers on a manikin head after subscribing to the published topic &quot;vicon/markers&quot; from the ros bridge to vicon sdk. It&#39;s been tested and verified on ROS Indigo running Ubuntu Trusty. If you can verify that it works on Jade or Hydro, kindly leave a feedback on the <a href="https://github.com/lakehanne/vicon/issues">project&#39;s issues page</a>. </p>
 <hr/>
 
 <h3><center><a href="https://github.com/lakehanne/Deep-Reinforcement-learning"><b>Human-Level Control through Deep Reinforcement Learning</b></a></center></h3>
@@ -35,26 +62,8 @@ description: Projects I have worked on and currently working on
 described in the Mnih et. al. paper <a href="http://www.davidqiu.com:8888/research/nature14236.pdf">Human-level control through deep reinforcement learning</a>, Nature 518, 529 -- 533 (26 February 2015) doi:10.1038/nature14236.</p>
 <hr/>
 
-<h3><center><a href="https://github.com/lakehanne/Savitzky-Golay/blob/master/savgol.cpp"><b>Savitzky-Golay Filter (C++)</b></a></center></h3>
-
-<p>Nicely computes the <a href="http://www.math.umn.edu/%7Egarrett/m/algebra/notes/17.pdf">Vandermonde matrix</a>, Savitzky-Golay <a href="http://www.wire.tu-bs.de/OLDWEB/mameyer/cmr/savgol.pdf">differentiation filters</a> and smoothing coefficients for a noisy, sequential signal. It is a textbook implementation of the Savitzky-Golay filter algorithm following Sophocles Orfanidis treatment in his book. </p>
-<!--
-<p>It can be run offline with collected data but needs slight tweaking if it must be run with on-line data in real time. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort. Please submit all feedbacks via my <a href="https://github.com/lakehanne/Savitzky-Golay/issues">github repo issues page</a>.</p>
--->
-<p>Reference: Sophocles J. Orfanidis, Introduction to Signal Processing, Prentice-Hall, 1995, Chapter 8.</p>
-<hr/>
-
-<h3><center><a href="https://github.com/Element-Research/rnn"><b>Recurrent Neural Networks [Torch 7]</center></b></a></h3>
-<p>Torch implementation of recurrent neural networks and LSTM's based on Ilya Sutsekever and Alex Grave's works at UToronto</p>
-<hr/>
-
 <h3><center><a href="https://github.com/kjw0612/awesome-rnn"><b>Awesome Recurrent Neural Networks</a></b></h3>
-<p>A curated list of resources dedicated torecurrent neural networks (with a deep learning focus)</center></p>
-<hr/>
-
-<h3><center><a href="https://github.com/lakehanne/Vicon/blob/master/vicon_listener/src/vicon_listener.cpp"><b>Vicon Listener (ROScpp)</b></a></center></h3>
-
-<p>Based on <a href="https://github.com/markusachtelik">Markus Achtelik&#39;s</a> <a href="https://github.com/ethz-asl/vicon_bridge">ROS bridge</a> to the Vicon <a href="http://www.vicon.com/products/software/datastream-sdk">Data Stream SDK</a>, this is a ROS Metapackage system that computes the rotation and translation coordinates of Vicon <strong>mocap</strong> segment markers (using the numerically stable or modified Gram-Schmidt orthonormalization procedure). I have provided an example for markers on a manikin head after subscribing to the published topic &quot;vicon/markers&quot; from the ros bridge to vicon sdk. It&#39;s been tested and verified on ROS Indigo running Ubuntu Trusty. If you can verify that it works on Jade or Hydro, kindly leave a feedback on the <a href="https://github.com/lakehanne/vicon/issues">project&#39;s issues page</a>. </p>
+<p>A curated list of resources dedicated to recurrent neural networks (with a deep learning focus)</center></p>
 <hr/>
 
 <h3><center><a href="https://github.com/lakehanne/Shells/blob/master/Vivid_packages.sh"><b>Packages installer for Ubuntu vivid/</b></a>/<a href="https://github.com/lakehanne/Shells/blob/master/packages.sh"><b>Trusty packages installer</b></a></center></h3>
