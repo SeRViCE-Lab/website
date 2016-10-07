@@ -78,10 +78,10 @@
 	{% endblock header %}
 	{% block nav %}
 	<br>
-        <p class="view"><a href="{{ content_url('research.html') }}"><b>Research</b><small>Musings of a control theorist.</small></a></p>
-        <p class="view"><a href="{{ content_url('speaking.html') }}"><b>Talks and presentations</b><small>Control systems, robotics et cetera</small></a></p>
-        <p class="view"><a href="{{ content_url('projects.html') }}"><b>Hacker's guide to control</b><small>Codes you might find useful.</small></a></p>
-        <p class="view"><a href="{{ content_url('vitae.html') }}"><b>Publications</b><small>My academic journey scripted on a chip</small></a></p>
+        <p class="view"><a href="{{ content_url('vitae.html') }}"><b>Publications</b><small> <i>Papers, arXiv submissions, reports, and abstracts </i></small></a></p>        
+        <p class="view"><a href="{{ content_url('speaking.html') }}"><b>Talks and presentations</b><small> <i>Conference presentation slides and invited talks</i></small></a></p>
+        <p class="view"><a href="{{ content_url('research.html') }}"><b>Research</b><small> <i>What I think about</i> </small></a></p>
+        <p class="view"><a href="{{ content_url('projects.html') }}"><b>Codes</b><small> <i>Codes you might find useful.</i></small></a></p>
         {% if page.repository_url %}
           <h3>Project Info</h3>
           <ul>
