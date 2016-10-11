@@ -23,42 +23,30 @@ description: Description of Past and Current Research Interests
   
 <h1>Research</h1>
 <hr/>
-<h2>Background</h2>
-<p>After completing my undergraduate studies in Physics, I took a few years off before returning to academia. In those years I worked in a mobile Telco firm in Nigeria and later relocated to Lagos working for Coca-Cola HBC. Those four years in communications technology and supply-chain operations management left me with a rekindled interest in science and technology and control systems in particular.</p>
+<h2><font color="#711E0C">Background</font></h2>
+<p><font color="#110D0C">After completing my undergraduate studies in Physics, I took a few years off before returning to academia. In those years I worked in a mobile Telco firm in Nigeria and later relocated to Lagos working for Coca-Cola HBC. Those four years in communications technology and supply-chain operations management left me with a rekindled interest in science and technology and control systems in particular.</p>
 
-<p>I love tinkering with machines, marveling at the interconnectedness of components which enables hardware to function as envisioned. I had my Master's degree in Control Systems at the  <a href="http://www.sheffield.ac.uk/">University of Sheffield's</a> <a href="http://www.sheffield.ac.uk/acse"> Automatic Control and Systems Engineering (ACSE) department.</a> There, I started combining scientific elegance with practical impact and I worked with <a href="https://www.sheffield.ac.uk/acse/staff/tjd">Tony Dodd</a> during my Thesis. Shortly after my degree, I returned home as a computer science college<a href="https://computersorcerer.wordpress.com"> instructor</a> for one year before I started my doctoral studies at UT Dallas in the Fall of 2014. When not working in the lab, I enjoy spending time with my family, or cycling in the country.</p>
+<p>I love tinkering with machines, marveling at the interconnectedness of components which enables hardware to function as envisioned. I had my Master's degree in Control Systems at the  <a href="http://www.sheffield.ac.uk/">University of Sheffield's</a> <a href="http://www.sheffield.ac.uk/acse"> Automatic Control and Systems Engineering (ACSE) department.</a> There, I started combining scientific elegance with practical impact and I worked with <a href="https://www.sheffield.ac.uk/acse/staff/tjd">Tony Dodd</a> during my Thesis. Shortly after my degree, I returned home as a computer science college<a href="https://computersorcerer.wordpress.com"> instructor</a> for one year before I started my doctoral studies at UT Dallas in the Fall of 2014. When not working in the lab, I enjoy spending time with my family, or cycling in the country.</font> </p>
 
-<h2>Research Interests</h2>
-I started my PhD with a vague interest in cancer radiotherapy, and a hope to understand deep nets in detail; finding aplications of it to system identification of complex nonlinear dynamical systems and robots learning and cognition. I find Professor Gans to be very flexible in the way he allows his students to develop the skills they feel might be important for their career.
-<hr/>
-
+<h2><font color="#711E0C">Research Thrusts</font></h2>
 <ul>
-
-<li><b>Head-and-Neck Patient Motion Control in Cancer Radiotherapy.</b><br>
-Shortly after the start of my studies in Dr. Gans' lab, we began investigating ways of automating the otherwise expensive state-of-the-art process of controlling a patient's head and neck motion during cancer radiotherapy so as to minimize the exposure of organs at risk to excessive radiation as well as automate the calibration process (usually by a medical physicist) of a patient's optimal placement on a 6-D robotic couch to move the patient as desired based on an hyper-sensitive image-guidance system during RT. 
-<p>Our conclusion, along with <a href="http://profiles.utsouthwestern.edu/profile/150563/steve-jiang.html">Steve Jiang</a> and <a href="http://profiles.utsouthwestern.edu/profile/133029/xuejun-gu.html"> Xuejun Gu</a>, from state-of-the art in literature, was that existing methods still produced a lot of discomfort for the patient and though while achieving desired accuracy with optical guidance systems, it causes a lot of pain to the patient and takes a long time to properly calibrate a patient's position accurately.</p> We came up with deformable soft-robots that can actuate based on feedback from a visual sensor in a simulated scenario and this is discussed at length in our <a href="http://arxiv.org/abs/1506.04787v2"><b>CASE paper</b></a>.
+<li><b><font color="#711E0C">Head-and-Neck Patient Motion Control in Cancer Radiotherapy.</font></b><br>
+<font color="#110D0C">Shortly after the start of my doctoral studies, we began investigating ways of improving the otherwise error-prone state-of-the-art 6-DoF robotic couch method of controlling a patient's head and neck motion during cancer radiotherapy so as to minimize the exposure of organs at risk to excessive radiation as well as automate the calibration process (usually by a medical physicist) of a patient's optimal placement on the robotic couch while using image-guided RT. 
+<p>Our conclusion, along with <a href="http://profiles.utsouthwestern.edu/profile/150563/steve-jiang.html">Steve Jiang</a> and <a href="http://profiles.utsouthwestern.edu/profile/133029/xuejun-gu.html"> Xuejun Gu</a>, from state-of-the art in literature, was that existing methods still produced a lot of discomfort for the patient and though while achieving desired accuracy with optical guidance systems, it causes a lot of pain to the patient and took a long time to properly calibrate a patient's position accurately.</p> We came up with deformable soft-robots that can actuate based on feedback from a visual sensor in a simulated scenario and this is discussed at length in our two CASE papers: <a href="http://arxiv.org/abs/1506.04787v2"><b></b>CASE2015</a> and <a href="http://lakehanne.github.io/downloads/CASE2016.pdf">CASE2016.</a></font>
 </li>
 <hr/>
 
-<br></br>
-<li><b>Visual-Servoing Control of a Soft-Robot</b><br>
-How do you actively cancel noise from a generic low-cost vision sensor (e.g. Kinect) and infer real-world pose accurately? This past summer, I developed a visual perception scheme, using multiple RGB-D cameras, based on the robot operating system (ROS) in order to reduce uncertainty/jitter in the pose-estimation of an object using classical AI methods, and while parallelizing the AI algorithm on multiple GPU cores with CUDA C++ and OpenCV API. I mounted the cameras across a simulated patient's face, tracked local eye features in real-time (from each camera) using Haar basis-like functions, and performed recursive discrete estimation of each sensor's observation locally. Each local estimate was fused at a central site with a probabilistic scheme that weighted the variance from each sensor's observation in order to construct a more reliable result. The result improved pose accuracy markedly compared to using raw observations from RGB-D sensors. <a href="http://lakehanne.github.io/downloads/CASE2016.pdf">Visual Servoing Control of a Soft Robot.</a><hr/>
-</li></b>
-
-</ul>
-
-<h2>Current</h2>
+<h2><font color="#711E0C">Current</font></h2>
 
 <hr/>
-<li><b>Identification of complex nonlinear dynamical systems using neural nets</b><br>
-Are you a control systems theorist who is awed by the <a href="http://lakehanne.github.io/neuraltalk/">unreasonable effectiveness of deep neural networks</a>? In the 1950's, control theorists introduced neural network models for use in control theory and especially in system identification. Since neural networks could not be used directly in time-varying systems, people sort of abandoned this line of research. Instead, we developed mathematical schemes through the decades such as stability and instability in switched systems and adaptation in rapidly time-varying environments as well as modeling and control of decentralized autonomous agents to cope with time-varying nonlinear phenomenon. But since AlexNet smashed the world cup of computer vision in 2012, the computer vision community has been reinvigorated in using ConvNets (convolutional neural networks introduced by <a href="http://yann.lecun.com/">Yann Lecun</a>) in modeling highly nonlinear and nonconvex natural systems including language models, speech and visual perception. 
+<li><b><font color="#711E0C">Identification and control of complex nonlinear dynamical systems using deep dynamic neural nets</font></b><br>
 
-<p>I am on an investigative quest to adapt this magical algorithms to complex dynamical control problems, analyze their effectiveness and hopefully inspire a new generation of engineers to seize the day and use deep nets in identification, and control/accurate simulation of large-scale models. <b><i>I am releasing my first paper on this topic to the next ICRA conference proceedings.</i></b>
-</p>
+<font color="#110D0C">Before 2012, it used to be that deep learning was the queen of machine learning; nowadays, any serious person doing large scale nonlinear modeling in pattern recognition, vision or natural language processing is using deep learning. 
+<br>
+Deep nets changed the insistence by many researchers and engineers that using hand-coded features to decode complex nonlinearity in real-world systems was the best approach toward approximating real-world complexity. It used to be that solving each nonlinear problem presents a unique challenge of finding what method and approach worked best. In system identification and other supervised learning domains, for example, existing literature is replete with tons of hand-crafted methods of devising features to approximate real-world systems. Enter deep neural networks. <a href="http://yann.lecun.com/">Yann LeCun</a> proposed self-organizing neural networks with deep architectures that find adaptive and automatic learning rules for real-world datasets thus enabling connected neural networks to develop an internal structure that is appropriate for a particular learning task. By training component-wise modules, traditional methods of designing hand-coded features for recognition systems can be replaced by collective systems that seamlessly work together in style to optimize a global performance criterion. 
+<br>
+Improvements have been made to the original architecture of LeCun's network with various tweaks and proposals for improving deep nets training. Recurrent Neural Networks application have also seen a resurgence with applications in deep spech/natural language processing and machine translation. If you want a primer on these algorithms, I highly recommend <a href="http://jmlr.org/proceedings/papers/v37/jozefowicz15.pdf">Jozefowicz's</a> and <a href="http://arxiv.org/abs/1412.6806">Springenberg's</a> papers.  
+In this work, I investigate the adaptiveness of deep network architectures for the dynamic identification and control of medical robots and compare their "goodness" on public <a href="http://homes.esat.kuleuven.be/smc/daisy">system identification datasets.</a> Work is ongoing on deploying these networks for universal approximation purposes on the robots that we use in our lab.
+</font></p>
 </li></b>
 <hr/>
-
-<li><b>Amazon Internship</b><br>
-<p>I am currently away from UT Dallas on an <b>Amazon Robotics LLC</b> (a wholly-owned subsidiary of <a href="www.amazon.com"> <b>Amazon.com</b> </a>) <b>internship</b> in the Greater Boston area.</p>
-<p> I am working in the Advanced Robotics Lab as a <b>hardware integration engineer</b></p>
-</li>

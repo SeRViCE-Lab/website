@@ -78,10 +78,10 @@
 	{% endblock header %}
 	{% block nav %}
 	<br>
-        <p class="view"><a href="{{ content_url('vitae.html') }}"><b>Publications</b><small> <i>Papers, arXiv submissions, reports, and abstracts </i></small></a></p>        
-        <p class="view"><a href="{{ content_url('speaking.html') }}"><b>Talks and presentations</b><small> <i>Conference presentation slides and invited talks</i></small></a></p>
-        <p class="view"><a href="{{ content_url('research.html') }}"><b>Research</b><small> <i>What I think about</i> </small></a></p>
-        <p class="view"><a href="{{ content_url('projects.html') }}"><b>Codes</b><small> <i>Codes you might find useful.</i></small></a></p>
+        <p class="view"><a href="{{ content_url('vitae.html') }}"><b>Publications</b><small><font color="#110D0C"> <i>Papers, arXiv submissions, reports, and abstracts </i></font></small></a></p>        
+        <p class="view"><a href="{{ content_url('speaking.html') }}"><b>Talks and presentations</b><small> <i><font color="#110D0C">Conference presentation slides and invited talks</font></i></small></a></p>
+        <p class="view"><a href="{{ content_url('research.html') }}"><b>Research</b><small> <font color="#110D0C"><i>What I think about</i></font> </small></a></p>
+        <p class="view"><a href="{{ content_url('projects.html') }}"><b>Codes</b><small> <font color="#110D0C"><i>Codes you might find useful.</i></font></small></a></p>
         {% if page.repository_url %}
           <h3>Project Info</h3>
           <ul>
@@ -115,7 +115,7 @@
         <p class="view"><a href="http://lakehanne.github.io" target="tab"><b>Blog</b></a></li>
 
         <p class="view">
-          <small><b>Email:  Olalekan.Ogunmolu _at_ utdallas.edu</b></small>
+          <font color="#110D0C"><small><b>Email:  Olalekan.Ogunmolu _at_ utdallas.edu</b></small></font>
         </p>
         {% endblock media %}
       </header>
@@ -131,7 +131,7 @@
 	    Layout adapted from <a href="https://github.com/orderedlist">orderedlist</a>.</small></p>
 
       <!-- Place this tag where you want the button to render. -->
-       <small>This website is socially coded.</small><a class="github-button" href="https://github.com/service-lab/website/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/service-lab/website/network" data-count-api="/repos/service-lab/website#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork service-lab/website on GitHub"> Fork me on Github.</a>
+       <font color="#110D0C"><small>This website is socially coded.</small><a class="github-button" href="https://github.com/service-lab/website/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/service-lab/website/network" data-count-api="/repos/service-lab/website#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork service-lab/website on GitHub"> Fork me on Github.</a></font>
 
       </footer>
       {% endblock footer %}
