@@ -23,63 +23,53 @@ description: Projects I have worked on and currently working on
 </script>
 
 
-<h1>Open Source Projects</h1>
+<h1><font color="#711E0C">Open Source Projects</font></h1>
+<p><font color="#110D0C">I have made contributions to Torch7 deep nets library and ROS. Here are some of my codes, tutorials and contributions. </font> </p>
 <hr/>
-<h3><center><a href="https://github.com/lakehanne/FARNN/tree/repeater"><b>Nonlinear Systems Modeling using Recurrent Neural Networks</b></a></center></h3>
+<h3><font color="#711E0C"><center><a href="https://github.com/element-research/rnn/fastlstm.lua"><b>Recurrent Batch Normalization of LSTMS</b></a></center></font></h3>
 
-<p>Using stacked layers of neural networks, I trained multilayer perceptrons, simple recurrent neural networks, long short-term memory cells (with peep-hole connections), fast LSTMS (which are LSTMs with gates computed in one fell-swoop as (inspired by <a href="https://github.com/wojciechz/learning_to_execute"><b>Wojciech Zaremba's Learning to Execute paper</b></a>), and <a href="https://arxiv.org/1603.09025"><b>recurrent batch normalized Fast LSTMs</b></a> to model the relationship between input and output data</p>
-<hr/>
-
-<h3><center><a href="https://github.com/lakehanne/rnn/blob/master/FastLSTM.lua"><b>Recurrent Batch Normalization of Fast LSTMS</b></a></center></h3>
-
-<p>My implementation of Cooijman et. al's <a href="http://arxiv.org/abs/1603.09025"><b>Recurrent Batch Normalization</b></a> in Torch7. Submitted as a pull request into Torch7's RNN library on May 24, 2016. </p>
+<p><font color="#110D0C">My implementation of Cooijman et. al's <a href="http://arxiv.org/abs/1603.09025"><b>Recurrent Batch Normalization</b></a> in Torch7. Available in <a href="https://github.com/element-research/rnn/fastlstm.lua">Torch 7's Element Research Inc. RNN Library</a>.</font> </p>
 <hr/>
 
-<h3><center><a href="https://github.com/SeRViCE-Lab/kinect_sub"><b>ROS Image Transport Subscriber to Kinect2</b></a></center></h3>
-<p>My implemention of approximate sync policies within the message filters class of ROS Image Transport communication protocol. This code subscribes to the color_rect, depth_rect and creates a point cloud visualizer from the depth and colored images.</p>
+<h3><font color="#711E0C"><center><a href="https://github.com/lakehanne/nn/DICECriterion.lua"><b>Sorensen-Dice Coefficients in Torch 7</b></a></center></font></h3>
+
+<p><font color="#110D0C">The <a href="https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient">Sorensen-Dice index</a> measures the degree of similarity between two sample sets. Geiven targets X and Y in two sample datasets, the quotient of similarity is calculated as .
+  <br>
+    <center>
+       Q = 2 * (X n Y) / (sum_i(X) + sum_i(Y))
+    </center>
+  <br>
+where X and Y are the two samples. X n Y denote the intersection where the elements of X and Y are equal. The resulting quotient is a measure of the similarity between the two samples. It ranges between 0 and 1. If it is 1, the two images are perfectly similar. Otherwise, they are perfectly dissimilar.
+
+The input tensor and output tensor are expected to be of the same size when calling forward(input, target) and backward(input, target).</font> </p>
 <hr/>
 
-<h3><center><a href="https://github.com/lakehanne/Savitzky-Golay/blob/master/savgol.cpp"><b>Savitzky-Golay Filters (C++)</b></a></center></h3>
+<h3><font color="#711E0C"><center><a href="https://github.com/lakehanne/Savitzky-Golay/blob/master/savgol.cpp"><b>Savitzky-Golay Filters in C++</b></a></center></font></h3>
 
-<p>Nicely computes the <a href="http://www.math.umn.edu/%7Egarrett/m/algebra/notes/17.pdf">Vandermonde matrix</a>, Savitzky-Golay <a href="http://www.wire.tu-bs.de/OLDWEB/mameyer/cmr/savgol.pdf">differentiation filters</a> and smoothing coefficients for a noisy, sequential signal. It is a textbook implementation of the Savitzky-Golay filter algorithm following Sophocles Orfanidis treatment in his book. </p><!--
-<p>It can be run offline with collected data but needs slight tweaking if it must be run with on-line data in real time. Initial testing of this code was done using a Ubuntu 14.04.02 Trusty OS running Linux 4.4 but will work on any other Linux/Windows/Mac OS machine with little effort. Please submit all feedbacks via my <a href="https://github.com/lakehanne/Savitzky-Golay/issues">github repo issues page</a>.</p>
--->
-<p>Reference: Sophocles J. Orfanidis, Introduction to Signal Processing, Prentice-Hall, 1995, Chapter 8.</p>
+<p><font color="#110D0C">Nicely computes the <a href="http://www.math.umn.edu/%7Egarrett/m/algebra/notes/17.pdf">Vandermonde matrix</a>, Savitzky-Golay <a href="http://www.wire.tu-bs.de/OLDWEB/mameyer/cmr/savgol.pdf">differentiation filters</a> and smoothing coefficients for a noisy, sequential signal. It is a textbook implementation of the Savitzky-Golay filter algorithm following Sophocles Orfanidis treatment in his book. </font> </p>
 <hr/>
 
-<h3><center><a href="https://github.com/SeRViCE-Lab/Matlab-Files/blob/master/ident_data/Filtered%20GWN/carimaFWGN.m"><b>Black-Box Identification</b></a></center></h3>
+<h3><font color="#711E0C"><center><a href="https://github.com/lakehanne/FARNN/tree/soft-robot"><b>Fully Automated Deep Recurrent Neural Networks for Nonlinear Identification and Control </b></a></center></font></h3>
 
-<p>Based on a finite-dimensional data that was acquired during an identification for a SISO control system experiment, this code is a unit test of determination of structure in chaotic data and reconstructs linear system identification models typically used in control systems design.</p>
+<p><font color="#110D0C">Using stacked layers of neural networks, I trained multilayer perceptrons, simple recurrent neural networks, long short-term memory cells, fast LSTMS (with gates computed in one fell-swoop) to model the relationship between input and output data. 
+<br>
+Please check out the <b>"soft-robot" tag</b> only. Other branches for other identification datasets are actively being developed.</font> </p>
 <hr/>
 
-<h3><center><a href="https://github.com/lakehanne/Vicon/blob/master/vicon_listener/src/vicon_listener.cpp"><b>Vicon Listener (ROScpp)</b></a></center></h3>
+<h3><font color="#711E0C"><center><a href="https://www.youtube.com/watch?v=F6SOPdLq8s8"><b>Identifying and Segmenting Nerve Structures in Ultrasound Images of the Neck</b></a></center></font></h3>
 
-<p>Based on <a href="https://github.com/markusachtelik">Markus Achtelik&#39;s</a> <a href="https://github.com/ethz-asl/vicon_bridge">ROS bridge</a> to the Vicon <a href="http://www.vicon.com/products/software/datastream-sdk">Data Stream SDK</a>, this is a ROS Metapackage system that computes the rotation and translation coordinates of Vicon <strong>mocap</strong> segment markers (using the numerically stable or modified Gram-Schmidt orthonormalization procedure). I have provided an example for markers on a manikin head after subscribing to the published topic &quot;vicon/markers&quot; from the ros bridge to vicon sdk. It&#39;s been tested and verified on ROS Indigo running Ubuntu Trusty. If you can verify that it works on Jade or Hydro, kindly leave a feedback on the <a href="https://github.com/lakehanne/vicon/issues">project&#39;s issues page</a>. </p>
+<p><font color="#110D0C">This was my code entry for Kaggle's ultrasound data science challenge of August 2016. The problem is well-described on the <a href="https://www.kaggle.com/c/ultrasound-nerve-segmentation/">competition page</a>. This code was developed in Torch 7.
+My convolutional architecture is strongly inspired by  <a href="http://arxiv.org/abs/1505.04597">U-Net</a>, <a href="http://arxiv.org/abs/1511.06434">Alec Radford and Soumith Chintala's DcGAN</a> and the <a href="http://arxiv.org/abs/1412.6806">all-convolutional net </a> of Springenberg et al. </font> </p> Code <a href="https://github.com/lakehanne/ultrasound-nerve-segmentation">here</a>
 <hr/>
 
-<h3><center><a href="https://github.com/lakehanne/Deep-Reinforcement-learning"><b>Human-Level Control through Deep Reinforcement Learning</b></a></center></h3>
-<p>Source code of DQN 3.0, a Lua-based deep reinforcement learning architecture, necessary to reproduce the experiments
-described in the Mnih et. al. paper <a href="http://www.davidqiu.com:8888/research/nature14236.pdf">Human-level control through deep reinforcement learning</a>, Nature 518, 529 -- 533 (26 February 2015) doi:10.1038/nature14236.</p>
+<h3><font color="#711E0C"><center><a href="https://github.com/torch/demos/blob/master/linear-regression/example-linear-regression.lua"><b>Linear Regression in Torch [Torch Demos]</b></a></center></font></h3>
+<p><font color="#110D0C">Part of the Torch demos/tutorials</font></p>
 <hr/>
 
-<h3><center><a href="https://github.com/kjw0612/awesome-rnn"><b>Awesome Recurrent Neural Networks</a></b></h3>
-<p>A curated list of resources dedicated to recurrent neural networks (with a deep learning focus)</center></p>
+<h3><font color="#711E0C"><center><a href="https://github.com/SeRViCE-Lab/p3-dx/tree/devel"><b>Adaptive Monte Carlo Localization and Mapping for the Navigation of an Unmanned Ground Vehicle</b></a></center></font></h3>
 <hr/>
 
-<h3><center><a href="https://github.com/lakehanne/Shells/blob/master/Vivid_packages.sh"><b>Packages installer for Ubuntu vivid/</b></a>/<a href="https://github.com/lakehanne/Shells/blob/master/packages.sh"><b>Trusty packages installer</b></a></center></h3>
-
-<p>Bourne Again Shell (bash) scripts  to get you started on a fresh installation of Ubuntu. I was tired of spending a whole day updating/installing my packages after a fresh format of my harddrive. So I put together this script to quickly get me started with my work rather than spending a day or two downloading and installing needed individual packages. Packages include</p>
-<ul>
-<li>ROS Jade (for Vivid) or ROS Indigo for (Trusty), Mendeley[you bet :)], Dropbox, xdotool, wmctrl, git, sublime-text2, opengl</li>
-<li>open-ni primesensor, skype, galculator, libfreenect2, libfreenect, opencl-headers, USB 3.0 Superspeed patch (from Josh Blake), texlive, ruby, rubygems, <a href="https://github.com/lakehanne/Shells/tree/master/OpenCV_cmake">opencv with cuda build</a>, jekyll, cuda 7.0, and google-chrome (unstable) among others</li>
-<li>Torch 7 package, Lua 5.1/5.2, scikit-learn, scipy, pybrain etc.</li>
-</ul>
+<h3><font color="#711E0C"><center><a href="https://github.com/SeRViCE-Lab/kinect_sub"><b>ROS Image Transport Subscriber to Kinect2 ROS Drivers</b></a></center></font></h3>
+<p><font color="#110D0C">My implemention of approximate sync policies within the message filters class of ROS Image Transport communication protocol. This code subscribes to the color_rect, depth_rect and creates a point cloud visualizer from the depth and colored images.</font> </p>
 <hr/>
 
-<h3><center><a href="https://github.com/SeRViCE-Lab/Matlab-Files/blob/master/CASE-CODE/CASESim.m"><b> Soft Robot System Identification and Control</b></a></center></h3>
-
-<p>A matlab simulation of my control design rambling in the 2015 CASE paper: <small><a href="http://arxiv.org/pdf/1506.04787v2.pdf">A Real-Time Soft Robotic Patient Positioning System for Maskless Head-and-Neck Cancer Radiotherapy: An Initial Investigation</small></a>  </p>
-<hr/>
-
-
- 
