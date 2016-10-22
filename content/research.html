@@ -1,0 +1,52 @@
+---
+extends: minimal.j2
+default_block: main
+title: Research
+description: Description of Past and Current Research Interests
+---
+<!-- Google Anakytics Tracker -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64680332-3', 'auto');
+  ga('send', 'pageview');
+  ga('send', 'pageview' '/research.html');
+  ga('send', 'pageview' '/speaking.html');
+  ga('send', 'pageview'  '/projects.html');
+  ga('send', 'pageview' 'http://lakehanne.github.io/');
+  ga('send', 'pageview' '/dfwslides');
+
+</script>
+  
+<h1>Research</h1>
+<hr/>
+<h2><font color="#711E0C">Background</font></h2>
+<p><font color="#110D0C">After completing my undergraduate studies in Physics, I took a few years off before returning to academia. In those years I worked in a mobile Telco firm in Nigeria and later relocated to Lagos working for Coca-Cola HBC. Those four years in communications technology and supply-chain operations management left me with a rekindled interest in science and technology and control systems in particular.</p>
+
+<p>I love tinkering with machines, marveling at the interconnectedness of components which enables hardware to function as envisioned. I had my Master's degree in Control Systems at the  <a href="http://www.sheffield.ac.uk/">University of Sheffield's</a> <a href="http://www.sheffield.ac.uk/acse"> Automatic Control and Systems Engineering (ACSE) department.</a> There, I started combining scientific elegance with practical impact and I worked with <a href="https://www.sheffield.ac.uk/acse/staff/tjd">Tony Dodd</a> during my Thesis. Shortly after my degree, I returned home as a computer science college<a href="https://computersorcerer.wordpress.com"> instructor</a> for one year before I started my doctoral studies at UT Dallas in the Fall of 2014. When not working in the lab, I enjoy spending time with my family, or cycling in the country.</font> </p>
+
+<h2><font color="#711E0C">Research Thrusts</font></h2>
+<ul>
+<li><b><font color="#711E0C">Head-and-Neck Patient Motion Control in Cancer Radiotherapy.</font></b><br>
+<font color="#110D0C">Shortly after the start of my doctoral studies, we began investigating ways of improving the otherwise error-prone state-of-the-art 6-DoF robotic couch method of controlling a patient's head and neck motion during cancer radiotherapy so as to minimize the exposure of organs at risk to excessive radiation as well as automate the calibration process (usually by a medical physicist) of a patient's optimal placement on the robotic couch while using image-guided RT. 
+<p>Our conclusion, along with <a href="http://profiles.utsouthwestern.edu/profile/150563/steve-jiang.html">Steve Jiang</a> and <a href="http://profiles.utsouthwestern.edu/profile/133029/xuejun-gu.html"> Xuejun Gu</a>, from state-of-the art in literature, was that existing methods still produced a lot of discomfort for the patient and though while achieving desired accuracy with optical guidance systems, it causes a lot of pain to the patient and took a long time to properly calibrate a patient's position accurately.</p> We came up with deformable soft-robots that can actuate based on feedback from a visual sensor in a simulated scenario and this is discussed at length in our two CASE papers: <a href="http://arxiv.org/abs/1506.04787v2"><b></b>CASE2015</a> and <a href="http://lakehanne.github.io/downloads/CASE2016.pdf">CASE2016.</a></font>
+</li>
+<hr/>
+
+<h2><font color="#711E0C">Current</font></h2>
+
+<hr/>
+<li><b><font color="#711E0C">Identification and control of complex nonlinear dynamical systems using deep dynamic neural nets</font></b><br>
+
+<font color="#110D0C">Before 2012, it used to be that deep learning was the queen of machine learning; nowadays, any serious person doing large scale nonlinear modeling in pattern recognition, vision or natural language processing is using deep learning. 
+<br>
+Deep nets changed the insistence by many researchers and engineers that using hand-coded features to decode complex nonlinearity in real-world systems was the best approach toward approximating real-world complexity. It used to be that solving each nonlinear problem presents a unique challenge of finding what method and approach worked best. In system identification and other supervised learning domains, for example, existing literature is replete with tons of hand-crafted methods of devising features to approximate real-world systems. Enter deep neural networks. <a href="http://yann.lecun.com/">Yann LeCun</a> proposed self-organizing neural networks with deep architectures that find adaptive and automatic learning rules for real-world datasets thus enabling connected neural networks to develop an internal structure that is appropriate for a particular learning task. By training component-wise modules, traditional methods of designing hand-coded features for recognition systems can be replaced by collective systems that seamlessly work together in style to optimize a global performance criterion. 
+<br>
+Improvements have been made to the original architecture of LeCun's network with various tweaks and proposals for improving deep nets training. Recurrent Neural Networks application have also seen a resurgence with applications in deep spech/natural language processing and machine translation. If you want a primer on these algorithms, I highly recommend <a href="http://jmlr.org/proceedings/papers/v37/jozefowicz15.pdf">Jozefowicz's</a> and <a href="http://arxiv.org/abs/1412.6806">Springenberg's</a> papers.  
+In this work, I investigate the adaptiveness of deep network architectures for the dynamic identification and control of medical robots and compare their "goodness" on public <a href="http://homes.esat.kuleuven.be/smc/daisy">system identification datasets.</a> Work is ongoing on deploying these networks for universal approximation purposes on the robots that we use in our lab.
+</font></p>
+</li></b>
+<hr/>

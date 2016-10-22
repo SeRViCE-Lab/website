@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+  {% block starthead %}{% endblock starthead %}
+  <meta charset="{{ resource.meta.charset }}">
+  <meta http-equiv="X-UA-Compatible" content="{{ resource.meta.compatibility }}">
+
+  <title>{% block title %}{{ resource.meta.title }}{% endblock %}</title>
+  <meta name="description" content="{{ resource.meta.description }}">
+  <meta name="author" content="{{ resource.meta.author }}">
+
+  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="{{ resource.meta.viewport }}">
+
+  {% block favicons %}
+  <!-- Place favicon.ico & apple-touch-icon.png
+        in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="{{ media_url('favicon.ico') }}">
+  <link rel="apple-touch-icon" href="{{ media_url('Pat.jpg') }}">
+  {% endblock favicons %}
+
+  {% block css %}
+    <!--<link rel="stylesheet" href="https://github.com/themes/minimal/stylesheets/styles.css">-->
+    <link rel="stylesheet" href="{{ media_url('js/styles.css') }}">
+    <style>
+      header { zoom: 1.2; }
+      header h1 { margin-bottom: 5px; }
+      header h1 a { color: #494949; font-weight: bold; }
+      header h3 { margin-top: 20px; margin-bottom: 5px; }
+      header p.view { margin-bottom: 5px; }
+      header p.view small { padding-top: 2px; }
+      header ul {
+        zoom: 0.7;
+        margin-top: 25px;
+      }
+      section p { margin-top: 10px; }
+      section h1 { margin-bottom: 15px; }
+      section h2 { margin-bottom: 10px; }
+      section h2 { margin-bottom: 10px; }
+      footer { bottom: 20px; }
+      footer p { margin-bottom: 5px; }
+      .half-width {
+        float: left;
+        width: 200px;
+        list-style: none;
+        padding: 5px;
+        margin: 7px;
+        margin-bottom: 10px;
+      }
+      .half-width h4 {
+        margin-bottom: 5px;
+      }
+      .half-width ul {
+        padding-left: 0;
+      }
+      .half-width ul li {
+        list-style: inside;
+        font-size: 15px;
+      }
+      .clear-fix {
+        clear: both;
+      }
+    </style>
+    <!--<script src="https://github.com/themes/minimal/javascripts/scale.fix.js"></script>-->
+    <script src="{{ media_url('js/scale.fix.js') }}"></script>
+    <!-- three.js library -->
+    <script src="{{ media_url('js/three.min.js') }}"></script>
+  {% endblock css %}
+  </head>
+    
+  <body id="{{ resource.meta.id if resource.meta.id else resource.slug }}">
+  {% block content %}
+    <div class="wrapper">
+      {% block wrapper %}
+      <header>
+        {% block header %}
+        <h1><a href="{{ content_url('') }}">Olalekan Ogunmolu</a></h1>
+	{% endblock header %}
+	{% block nav %}
+	<br>
+        <p class="view"><a href="{{ content_url('vitae.html') }}"><b>Publications</b><small><font color="#110D0C"> <i>Papers, arXiv submissions, reports, and abstracts </i></font></small></a></p>        
+        <p class="view"><a href="{{ content_url('speaking.html') }}"><b>Talks and presentations</b><small> <i><font color="#110D0C">Conference presentation slides and invited talks</font></i></small></a></p>
+        <p class="view"><a href="{{ content_url('research.html') }}"><b>Research</b><small> <font color="#110D0C"><i>What I think about</i></font> </small></a></p>
+        <p class="view"><a href="{{ content_url('projects.html') }}"><b>Codes</b><small> <font color="#110D0C"><i>Codes you might find useful.</i></font></small></a></p>
+        {% if page.repository_url %}
+          <h3>Project Info</h3>
+          <ul>
+            {% if page.zip_url %}
+              <li><a href="{{ page.zip_url }}">Download <strong>ZIP File</strong></a></li>
+            {% endif %}
+            {% if page.tar_url %}
+              <li><a href="{{ page.tar_url }}">Download <strong>TAR Ball</strong></a></li>
+            {% endif %}
+            {% if page.gem_url %}
+              <li><a href="{{ page.gem_url }}">Download <strong>Rubygem</strong></a></li>
+            {% endif %}
+            {% if page.issue_url %}
+              <li><a href="{{ page.issue_url }}">Report<strong>An Issue</strong></a></li>
+            {% endif %}
+            {% if page.repository_url %}
+              <li><a href="{{ page.repository_url }}">Fork On <strong>GitHub</strong></a></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+	{% endblock nav %}
+	  
+	{% block media %}
+        <h3>On the web</h3>
+        <a href="https://twitter.com/patmeansnoble" class="twitter-follow-button" data-show-count="false">Follow @patmeansnoble</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+        <!-- Place this tag where you want the button to render. -->
+        <a class="github-button" href="https://github.com/lakehanne" data-style="mega" data-count-href="/lakehanne/followers" data-count-api="/users/lakehanne#followers" data-count-aria-label="# followers on GitHub" aria-label="Follow @lakehanne on GitHub">Github</a>
+
+        <p class="view"><a href="http://lakehanne.github.io" target="tab"><b>Blog</b></a></li>
+
+        <p class="view">
+          <font color="#110D0C"><small><b>Email:  Olalekan.Ogunmolu _at_ utdallas.edu</b></small></font>
+        </p>
+        {% endblock media %}
+      </header>
+      <section id="main">
+	{% block main %}
+        {{ content }}
+        <!-- <a href=""><b> -->
+	{% endblock main %}
+      </section>
+      {% block footer %}
+      <footer>
+	<p><small>Powered by <a href="http://hyde.github.io/">Hyde</a>.
+	    Layout adapted from <a href="https://github.com/orderedlist">orderedlist</a>.</small></p>
+
+      <!-- Place this tag where you want the button to render. -->
+       <font color="#110D0C"><small>This website is socially coded.</small><a class="github-button" href="https://github.com/service-lab/website/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/service-lab/website/network" data-count-api="/repos/service-lab/website#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork service-lab/website on GitHub"> Fork me on Github.</a></font>
+
+      </footer>
+      {% endblock footer %}
+    {% endblock wrapper %}
+    </div>
+    {% endblock content %}
+
+    {% block js %}
+    <script type="text/javascript">
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4eb74c9f613f5d3567000004');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+    {% block jquery %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    {% endblock jquery %}
+
+    {% block analytics %}
+    {% include "analytics.j2" %}
+    {% endblock analytics %}
+
+    {% endblock js %}
+
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>

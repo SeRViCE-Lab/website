@@ -1,0 +1,38 @@
+--- ../../F16/Resume/Resume_Work.tex	2015-12-11 12:41:16.012722282 -0600
++++ Resume_Work.tex	2015-12-11 13:14:03.520777778 -0600
+@@ -65,11 +65,11 @@
+ 	
+ 	\section{Education}
+ 	\cventry{2014--Present}{PhD in Electrical Engineering }{University of Texas at Dallas}{Richardson}{United States}
+-	{Advisor: Nicholas Gans. Designed and prototype of a medical soft robot for automated patient positioning during cancer radiotherapy.   \newline Relevant coursework available at  \href{http://lakehanne.github.io/about/\#coursework}{\textcolor{blue}{http://lakehanne.github.io/about/\#coursework}}   \hspace{0.5em}  (GPA: 3.89/4.00)} % arguments 3 to 6 can be left empty
++	{Advisor: Nicholas Gans. Designed and prototype of a medical soft robot for automated patient positioning during cancer radiotherapy.   \newline Relevant coursework available at  \href{http://lakehanne.github.io/about/\#coursework}{\textcolor{blue}{http://lakehanne.github.io/about/\#coursework}} }  % arguments 3 to 6 can be left empty
+ 	
+-	\cventry{2011--2012}{Master of Science in Engineering in Control Systems}{The University of Sheffield}{Sheffield}{United Kingdom}{Advisor: Tony J. Dodd. Thesis: ``\href{http://lakehanne.github.io/downloads/MS_Thesis.pdf}{\textcolor{blue}{Autonomous Navigation of a Rotorcraft Unmanned Aerial Vehicle using Machine Vision}}.'' | Committee Members: Drs. George Panoutsos and Robin Pursehouse. | Dissertation reviewed by Prof. Mahdi Mahfouf. \hspace{6.5cm}  \newline Relevant coursework available at  \href{http://lakehanne.github.io/about/\#coursework}{\textcolor{blue}{http://lakehanne.github.io/about/\#coursework} \hspace{0.5em} (GPA: 70.5/100)}}
++	\cventry{2011--2012}{Master of Science in Engineering in Control Systems}{The University of Sheffield}{Sheffield}{United Kingdom}{Advisor: Tony J. Dodd. Thesis: ``\href{http://lakehanne.github.io/downloads/MS_Thesis.pdf}{\textcolor{blue}{Autonomous Navigation of a Rotorcraft Unmanned Aerial Vehicle using Machine Vision}}.'' | Committee Members: Drs. George Panoutsos and Robin Pursehouse. | Dissertation reviewed by Prof. Mahdi Mahfouf. \hspace{6.5cm}  \newline Relevant coursework available at  \href{http://lakehanne.github.io/about/\#coursework}{\textcolor{blue}{http://lakehanne.github.io/about/\#coursework}} }
+ 	
+-	\cventry{2000--2005}{Bachelor Of Science in Physics \& Electronics}{Adekunle Ajasin University}{Akungba}{Nigeria}{\href{http://lakehanne.github.io/downloads/BS_Thesis.pdf}{\textcolor{blue}{Senior thesis}} advised by Ademola Amusa (\emph{MS, Columbia University, PhD UIUC}).| Dissertation Grade: 85\% $\equiv$ A+ | Graduated Magna Cum Laude.}
++	\cventry{2000--2005}{Bachelor Of Science in Physics \& Electronics}{Adekunle Ajasin University}{Akungba}{Nigeria}{\href{http://lakehanne.github.io/downloads/BS_Thesis.pdf}{\textcolor{blue}{Senior thesis}} advised by Ademola Amusa (\emph{MS, Columbia University, PhD UIUC}).}
+ 
+ 	\section{Publications}
+ 	\cvitem{}{\textbf{Olalekan Ogunmolu}, Xuejun Gu, Steve Jiang, and Nicholas Gans. \href{http://lakehanne.github.io/downloads/CASE2015_Soft_Robot.pdf}{\textcolor{blue}{A Real-Time Soft-Robotic Patient Positioning System for Maskless Head-and-Neck Cancer Radiotherapy}}. \emph{IEEE Conference on Automation Science and Engineering (CASE)}, Gothenburg, Sweden, August 2015.}{}
+@@ -130,9 +130,9 @@
+ 		
+ 		\cvitemwithcomment{Yoruba}{Proficient}{Native Nigerian Language. Spoken at home.}
+ 		
+-		\cvitemwithcomment{C++}{Proficient}{Can make robots see, move and hear}
++		%\cvitemwithcomment{C++}{Proficient}{Can make robots see, move and hear}
+ 		
+-		\cvitemwithcomment{Python}{Proficient}{Can make machines think for themselves}
++		%\cvitemwithcomment{Python}{Proficient}{Can make machines think for themselves}
+ 	
+ 	\section{Awards and honors}
+ 	\cvlistitem{\textbf{PTDF Overseas Scholarship Award [Nigeria]} \qquad \quad $\sim$1.7\% acceptance, \hspace{0.9cm} 2011 - 2012.}
+@@ -156,7 +156,7 @@
+ 	\section{Computing}
+ 	\cvitem{\textcolor{light-blue}{Skills}}{I am an active programmer with experience in \textbf{C++, Python, MATLAB} and \textbf{LabVIEW} among others. See my github profile (\href{https://github.com/lakehanne}{\textcolor{light-blue}{github.com/lakehanne}}) for details.} 
+ 
+-	%\cvitem{\textcolor{light-blue}{Linux}}{Linux distros: OpenSuse, Ubuntu and other debian distros.}
++	%\cvitem{\textcolor{light-blue}{Linux}}{Active user of Linux distros such as OpenSuse, Ubuntu and other debian distros.}
+ 			
+ 	\cvitem{\textcolor{light-blue}{ROS}}{Proficient in ROS distros including ROS Indigo, and ROS Jade for control, vision and manipulation tasks.}
+ 		

@@ -1,0 +1,20 @@
+*~
+
+build/
+deploy/
+deploy_production/
+.hyde_deps
+content/.hyde_deps
+MathJax/
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.pdf
+
+CV/*.out
+CV/*.log
+CV/*.pdf
+CV/*.aux
+CV/*.gz

@@ -1,0 +1,75 @@
+---
+extends: minimal.j2
+default_block: main
+title: hackers guide to control
+description: Projects I have worked on and currently working on
+---
+
+<!-- Google Anakytics Tracker -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64680332-3', 'auto');
+  ga('send', 'pageview');
+  ga('send', 'pageview' '/research.html');
+  ga('send', 'pageview' '/speaking.html');
+  ga('send', 'pageview'  '/projects.html');
+  ga('send', 'pageview' 'http://lakehanne.github.io/');
+  ga('send', 'pageview' '/dfwslides');
+
+</script>
+
+
+<h1><font color="#711E0C">Open Source Projects</font></h1>
+<p><font color="#110D0C">I have made contributions to Torch7 deep nets library and ROS. Here are some of my codes, tutorials and contributions. </font> </p>
+<hr/>
+<h3><font color="#711E0C"><center><a href="https://github.com/element-research/rnn/fastlstm.lua"><b>Recurrent Batch Normalization of LSTMS</b></a></center></font></h3>
+
+<p><font color="#110D0C">My implementation of Cooijman et. al's <a href="http://arxiv.org/abs/1603.09025"><b>Recurrent Batch Normalization</b></a> in Torch7. Available in <a href="https://github.com/element-research/rnn/fastlstm.lua">Torch 7's Element Research Inc. RNN Library</a>.</font> </p>
+<hr/>
+
+<h3><font color="#711E0C"><center><a href="https://github.com/lakehanne/nn/DICECriterion.lua"><b>Sorensen-Dice Coefficients in Torch 7</b></a></center></font></h3>
+
+<p><font color="#110D0C">The <a href="https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient">Sorensen-Dice index</a> measures the degree of similarity between two sample sets. Geiven targets X and Y in two sample datasets, the quotient of similarity is calculated as .
+  <br>
+    <center>
+       Q = 2 * (X n Y) / (sum_i(X) + sum_i(Y))
+    </center>
+  <br>
+where X and Y are the two samples. X n Y denote the intersection where the elements of X and Y are equal. The resulting quotient is a measure of the similarity between the two samples. It ranges between 0 and 1. If it is 1, the two images are perfectly similar. Otherwise, they are perfectly dissimilar.
+
+The input tensor and output tensor are expected to be of the same size when calling forward(input, target) and backward(input, target).</font> </p>
+<hr/>
+
+<h3><font color="#711E0C"><center><a href="https://github.com/lakehanne/Savitzky-Golay/blob/master/savgol.cpp"><b>Savitzky-Golay Filters in C++</b></a></center></font></h3>
+
+<p><font color="#110D0C">Nicely computes the <a href="http://www.math.umn.edu/%7Egarrett/m/algebra/notes/17.pdf">Vandermonde matrix</a>, Savitzky-Golay <a href="http://www.wire.tu-bs.de/OLDWEB/mameyer/cmr/savgol.pdf">differentiation filters</a> and smoothing coefficients for a noisy, sequential signal. It is a textbook implementation of the Savitzky-Golay filter algorithm following Sophocles Orfanidis treatment in his book. </font> </p>
+<hr/>
+
+<h3><font color="#711E0C"><center><a href="https://github.com/lakehanne/FARNN/tree/soft-robot"><b>Fully Automated Deep Recurrent Neural Networks for Nonlinear Identification and Control </b></a></center></font></h3>
+
+<p><font color="#110D0C">Using stacked layers of neural networks, I trained multilayer perceptrons, simple recurrent neural networks, long short-term memory cells, fast LSTMS (with gates computed in one fell-swoop) to model the relationship between input and output data. 
+<br>
+Please check out the <b>"soft-robot" tag</b> only. Other branches for other identification datasets are actively being developed.</font> </p>
+<hr/>
+
+<h3><font color="#711E0C"><center><a href="https://www.youtube.com/watch?v=F6SOPdLq8s8"><b>Identifying and Segmenting Nerve Structures in Ultrasound Images of the Neck</b></a></center></font></h3>
+
+<p><font color="#110D0C">This was my code entry for Kaggle's ultrasound data science challenge of August 2016. The problem is well-described on the <a href="https://www.kaggle.com/c/ultrasound-nerve-segmentation/">competition page</a>. This code was developed in Torch 7.
+My convolutional architecture is strongly inspired by  <a href="http://arxiv.org/abs/1505.04597">U-Net</a>, <a href="http://arxiv.org/abs/1511.06434">Alec Radford and Soumith Chintala's DcGAN</a> and the <a href="http://arxiv.org/abs/1412.6806">all-convolutional net </a> of Springenberg et al. </font> </p> Code <a href="https://github.com/lakehanne/ultrasound-nerve-segmentation">here</a>
+<hr/>
+
+<h3><font color="#711E0C"><center><a href="https://github.com/torch/demos/blob/master/linear-regression/example-linear-regression.lua"><b>Linear Regression in Torch [Torch Demos]</b></a></center></font></h3>
+<p><font color="#110D0C">Part of the Torch demos/tutorials</font></p>
+<hr/>
+
+<h3><font color="#711E0C"><center><a href="https://github.com/SeRViCE-Lab/p3-dx/tree/devel"><b>Adaptive Monte Carlo Localization and Mapping for the Navigation of an Unmanned Ground Vehicle</b></a></center></font></h3>
+<hr/>
+
+<h3><font color="#711E0C"><center><a href="https://github.com/SeRViCE-Lab/kinect_sub"><b>ROS Image Transport Subscriber to Kinect2 ROS Drivers</b></a></center></font></h3>
+<p><font color="#110D0C">My implemention of approximate sync policies within the message filters class of ROS Image Transport communication protocol. This code subscribes to the color_rect, depth_rect and creates a point cloud visualizer from the depth and colored images.</font> </p>
+<hr/>
+
