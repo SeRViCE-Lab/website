@@ -26,7 +26,7 @@ description: Videos of Talks and Presentations by Olalekan Ogunmolu
 
 <span class = "post-date"><center><font color="#110D0C">November, 2016</font></center></span>   
 <p><font color="#110D0C"><b><center>Guided Policy Search on the PR2 Robot</center></b></font></p>
-<small><font color="#110D0C">Simulation of Right Arm Trajectories of the PR2 Robot Arm using the Guided Policy Search algorithm proposed by Finn. et. al. This simulation runs my catkinized version (<a href="github.com/lakehanne/gps">Lekan gps package</a>) of the rosbuild package that Chelsea hosts on her github page (<a href="github.com/cbfinn/gps">Chelsea gps package</a>). 
+<small><font color="#110D0C">Simulation of Right Arm Trajectories of the PR2 Robot Arm using the Guided Policy Search algorithm proposed by Finn. et. al. This simulation runs my catkinized version (<a href="https://github.com/lakehanne/gps">Lekan gps package</a>) of the rosbuild package that Chelsea hosts on her github page (<a href="https://github.com/cbfinn/gps">Chelsea gps package</a>). 
 
 Here, the robot is told to go to a particular set of end-effector points. Its takes roughly 10 iterations and a cost of about -600 before the robot reaches the desired goal.</small></font>
 <iframe width="480" height="315" src="https://www.youtube.com/embed/HzwAbarXbDg?autoplay=1" frameborder="0" allowfullscreen></iframe>
@@ -35,7 +35,8 @@ Here, the robot is told to go to a particular set of end-effector points. Its ta
 
 <span class = "post-date"><center><font color="#110D0C">August 2016</font></center></span>   
 <p><font color="#110D0C"><b><center>LiDAR-Based SLAM</center></b></font></p>
-<small><font color="#110D0C"> This was last Summer's pet project where my colleague, Ben Warwick and I hacked together node.js, socket.io, Alexa lambda skills, and 3D-printed mounts for the P3-DX robot to make it navigate the AR offices via Alexa voice commands or alternatively via a web-UI. <br><!-- We are running the ARNL SLAM algorithm using a web UI/Alexa skills to send goals to the robot.
+<small><font color="#110D0C"> This was last Summer's pet project where my colleague, Ben Warwick, and I hacked together node.js, socket.io, Alexa lambda skills, and 3D-printed mounts for the P3-DX robot to make it navigate the AR offices via Alexa voice commands or alternatively via a web-UI. <br>
+<!-- We are running the ARNL SLAM algorithm using a web UI/Alexa skills to send goals to the robot.
   <br>
 <h5>Alexa-based Commands</h5>
 Control is given via the Alexa kit. When the user gives a navigation command via voice commands to the robot, skills are published to a s3 bucket. A C++ aws S3 client listens for new goal messages on s3. When messages arrive, the goals are sent to the SLAM algorithm and the robot starts moving toward the obstacle. Notice how the robot avoids perceived obstacles? The the LiDAR on-board provides the perception of the environment. 
