@@ -10,5 +10,5 @@ publisher:
     ssh:
         type: hyde.ext.publishers.ssh.SSH
         username: lakehanne
-        server: www.utdallas.edu
-        target: /www/opo140030/ogunmolu/html
+        server: ecs.utdallas.edu
+        target: /home/eng/o/opo140030/public_html
