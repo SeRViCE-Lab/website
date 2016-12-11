@@ -32,22 +32,22 @@
     url: "http://ecs.utdallas.edu/~opo140030/media/pdfs/CV.pdf"
   };
 
-  root.cmdBlog.directories.publications = {
-    name: "Lekan's Papers",
-    type: "link",
-    url: "http://ecs.utdallas.edu/~opo140030/vitae.html"
-  };
+  // root.cmdBlog.directories.publications = {
+  //   name: "Lekan's Papers",
+  //   type: "link",
+  //   url: "http://ecs.utdallas.edu/~opo140030/vitae.html"
+  // };
 
-  root.cmdBlog.directories.videos = {
+  root.cmdBlog.directories.videos
     name: "Lekan's presentations and work",
     type: "link",
-    url: "https://youtube.com/user/lakehanne"
+    url: "http://ecs.utdallas.edu/~opo140030/speaking.html"
   };
 
   root.cmdBlog.commandFunctionList.welcome = {
     run: function(args) {
       var welcomeStr;
-      welcomeStr = "Welcome to Lekan's world. \nHint: Type 'help' at the prompt";
+      welcomeStr = "Welcome to my online presence.";
       if (args.length === 0) {
         return welcomeStr;
       } else {
