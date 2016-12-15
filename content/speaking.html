@@ -26,7 +26,7 @@ description: Videos of Talks and Presentations by Olalekan Ogunmolu
 
 <span class = "post-date"><center><font color="#110D0C">November, 2016</font></center></span>   
 <p><font color="#110D0C"><b><center>Guided Policy Search on the PR2 Robot</center></b></font></p>
-<small><font color="#110D0C">Simulation of Right Arm Trajectories of the PR2 Robot Arm using the Guided Policy Search algorithm proposed by Finn. et. al. This simulation runs my catkinized version (<a href="https://github.com/lakehanne/gps">Lekan gps package</a>) of the rosbuild package that Chelsea hosts on her github page (<a href="https://github.com/cbfinn/gps">Chelsea gps package</a>). 
+<small><font color="#110D0C">Simulation of Right Arm Trajectories of the PR2 Robot Arm using the Guided Policy Search algorithm proposed by Finn. et. al. This simulation runs the catkinized ros indigo version (available at <a href="https://github.com/lakehanne/gps"> of the gps algorithm</a>). &nbsp;
 
 Here, the robot is told to go to a particular set of end-effector points. Its takes roughly 10 iterations and a cost of about -600 before the robot reaches the desired goal.</small></font>
 <iframe width="480" height="315" src="https://www.youtube.com/embed/HzwAbarXbDg?autoplay=1" frameborder="0" allowfullscreen></iframe>
@@ -36,13 +36,6 @@ Here, the robot is told to go to a particular set of end-effector points. Its ta
 <span class = "post-date"><center><font color="#110D0C">August 2016</font></center></span>   
 <p><font color="#110D0C"><b><center>LiDAR-Based SLAM</center></b></font></p>
 <small><font color="#110D0C"> This was last Summer's pet project where my colleague, Ben Warwick, and I hacked together node.js, socket.io, Alexa lambda skills, and 3D-printed mounts for the P3-DX robot to make it navigate the AR offices via Alexa voice commands or alternatively via a web-UI. <br>
-<!-- We are running the ARNL SLAM algorithm using a web UI/Alexa skills to send goals to the robot.
-  <br>
-<h5>Alexa-based Commands</h5>
-Control is given via the Alexa kit. When the user gives a navigation command via voice commands to the robot, skills are published to a s3 bucket. A C++ aws S3 client listens for new goal messages on s3. When messages arrive, the goals are sent to the SLAM algorithm and the robot starts moving toward the obstacle. Notice how the robot avoids perceived obstacles? The the LiDAR on-board provides the perception of the environment. 
-<br/>
-<h5>Web UI based Commands</h5>
-I am the one holding the phone in the background. Control is given via a node.js web client.  When the user gives a navigation command, the arnl node listens for goals via a socket.io client protocol that is polling the web socket in the background. When new messages arrive, the robot starts heading out in the direction of the goal. In the video is my colleague, Ben who stands across the robot to verify the intergrity of the SLAM algorithm. -->
 
 </small></font>
 <a><iframe width="240" height="315" src="https://www.youtube.com/embed/fISmWYgnF4I?autoplay=0" frameborder="0" allowfullscreen></iframe></a> <iframe width="240" height="315" src="https://www.youtube.com/embed/PnW4hJ4n0PY?autoplay=0" frameborder="0" allowfullscreen></iframe>
@@ -53,9 +46,11 @@ I am the one holding the phone in the background. Control is given via a node.js
 
 <h1><font color="#711E0C"><center>Talks/Presentations</center></font></h1>
 <hr/>
-<span class = "post-date"><center><font color="#110D0C">Sep 2, 2016</font></center></span> 
-<p><h3><font color="#711E0C"><b>Vision-based Control for Head & Neck cancer RT.</b></font></h3>
-  <small><font color="#110D0C">IEEE Int'l Conference on Automation Science and Engineering (CASE) 2016 conference.</font></small></p>
+<span class = "post-date"><center><font color="#711E0C">Sep 2, 2016</font></center></span> 
+<p><h3>
+  <a href="/~opo140030/dfwslides/CASE2016.html"><font color="#110D0C"><b>Vision-based Control for Head & Neck cancer RT.</b></font></a>
+  </h3>
+  <small><font color="#110D0C">IEEE Int'l Conference on Automation Science and Engineering (CASE) 2016 Presentation.</font></small></p>
   <iframe src="/~opo140030/dfwslides/CASE2016.html" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 <hr/>
 
@@ -73,20 +68,10 @@ I am the one holding the phone in the background. Control is given via a node.js
 
 <br></br>
 <h1><font color="#711E0C">Talks you might find interesting</font></h1></hr>
-<p><font color="#110D0C"><a href="https://drive.google.com/open?id=11XHtRQ0r6c1tv9tN0ws30wcFCUp6FHRDyExNBcPywds"><b>How to Have a Bad Research Career.</b></a><br>David Patterson, UC Berkeley</font></p>
+<p><font color="#110D0C">
+  <!-- <iframe id="fred" style="border:1px solid #666CCC" title="How to Have a Bad Research Career." src="/~opo140030/BadCareer.pdf" frameborder="1" scrolling="auto" height="1100" width="850" ></iframe> -->
+  <a href="/~opo140030/BadCareer.pdf" target="_blank"><b>How to Have a Bad Research Career.</b></a>
+  <br>David Patterson, UC Berkeley</font></p>
 <hr/>
-
-<p><font color="#110D0C"><a href="https://www.youtube.com/watch?v=Y-XTcTusUxQ&feature=gp-n-y&google_comment_id=z13afjnorxmivhkge04ci5qg1mubtbjac3g"><b>Deep Learning Primer by Yann LeCun & Yoshua Bengio.</a></b></font></p>
-<hr/>
-
-<p><font color="#110D0C"><a href="http://www.cs.utoronto.ca/~ilya/pubs/ilya_sutskever_phd_thesis.pdf"><b>Training Recurrent Neural Networks.</b></a><br>Ilya Sutskever Thesis, UToronto</font></p>
-<hr/>
-
-<p><a href="http://arxiv.org/pdf/1507.01273.pdf"><b>Learning Deep Neural Network Policies with Continuous Memory States. </b></a><br>Marvin Zhang, Zoe McCarthy, Chelsea Finn, Sergey Levine, Pieter Abbeel</p>
-<hr/>
-
-
-<!-- <p><a href="http://arxiv.org/pdf/1512.01515.pdf"><b>ASIST: Automatic Semantically Invariant Scene Transformation.</b></a> <br>Or Litanya, Tal Remeza, Daniel Freedmana, Lior Shapirac, Alex Bronsteinb, Ran Galc</p>
-<hr/> -->
 
 
