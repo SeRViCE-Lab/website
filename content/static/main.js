@@ -8,40 +8,28 @@
     return root.cmdBlog.displayResult("Entering " + directory.name + "...");
   };
 
-  root.cmdBlog.directories.website = {
-    name: "Lekan's site",
-    type: "link",
-    url: "http://ecs.utdallas.edu/~olalekan.ogunmolu/main.html"
-  };
-
-  root.cmdBlog.directories.github = {
-    name: "Lekan's repository on github",
-    type: "link",
-    url: "https://github.com/lakehanne"
-  };
-
   root.cmdBlog.directories.blog = {
-    name: "Lekan's blog",
+    name: "blog",
     type: "link",
     url: "https://lakehanne.github.io"
   };
 
-  root.cmdBlog.directories.cv = {
-    name: "Lekan's CV",
+  root.cmdBlog.directories.github = {
+    name: "repository on github",
     type: "link",
-    url: "http://ecs.utdallas.edu/~opo140030/media/pdfs/CV.pdf"
+    url: "https://github.com/lakehanne"
   };
 
-  root.cmdBlog.directories.videos
-    name: "Lekan's presentations and work",
+  root.cmdBlog.directories.web = {
+    name: "academic website",
     type: "link",
-    url: "http://ecs.utdallas.edu/~opo140030/speaking.html"
+    url: "https://ecs.utdallas.edu/~olalekan.ogunmolu/"
   };
-  
+
   root.cmdBlog.commandFunctionList.welcome = {
     run: function(args) {
       var welcomeStr;
-      welcomeStr = "Welcome to Lekan's world. \nHint: Type 'help' at the prompt";
+      welcomeStr = "Welcome to my website.\nCode adapted from {&copy;} 2011 - DementRock.";
       if (args.length === 0) {
         return welcomeStr;
       } else {
