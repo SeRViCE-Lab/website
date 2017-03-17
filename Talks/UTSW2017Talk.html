@@ -24,7 +24,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/serif.css">
@@ -68,87 +68,49 @@
 						</a>
 						<br>
 					</section>	
-				</section>
 
-				<section>
-					<section data-transition="slide"  data-background="#212F3C" data-background-transition="zoom">
-						<h2>Typical H&N Cancers Treatment Methods</h2>
-						<table>
+					<section data-background="images/UTSW2017/igrt_setup.jpg" style="display:block;background:#000;opacity:0.75;">
+						<h2>Background</h2>
+						<p><font color="#DAF7A6" face="verdana" size="25">Radiation-based Treatment Procedures</font></p>					
+						<a href="#" class="navigate-down">
+							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="background:#333;opacity:1;" align="middle">
+						</a>
+						<table border="5", width="80%">
 							<thead>
 								<tr>
-									<th>Methods</th>
-									<th>Pros</th>
-									<th>Cons</th>
+									<th><font color="#DAF7A6"><center>IMRT</center></font></th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>Radio-Surgery</td>
-									<td><small><li type="square">Highly accurate and most successful</li></small></td>
-									<td><small><li type="square">Only useful when cancer is localized (highly improbable in most cases)</li></small></td>
-								</tr>
-								<tr>
-									<td>Chemos</td>
-									<td><small><li type="square">Kills cancer cells throughout the body</li></small></td>
-									<td><small><li type="square">Highly toxic and carcinogenic</li></small>
-									<small><li type="square">Can kill healthy cells</li></small></td>
-								</tr>
-								<tr>
-									<td>Radiation Therapy (RT)</td>
-									<td><small><li type="square">Good procedure for distributed cancer cells</li></small>
-									<small><li type="square">Palliative treatment when eliminating cancer tumors is impossible</li></small>
-									<small><li type="square">Helpful to shrink cancer tumors pre-surgery  or tumor leftovers post-surgery</li></small>
+									<td>
+										<small><li type="square">Modulates dosage/shape of radiation beam <u>to precise size of tumor cells</li></small>
+										<small><li type="square">Improves accuracy of <u>carefully</u> targeted radiation </li></small>
+										<!-- <small><li type="square">Deviations in delivered irradiation dosage possible</li></small> -->
 									</td>
-									<td><small><li type="square">Requires high-precision in localization of cancer cells and dosage targets</li></small></td>
+								</tr>
+
+								<th><font color="#DAF7A6"><center>IGRT</center></font></th>
+								<tr>									
+									<td>							
+										<small><li type="square">Uncertainty in dose measures to malignant tissues necessitated use of IGRT</li></small>
+										<small><li type="square">Goal: Assure precise localization of beam to target tumor cell. </li></small>
+									</td>
 								</tr>
 							</tbody>
 						</table>
-					</section >
-				</section>
-
-				<section data-markdown data-background="#212F3C" data-background-transition="zoom">
-					###Radiotherapy for H&N Cancer Treatment (IMRT)
-
-					-	Body cancer radiotherapy (RT) typically use IMRT & IGRT
-
-					-	**IMRT:** Intensity Modulated Radiation Therapy
-
-						-	<small>Deals with modulating the dosage and shaping of the radiation beam <u>to precise size of tumor cells</u></small>
-
-						-	<small>IMRT improves accuracy of carefully targeted radiation thereby minimizing exposure of healthy organs</small>
-
-						-	<small>Deviations still occur between planned dose and delivered dose of radiation</small>
-
-					-   **IGRT**: Image Guidance Radiation Therapy (next slide)
-
-						<br>
-						<a href="#/2" class="navigate-right">
-						<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Right arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
-					</a>
-				</section>
-
-				<section data-markdown data-background="#212F3C" data-background-transition="zoom">
-					###IGRT: Image Guidance Radiation Therapy
-
-					-	Deals with precise and accurate patient positioning on a treatment table to avoid dose deviations from planned targets
-					
-					-	The uncertainty in dose measures to malignant tissues necessitated use of IGRT before treatment
-
-					-	Goal was to assure precise localization of the beam onto the target tumor cell. 
-
-						- 	<sup><a href="#fn1" id="ref1"><i>[<strong>Reference</strong>: Prostrate Cancer Center](http://www.prostatecancercenterpa.com/imrtigrtbenefits.html)</i></a></sup>
-
-				<!-- 		<sup id="fn1"><a href="http://www.prostatecancercenterpa.com/imrtigrtbenefits.html"><strong>Reference</strong>: Prostrate Cancer Center</a></sup> -->
-
-						<a href="#/2" class="navigate-right">
-						<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Right arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
-					</a>
+						<aside class="notes">
+							<small><li type="square">Good procedure for distributed cancer cells</li></small>
+							<small><li type="square">Palliative treatment when tumors elimination is impossible</li></small>
+							<small><li type="square">Shrinks cancer tumors pre-surgery  or tumor leftovers post-surgery</li></small>
+						</aside>
+					</section>	
 				</section>
 
 				<section>
 
 					<section data-background="images/IGRT.png" data-background="#212F3C">
-						<h2><small>Typical setup</small></h2>
+						<h2><small>Related Works</small></h2>
 						<br>
 						<a href="#/2" class="navigate-down">
 							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" >
@@ -983,6 +945,12 @@
 				keyboard: true,
 				// Turns fragments on and off globally
 				fragments: true,
+				// Enable the slide overview mode
+				overview: true,
+				// Enables touch navigation on devices with touch input
+				touch: true,
+				// Flags if speaker notes should be visible to all viewers
+				showNotes: false,
 				// Flags if speaker notes should be visible to all viewers
 				// showNotes: false,
 				// Number of milliseconds between automatically proceeding to the
@@ -991,14 +959,40 @@
 				 autoSlide: 0,	
 				// Stop auto-sliding after user input
 				autoSlideStoppable: true,
+				// Opens links in an iframe preview overlay
+    			previewLinks: true,
 				// Enable slide navigation via mouse wheel
 				// mouseWheel: true
 				// // Hides the address bar on mobile devices
 				 hideAddressBar: true,
+				// Parallax background image
+				parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+				// Parallax background size
+				parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+				// Number of pixels to move the parallax background per slide
+				// - Calculated automatically unless specified
+				// - Set to 0 to disable movement along an axis
+				parallaxBackgroundHorizontal: null,
+				parallaxBackgroundVertical: null,
+				math: {
+				    mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+				    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
 
 				center: true,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Transition speed
+				transitionSpeed: 'default', // default/fast/slow
+
+				// Transition style for full page slide backgrounds
+				backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+				// Number of slides away from the current that are visible
+				viewDistance: 3,
 
 				// Optional reveal.js plugins
 				dependencies: [
@@ -1007,7 +1001,9 @@
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
+					{ src: 'plugin/notes/notes.js', async: true },					
+					// MathJax
+					{ src: 'plugin/math/math.js', async: true }
 				]
 			});
 		</script>
