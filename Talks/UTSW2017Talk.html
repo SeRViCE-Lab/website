@@ -24,7 +24,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/serif.css">
@@ -47,10 +47,10 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h3>A 3-DoF Neuro-Adaptive Patient Pose Correcting System for Frameless and Maskless Cancer Radiotherapy</h3>
-					<h6>Towards Precise Patient Positioning during Head and Neck Cancer Radiotherapy</h6>
+					<h4>A 3-DoF Neuro-Adaptive Patient Pose Correcting System for Frameless and Maskless Cancer Radiotherapy</h4>
+					<p><font size="5" color="yellow">Towards Precise Patient Positioning during Head and Neck Cancer Radiotherapy</font></p>
 					<p>
-						<small>Presented by <a href="http://ecs.utdallas.edu/~olalekan.ogunmolu">Olalekan Ogunmolu</a> / <a href="http://twitter.com/patmeansnoble">@patmeansnoble</a></small>
+						<small><a href="http://ecs.utdallas.edu/~olalekan.ogunmolu">Olalekan Ogunmolu</a> / <a href="http://twitter.com/patmeansnoble">@patmeansnoble</a></small>
 					</p>
 				</section>
 
@@ -73,7 +73,7 @@
 						<h2>Background</h2>
 						<p><font color="#DAF7A6" face="verdana" size="25">Radiation-based Treatment Procedures</font></p>					
 						<a href="#" class="navigate-down">
-							<img width="100" height="100" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="background:#333;opacity:1;" align="middle">
+							<img width="50" height="50" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="background:#333;opacity:1;" align="middle">
 						</a>
 						<table border="5", width="80%">
 							<thead>
@@ -89,7 +89,6 @@
 										<!-- <small><li type="square">Deviations in delivered irradiation dosage possible</li></small> -->
 									</td>
 								</tr>
-
 								<th><font color="#DAF7A6"><center>IGRT</center></font></th>
 								<tr>									
 									<td>							
@@ -103,11 +102,43 @@
 							<small><li type="square">Good procedure for distributed cancer cells</li></small>
 							<small><li type="square">Palliative treatment when tumors elimination is impossible</li></small>
 							<small><li type="square">Shrinks cancer tumors pre-surgery  or tumor leftovers post-surgery</li></small>
+							<li>
+								While conventional RT uses rigid
+								immobilization techniques such as masks, frames, arm po-
+								sitioning devices or vacuum mattresses [1], IGRT methods
+								employ ultrasound, 3D imaging systems, 2D X-ray devices
+								and/or computed tomography to instantly amend positioning
+								errors, and to improve daily radiotherapy fractions’ precision.
+
+							</li>
 						</aside>
 					</section>	
 				</section>
 
-				<section>
+				<section>					
+					<section data-background="#212F3C" >	
+						<h3>The case for accurate patient positioning</h3>
+						<ul>
+							<li>Modern irradiation procedures allow dose errors of a few millimeters
+								<ul>									
+									<li>This informs computer calculation of highly precise radiation treatment plans on static planning images</li>
+								</ul>
+							</li>							
+							<li>But static CT scans are unrealistic during real-time patient treatment
+								<ul>
+									<li>How to minimize/eliminate <u>interfractional variations</u> in treatment between different sessions?</li>
+								</ul>
+								</li>
+						</ul>
+						<aside class="notes" data-markdown>
+							**Various interfractional gradients**
+							- patient poisitioning, 
+
+							- organ mobility, and 
+
+							- anatomic variations during treatment. 
+						</aside>
+					</section>
 
 					<section data-background="images/IGRT.png" data-background="#212F3C">
 						<h2><small>Related Works</small></h2>
