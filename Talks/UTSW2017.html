@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<!-- Mathjax script -->
+	<head>
+		<script type="text/x-mathjax-config">
+				MathJax.Hub.Config({
+					  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+				});
+		</script>
+
+		<script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+
+		<meta charset="utf-8">
+
+		<title>A 3-DoF Neuro-Adaptive Patient Pose Correcting System for Frameless and Maskless Cancer Radiotherapy</title>
+
+		<meta name="description" content="A case for automating head and neck cancer radiotherapy treatment">
+		<meta name="author" content="Olalekan Ogunmolu">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/serif.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="images/CASE2016/novalis.jpg" style="display:block; background:#000; opacity: 0.56" slide-background="#000">
+					<h4>A 3-DoF Neuro-Adaptive Patient Pose Correcting System for Frameless and Maskless Cancer Radiotherapy</h4>
+					<p><font size="5" color="yellow">Towards Precise Patient Positioning during Head and Neck Cancer Radiotherapy</font></p>
+					<p>
+						<small><a href="http://ecs.utdallas.edu/~olalekan.ogunmolu">Olalekan Ogunmolu</a> / <a href="http://twitter.com/patmeansnoble">@patmeansnoble</a></small>
+					</p>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
+					<section data-background="images/HNCancerRegions.png" style="display:block;background:#000;opacity:0.75;">
+						<h2>Background</h2>
+						<p>Head and neck (H&N) cancers are among the most fatal of major cancers in the United States</p>					
+						<br>
+						<p>2014: 35% of all pharynx and oral cavity cancers developed led to fatility [Siegal, R. et. al]</p>
+						<br>
+						<p>Cancer kills almost 600,000 people each year in the U.S. alone. <br><a href="See more at: https://news.developer.nvidia.com/university-of-torontos-gpu-accelerated-cancer-research-wins-nvidia-foundation-award/#sthash.1asn8CaE.g665SP03.dpuf"><small><br>Source: NVIDIA Foundation Award.</small></a></p>
+						<a href="#" class="navigate-down">
+							<img width="78" height="138" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="display:block;background:#000;opacity:0;">
+						</a>
+						<br>
+					</section>	
+
+					<section data-background="images/UTSW2017/igrt_setup.jpg" style="display:block;background:#000;opacity:0.75;">
+						<!-- <h2>Background</h2> -->
+						<p><font color="#DAF7A6" face="verdana" size="25">Radiation-based Treatment Procedures</font></p>		
+						<!-- <br> -->
+						<p>Could be IMRT and/or IGRT</p>			
+						<a href="#" class="navigate-down">
+							<img width="50" height="50" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="background:#333;opacity:1;" align="middle">
+						</a>
+						<table border="5", width="80%">
+							<thead>
+								<tr>
+									<th><font color="#DAF7A6" size="6"><center>IMRT: Intensity Modulated Radiotherapy</center></font></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<small><li type="square">Modulates dosage/shape of radiation beam <u>to precise size of tumor cells</li></small>
+										<small><li type="square">Improves accuracy of <u>carefully</u> targeted radiation </li></small>
+										<!-- <small><li type="square">Deviations in delivered irradiation dosage possible</li></small> -->
+									</td>
+								</tr>
+								<th><font color="#DAF7A6" size="6"><center>IGRT: Image Guidance Radiation Therapy</center></font></th>
+								<tr>									
+									<td>							
+										<small><li type="square">Uncertainty in dose measures to malignant tissues necessitated use of IGRT</li></small>
+										<small><li type="square">Goal: Assure precise localization of beam to target tumor cell. </li></small>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<aside class="notes">
+							<h3>Radiation Therapy</h3>
+							<small><li type="square">Good procedure for distributed cancer cells</li></small>
+							<small><li type="square">Palliative treatment when tumors elimination is impossible</li></small>
+							<small><li type="square">Shrinks cancer tumors pre-surgery  or tumor leftovers post-surgery</li></small>
+							<li><small>
+								While conventional RT uses rigid immobilization techniques such as masks, frames, arm positioning devices or vacuum mattresses [1], IGRT methods employ ultrasound, 3D imaging systems, 2D X-ray devices and/or computed tomography to instantly amend positioning errors, and to improve daily radiotherapy fractions’ precision.
+							</small></li>
+						</aside>
+					</section>	
+				</section>
+
+				<section>					
+					<section data-background="212F3C">	
+						<h3>The case for accurate patient positioning</h3>
+						<ul>
+							<li>Modern irradiation procedures allow dose errors of a few millimeters
+								<ul>									
+									<li>This informs computer calculation of highly precise radiation treatment plans on static planning images</li>
+								</ul>
+							</li>							
+							<li>But static CT scans are unrealistic during real-time patient treatment
+								<ul>
+									<li>How to minimize/eliminate <u>interfractional variations</u> in treatment between different sessions?</li>
+								</ul>
+								</li>
+						</ul>
+						<aside class="notes" data-markdown>
+							**Various interfractional gradients**
+							- patient poisitioning, 
+								- Accuracy and reproducibility of positioning strongly correlated to anatomic region involved
+								- Also correlated to positioning aids used
+
+							- organ mobility, and 
+
+							- anatomic variations during treatment. 
+						</aside>
+					</section>
+
+					<section data-background="images/UTSW2017/igrt_pose_error.jpg" style="display:block;background:#000;opacity:0.75;" >	
+						<h3>Interfractional errors</h3>
+						
+						<ul>
+							<li>Patient Positioning
+								<ul>
+									<small><li>Precise positioning means ue of rigid fixators for patient immobilization</li></small>
+									<small><li>Downside: Patient comfort jeopardized; requires surface markings; assumes organs are rigid </li></small>
+								</ul></li>
+
+							<li>Internal Organ Mobility 
+								<ul>
+									<small><li>Perfect positioning of skeletal structures $\neq$ Organ immobility
+									</li></small>
+									<small><li>e.g. ventral displacement or geographic miss from moving organs
+									</li></small>
+								</ul></li>
+
+							<li>Anatomic variations during treatment.
+								<ul>
+									<small><li>Changing tumor density during treatment $\rightarrow$ tissue attenuation of beams</li></small>
+									<small><li>Weight loss, or inflammatory reaction in the course of treatment could reduce attenuation of X-ray beam or expose neighboring entity</li></small>
+									</ul>
+							</li>
+
+						</ul>
+
+
+
+						<aside class="notes" data-markdown>
+							**Various interfractional gradients**
+							- patient positioning, 
+								- Accuracy and reproducibility of positioning strongly correlated to anatomic region involved
+								- positioning aids used to esure accuracy include masks, shoulder fixators, vacuum mattresses or arm positioning devices
+								
+								**Disadvantages**
+								- These methods depend on surface markings
+								- But actual position of body parts can change considerably e.g. lung tumors etc
+
+								**Fix**
+								- Use IGRT to detect and correct these deviations --> increases precision of delivery e.g.
+									** Utilities **
+									- Modern high-precision techniques with individual dose distribution
+									- Escalate dose in target volume 
+									- spare adjacent radiosensitive organs
+
+							- organ mobility, 
+								- Perfect positioning of skeletal structures != Organ immobility e.g.
+									- Ventral displacement can result in renal damage in RT of para-aortic lymph nodes 
+									- Treatment of thorax cancer can result in geographic miss due to the high variations in esophagus position (F. Sterzing: IGRT)
+
+									**Fix**
+									- IGRT can recognize displacements well ahead of time so that treatment is carried out under better conditions.
+
+							- anatomic variations during treatment. 
+								- Changing tumor density during treatment could affect tissue attenuation of beams
+									- Weight loss in the course of treatment may shift tumor location exposing skin and salivary glands to treatment toxicity
+									- imaging procedure can be used to calculate dosage distribution --> Goal: modify irradiation plan; optimal treatment over several weeks
+									- Shrinking lymphomas may shrink after treatment commencement
+						</aside>
+					</section>
+
+					<section data-background="images/UTSW2017/igrt_setup.jpg" style="display:block;background:#000;opacity:0.75;" >	
+						<h3>Limitations of existing solutions</h3>
+						<ul>
+							<li>Frame-based immobilization systems are highly uncomfortable [Lutz, W. et. al, 1988], [Takakura, T., et al., 2010]</li><br>
+
+							<li>Involuntary patient movements is not a boon for  inspection-based setups  [Cervino, L.I. et. al., 2010], [Li G. et al, 2015] </li><br>
+							<!-- <li>Current frameless SRS techniques have little or no real-time correction</li> -->
+							<li>Existing real-time correcting proposal employs stepper motors for head motion alignment[Li, X. et al, 2015]</li>
+							<!-- <li></li> -->
+						</ul>
+
+						<aside class="notes" data-markdown>
+							### Research Motivation
+
+							- 	Evidence of treatment discomfort and severe pain from long hours of minimally invasive surgery <font color="#8A2BE2">[Takakura, T., et al., 2010]</font>
+
+							- 	Frame-based: Lack of comfort, limited repeatability and clinically inefficient 
+
+							-	Patient movements: Clinical studies show that small perturbations cause high sensitivity to IMRT treatment dose <font color="#8A2BE2">[L. Xing, 2000.]</font>
+							</a>
+
+							-	6DOF positioning systems model the human body rigidly 
+
+							-	No accounting for flexibility/curvature of the neck
+							
+							-	Limited positioning of patient can reduce effectiveness of treatment
+						</aside>
+					</section>
+			</section>
+
+			<section>
+
+				<section data-background="images/UTSW2017/igrt_setup.jpg" style="display:block;background:#000;opacity:0.75;" >	
+					<h3>Solution: Soft Position Correcting Systems</h3>
+					<ul>							
+						<li>Eliminate rigid frames and metallic rings used in immobilization that make patient uncomfortable &#10004; </li><br>
+						<!-- <li>Current frameless SRS techniques have little or no real-time correction</li> -->
+						<li>Eliminate attenuation of X-Ray beams &#10004; </li><br>
+
+						<li>Remove need to constantly model kinematic structure of robotic couch and system dynamics &#10004; </li><br>
+						
+						<li>Ensure control system is robust to (non)-parametric uncertainties &#10004; </li><br>
+					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>
+								Instead of uncomfortable rigid frames $\rightarrow$ use soft-robot actuators
+								<ul>
+									<li>i.e. radiation transparent elastomeric and pneumatic actuation systems </li>
+								</ul>
+							</li>
+
+							<li>
+								Instead of strictly mechanical stepper motors that attenuate X-ray beams, use pneumatic valves separated from patient head and neck + robotic couch system and use silicone/rubber air-hoses to convey air into actuating mechanisms
+							</li>
+
+							<li>
+								Instead of a feedback controller, why not an adaptive controller?
+								<ul>
+									<li><small>$i.e.$ With the indirect method, adaptively compensate for the changing shape and anatomy of patient's head and neck dynamics</li></small>
+								</ul></li>
+							</li>
+
+							<li>Make adaptation robust to non-parametric uncertainties? $\rightarrow$ How about a real-time function approximator-based adaptive controller?</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section data-background="#566573" >
+					<h5>Testbed</h5>
+					<img src="images/UTSW2017/setup.jpg" width="90%"/>
+					<!-- <img src="images/UTSW2017/headnaxes.jpg" width="45%"/> -->
+
+					<aside class="notes" data-markdown>
+						
+						-	3 custom-designed inflatable air bladders positioned beneath a custom-designed 3D head and 	neck simulator
+
+						-	Rubber Air hoses convey air into/out of each IAB
+
+						- 	Air is supplied from a pressure cannister through air regulating Dakota valves 
+
+						- 	Surface image of head is reconstructed witrh an Ensenso 3D camera, mounted above the head
+
+					</aside>
+				</section>
+			</section>
+
+			<section data-background="#212F3C">
+
+				<section data-background="#0B4173" data-background-transition="zoom">	
+					<h3> Vision-based Pose Estimation Steps</h3>
+
+					<ul>
+
+						<small><li>Find edges of 2D planar regions in scene structure [Torr and Zisserman, 2000]</small>
+							<ul>
+								<small><li>
+							$\rightarrow$ bound resulting plane indices with their 2D convex hull</li></small>
+						<img src="images/UTSW2017/faceCluttered.jpg" align="right" width="20%", height="40%" alt="" />
+						</ul> 
+						</li><br>
+
+						<small><li>Extract face and face-height neighbors into a predefined 2D prismatic model [Rusu, R. et. al, 2008]</li></small><br></br>
+
+						<small><li>Cluster extracted points based on a Euclidean Clustering scheme defined in the paper</li></small><br>
+
+						<small><li>Face will be the largest cluster</li></small>
+
+					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Minimize sensor noise by downsampling point cloud with the robust moving least squares algorithm (RMLS) [Rusu, R. et al, 2008] </li>
+
+							<li>Search for edges using maximum likelihood SAC [Torr and Zisserman, 2000]</li>
+
+							<li>
+								Polygonal model is based on a user-defined $L_1$ Manhattan distance [Rusu, R. et. al, 2008]
+							</li>
+						</ul>
+
+					</aside>
+				</section>
+
+				<section data-background="#0B4173" data-background-transition="fade">
+					<h3>Segmentation Result</h3>
+					<img src="images/UTSW2017/seg_cloud_nice.jpg" alt="" width="65%", height="65%"/>
+
+					<aside class="notes">
+						<p><small>[Top-left]: Dense point cloud of the experimental setup scene.
+						[Top right]: Downsampled cluttered cloud of the left scene. [Bottom-left]:
+						Using RANSAC, we searched for 2D plane candidates in the scene and
+						compute the convex hull of found planar regions. We then extrude point
+						indices within the hull into a prismatic polygonal model to give the face
+						region. [Bottom-right]: An additional step clusters the resultant cloud based
+						on a Euclidean distance. The largest cluster is taken to be the face.
+						</small></p>					
+					</aside>
+				</section>
+			</section>
+
+			<section> <!-- Control Background-->
+
+			</section>
+			
+			<section>
+				<h2>Export to PDF</h2>
+				<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
+				<iframe src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+			</section>			
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// // Full list of configuration options available at:
+			// // https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				// Display the page number of the current slide
+				slideNumber: false,
+
+				// Push each slide change to the browser history
+				history: true,
+
+				// Enable keyboard shortcuts for navigation
+				keyboard: true,
+				// Turns fragments on and off globally
+				fragments: true,
+				// Enable the slide overview mode
+				overview: true,
+				// Enables touch navigation on devices with touch input
+				touch: true,
+				// Flags if speaker notes should be visible to all viewers
+				showNotes: false,
+				// Flags if speaker notes should be visible to all viewers
+				// showNotes: false,
+				// Number of milliseconds between automatically proceeding to the
+				// next slide, disabled when set to 0, this value can be overwritten
+				// by using a data-autoslide attribute on your slides
+				 autoSlide: 0,	
+				// Stop auto-sliding after user input
+				autoSlideStoppable: true,
+				// Opens links in an iframe preview overlay
+    			previewLinks: true,
+				// Enable slide navigation via mouse wheel
+				// mouseWheel: true
+				// // Hides the address bar on mobile devices
+				 hideAddressBar: true,
+				// Parallax background image
+				parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+				// Parallax background size
+				parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+				// Number of pixels to move the parallax background per slide
+				// - Calculated automatically unless specified
+				// - Set to 0 to disable movement along an axis
+				parallaxBackgroundHorizontal: null,
+				parallaxBackgroundVertical: null,
+				math: {
+				    mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+				    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
+
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Transition speed
+				transitionSpeed: 'default', // default/fast/slow
+
+				// Transition style for full page slide backgrounds
+				backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+				// Number of slides away from the current that are visible
+				viewDistance: 3,
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },					
+					// MathJax
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+
+	</body>
+</html>
