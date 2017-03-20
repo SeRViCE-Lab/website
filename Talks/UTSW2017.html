@@ -344,13 +344,193 @@
 			</section>
 
 			<section> <!-- Control Background-->
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h3>Control Design Challenges</h3>
+					<ul>
+						<li>Optimal closed loop tracking given a desired trajectory</li><br>
+						<li>Stability of system states</li><br>
+						<!-- <li></li> -->
+						<li>Robustness to (non-)parametric uncertainties 
+							<ul>
+								<small><li>$\rightarrow$ changing head shapes, size and other anatomic/tumor variations</li></small>
+							</ul></li>
 
+					</ul>
+					
+					<aside class="notes">
+						<ul>
+							<li>Optimal tracking problem: Design a feedback regulator component</li>
+							<li>Stability of states: Design a state feedback controller with adaptive gains for states we desire to tame</li>
+							<li>Non-parametric Uncertainties: Adaptive control in a Bayesian setting 
+								<ul>
+									<small><li>$\rightarrow$ given an intial distributtion, minimize a well-chosen cost function as the expected value of the head pose 
+								given the system's states and past control actions</small></li>
+								<small><li>$\rightarrow$ essentially a neural network function approximator that models the system nonlinearity $f(\mathbb{y})$</small>
+								</ul></li> 
+						</ul>
+
+					</aside>
+				</section>
+
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h3>MRAC System</h3>
+					<ul>
+						<small><li>Model nonlinear plant dynamics, $\dot{\textbf{y}} = \textbf{A}\textbf{y} + \textbf{B} {\Lambda} \left(\textbf{u} - f(\textbf{y}) \right) + \textbf{w}(k) $ , in real-time with a continuous memory states-based LSTM Function Approximator $\hat{f}\left(\textbf{u}(k-d), \textbf{y}(k),\textbf{w}(k)\right)$
+						</li></small><br></br>
+
+						<small><li>Set up control law in terms of parameter estimates from the neural network weights and Lipschitz basis functions</li></small><br></br>
+
+						<small><li>Derive Adjustment mechanism from Liapunov analysis (Lyapunov Redesign Method) [Parks, P., 1966]</li></small>
+					</ul>
+
+					<aside class="notes" data-markdown>
+						### Plant Dynamics
+
+						-	with $\textbf{y} \in R^n, \textbf{u}\in R^m; \textbf{A} \in R^{n \times n}, \Lambda \in R^{m \times m}$
+						being unknown constant matrices, $\textbf{B} \in R^{n \times m} \,	, sgn(\Lambda)$, being known constant matrices, and $\textbf{w}(k) \in R^n$ being a bounded time-varying unknown disturbance, upper-bounded by a fixed positive scalar $\textbf{w}_{max}$
+
+						### Why an LSTM?
+
+						-	Capacity for long-term context memorization due to inherent multiplicative units and cell gates 
+
+						-	avoids inherent RNN oscillating weights or vanishing gradients problem
+
+						- 	Input-output data in our setup is a temporally evolving data
+
+						-	Contribution of our work involves shaping the last layer to produce torque signals that actuate each of the six valves based on adaptation signals
+					</aside>
+				</section>
+
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h3>Assumptions</h3>
+					<ul>
+						<small><li> a dynamic RNN with $N$ neurons, $\varphi(\textbf{y})$, exists that will map from a compact input space $\textbf{u} \subset \mathbb{U}$ to an output space $\textbf{y} \subset \mathbb{Y}$ on the Lebesgue integrable functions with closed interval $[0, T]$ or open-ended interval $[0,\infty)$; </li></small><br>
+							
+							<small><li> the nonlinear function $f(\textbf{y})$ is exactly $\Theta^T \Phi(\textbf{y})$ with coefficients $\Theta \in R^{N\times m}$ and a Lipschitz-continuous vector of basis functions $\Phi(\textbf{y}) \in R^N$;</li></small><br>
+							
+							<small><li> inside a ball $\textbf{Y}_R$ of known, finite radius $R$, the ideal NN approximation $f(\textbf{y}): R^n \rightarrow R^m$, is realized to a sufficient degree of accuracy, $\varepsilon_f > 0$;</li></small><br>
+							
+							<small><li> the process noise $\textbf{w}(k)$ is estimated alongside model parameters by the dynamic RNN and lumped into $\varepsilon_f$; </li></small><br>
+
+							<small><li> outside $\textbf{Y}_R$, the NN approximation error can be upper-bounded by a known unbounded, scalar function $\varepsilon_{max}(\textbf{y})$;							
+							$\|\varepsilon(\textbf{y})\| \le \varepsilon_{max}(\textbf{y}), \quad \, \forall \quad \textbf{y} \in \textbf{Y}_R$;</li></small><br>
+							
+							<small><li> there exists an exponentially stable reference model 
+							$\dot{\textbf{y}}_m = \textbf{A}_my_m + \textbf{B}_m \textbf{r}$</li></small>
+						</li>
+					</ul>
+
+					<aside class="notes" data-markdown>
+						### Design Parameters 
+
+						-	with a Hurwitz matrix $\textbf{A}_m \in R^{n \times n} \text{ and } \textbf{B}_m \in R^{n \times m}$ commanded by a reference signal $\textbf{r} \in R^{m}$.
+
+						-	design an adaptive MRAC able to operate in the presence of parametric, $\varepsilon_f$, and non-parametric, $\textbf{w}(k)$, uncertainties so as to assure the boundedness of all signals within the closed-loop dynamics. 
+					</aside>
+				</section>
 			</section>
+
+			<section>
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h3>Controller</h3>
+					<ul>
+						<small><li>
+							$\textbf{u} = \underbrace{\hat{\textbf{K}}_y^{\textbf{T}}\textbf{y}}_{\text{state feedback}} + \underbrace{\hat{\textbf{K}}_r^{\textbf{T}} \textbf{r}}_{\text{optimal regulator}} + \underbrace{\hat{f}(\textbf{y})}_{\text{nonlinearity RNN approximator}}$
+							</li></small><br></br>
+
+						<small><li>$\hat{\textbf{K}}_y, \, \text{ and } \hat{\textbf{K}}_r$ are adaptive gains to be suitably designed</li></small>
+
+						<small><li> There are model matching conditions such that $\hat{\textbf{K}}_y = \textbf{K}_y , \, \text{ and } \hat{\textbf{K}}_r = \textbf{K}_r$ ideally</li></small>
+
+						<small><li>Mathematically, we can imagine the approximator as $\hat{f}(y) = \hat{{\Theta}}^T {\Phi}(\textbf{y}) + \varepsilon_f(\textbf{y})$
+							<ul>
+								<li>
+									$\hat{\Theta}^T$ denotes the vectorized weights of the neural network and $\Phi(\textbf{y})$ denotes the vector of lagged inputs and output defined as
+										${\Phi}(\textbf{y}) = \{\textbf{y}(k-d) \cdots \textbf{y}(k-d-4), \textbf{u}(k-d) \cdots \textbf{u}(k-d-5)\}$
+										and	$\varepsilon_f(\textbf{y})$ is the approximation error.
+								</li>
+							</ul>
+						</li></small>
+					</ul>
+
+					<aside class="notes" data-markdown>
+						-	$\hat{\textbf{K}}_y^{\textbf{T}}\textbf{y} $ term keeps the states of the approximation set  $\textbf{y} \in \textbf{Y}_R$ stable, while the $\textbf{K}_r^{\textbf{T}} \textbf{r}$ term causes the states to follow a given reference trajectory.  The function approximator output $\hat{f}(\textbf{y})$ ensures states that start outside the approximation set $\textbf{y} \in \textbf{Y}_R$ converge to $\textbf{Y}_R$ in finite time (it converges non-parametric errors $\varepsilon_f$ that puts certain states out of the approximation set into $\textbf{Y}_R$).
+
+						-	where $\hat{\Theta}^T$ denotes the vectorized weights of the neural network and $\Phi(\textbf{y})$ denotes the vector of lagged inputs and output defined as
+							${\Phi}(\textbf{y}) = \{\state(k-d) &\cdots \state(k-d-4), \nonumber\\	&\textbf{u}(k-d) \cdots \textbf{u}(k-d-5)\}$
+							and	$\neterror(\textbf{y})$ is the approximation error.
+					</aside>
+				</section>
+
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h3>Closed Loop Dynamics and Lyapunov Redesign</h3>
+					<ul>
+						<small><li>State closed loop dynamics is given by <br>
+							&nbsp; &nbsp; $\dot{\textbf{y}} =  (\textbf{A} + \textbf{B} \Lambda (\hat{\textbf{K}}_{y}^{T} \textbf{y} + \textbf{B} \Lambda (\hat{\textbf{K}}_r^T \textbf{r} + \varepsilon_f(\textbf{y}))$
+						</li></small><br></br>
+
+						<small><li>The generalized error state vector $\textbf{e}(k) = \textbf{y}(k) -\textbf{y}_m(k)$, has dynamics <br>
+							&nbsp; &nbsp; $\dot{\textbf{e}}(k)= \textbf{A}_m\textbf{e}(k) + \textbf{B} \Lambda[\tilde{\textbf{K}}_r^T \textbf{r} +\tilde{\textbf{K}}_y^T \textbf{y} - \varepsilon_f(\textbf{y}(k))] $,</li></small><br></br>
+
+						<small><li>$\textbf{Theorem:}$<br>							
+							Given correct choice of adaptive gains $\hat{\textbf{K}}_y$ and $\hat{\textbf{K}}_r$, the error state vector, $\textbf{e}(k)$ with closed loop time derivative given by $\dot{\textbf{e}}$ is uniformly ultimately bounded, and the state $\textbf{y}$ will converge to a neighborhood of $\textbf{r}$.
+							<ul>
+								<li>See proof in text ($\S V.A$).</li>
+							</ul>
+						</li>
+					</small>
+
+					</ul>
+				</section>
+
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<ul>
+						<small><li>Given the Lyapunov funcyion <br>
+							$\textbf{V}(\textbf{e}, \tilde{\textbf{K}}_y, \tilde{\textbf{K}}_r) = \textbf{e}^T\textbf{P}\textbf{e} 
+							+ \textbf{tr}(\tilde{\textbf{K}}_y^T  \Gamma_y ^{-1}  \tilde{\textbf{K}}_y |\Lambda|) \\
+							+ \textbf{tr}(\tilde{\textbf{K}}_r^T \Gamma_r^{-1} \tilde{\textbf{K}}_r^T |\Lambda|)$, 
+						</li></small>
+						<br></br>
+
+						<small><li>We can verify that the adaptation laws are <br>
+								 $\dot{\hat{\textbf{K}}}_y = -\Gamma_x \textbf{y} \textbf{e}^T \textbf{P} \, \textbf{B} \text{sgn}(\Lambda), \text{ and }  
+									\dot{\hat{\textbf{K}}}_r = -\Gamma_r \textbf{r} \textbf{e}^T \textbf{P} \, \textbf{B} \, \text{sgn}(\Lambda)$.
+								<ul>
+									<li>where $\Gamma_x$ and $\Gamma_r$ are fixed symmetric, positive definite (SPD) matrices of adaptation rates. &nbsp;
+										$\textbf{tr}(\textbf{A})$ denote the trace of matrix $\textbf{A}$ and $\textbf{P}$ is a unique SPD matrix solution of the algebraic Lyapunov function
+									</li>
+								</ul>
+								</li></small><br></br>
+
+								<small><li>We show in the paper that the time-derivative of the Lyapunov function is negative definite outside the compact set <br>
+									$\chi =\left(\textbf{e}: \|\textbf{e}\| \le \frac{2\|\textbf{PB}\|\lambda_{high}(\Lambda)\varepsilon_{max}(\textbf{y})}{\lambda_{low}(\textbf{Q})}\right).$</li></small><br></br>
+
+								<small><li>Thus, the error $\textbf{e}$ is <i>uniformly ultimately bounded.</i></li></small>
+					</ul>
+				</section>
+			</section>
+
+			<section>
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h3>Results</h3>
+					<div class="fig figcenter fighighlight">
+					  <img src="images/UTSW2017/netloss.jpg" width="49%" height="250" style="border-left: 1px solid black;" align="left"/> 
+					  <img src="images/UTSW2017/expt2a.jpg" width="49%" height="250" style="border-left: 1px solid black;">
+					  <img src="images/UTSW2017/expt2b.jpg" width="79%" height="250" style="border-left: 1px solid black;">
+					</div>
+				</section>
+
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h3>Future/Ongoing Work</h3>
+
+				</section>
+			</section>
+
 			
 			<section>
-				<h2>Export to PDF</h2>
-				<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, here's an example:</p>
-				<iframe src="https://www.slideshare.net/slideshow/embed_code/42840540" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+				<h3>Questions?</h3>
+				<p><a href="UTSW2017.html/?print-pdf/gi">Export me to PDF</a></p>
+				<iframe src="UTSW2017.html" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 			</section>			
 
 			</div>
