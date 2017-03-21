@@ -1,0 +1,1411 @@
+<!doctype html>
+<html lang="en">
+<!-- Mathjax script -->
+	<head>
+		<script type="text/x-mathjax-config">
+				MathJax.Hub.Config({
+					  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+				});
+		</script>
+
+		<script type="text/javascript" src="MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+
+		<meta charset="utf-8">
+
+		<title>Towards accurate patient positioning in head and neck cancer radiotherapy. </title>
+
+		<meta name="description" content="A case for automating head and neck cancer radiotherapy treatment">
+		<meta name="author" content="Olalekan Ogunmolu">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/serif.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background="images/CASE2016/novalis.png" style="display:block; background:#000; opacity: 0.56" slide-background="#000">
+					<!-- <h3>Vision-based Control of a Soft Robot for Maskless Head and Neck Cancer Radiotherapy</h3> -->
+					<br>
+					<h3>Vision-based control of a soft-robot for<p></p> Maskless Head and Neck Cancer Radiotherapy</h3>
+						<br></br>
+						<small><a href="http://ecs.utdallas.edu/~olalekan.ogunmolu">Olalekan Ogunmolu,</a> <a href="http://profiles.utsouthwestern.edu/profile/133029/xuejun-gu.html">Xuejun Gu </a>, <a href="https://profiles.utsouthwestern.edu/profile/150563/steve-jiang.html">Steve Jiang and </a> <a href="http://ecs.utdallas.edu/~ngans"> Nick Gans</a></small>
+							<br><a font color="magenta"><small>SeRViCE Lab, UT Dallas & </small></a>
+							<a font color="magenta"><small>Radiation Oncology Department, UT SouthWestern</small></a>
+				</section>
+
+				<!-- Example of nested vertical slides -->
+				<section data-transition="slide" data-background="#212FC32" data-background-transition="zoom">
+					<section data-background="images/HNCancerRegions.png" style="display:block;background:#000;opacity:0.65;">
+						<h2><a font color="blue">Background</a></h2>
+						<ul>
+
+							<li>Head and neck (H&N) cancers among the most fatal of major cancers in the United States</li>			<br>
+							<li>2016: Estimated number of oral cavity and pharynx cancer projected to be 48,330</li>
+								<br>
+							<li>Estimated new cases of all cancer types in 2016: 1, 685,210.</li> 
+						</ul>
+						
+						<br><a href="www.cancer.org/acs/groups/content/@research/documents/document/acspc-047079.pdf"><small><br>Source: Cancer Facts and Figures 2016.</small></a>
+					</section>	
+
+					<section data-transition="slide"  data-background="#212F3C" data-background-transition="zoom">
+						<h2><a font color="blue">Typical H&N Cancers Treatment Methods</a></h2>
+						<table>
+							<thead>
+								<tr>
+									<th>Methods</th>
+									<th>Pros</th>
+									<th>Cons</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Radio-Surgery</td>
+									<td><small><li type="square">Highly accurate and most successful</li></small></td>
+									<td><small><li type="square">Only useful when cancer is localized (highly improbable in most cases)</li></small></td>
+								</tr>
+								<tr>
+									<td>Chemos</td>
+									<td><small><li type="square">Kills cancer cells throughout the body</li></small></td>
+									<td><small><li type="square">Highly toxic and carcinogenic</li></small>
+									<small><li type="square">Can kill healthy cells</li></small></td>
+								</tr>
+								<tr>
+									<td>Radiation Therapy (RT)</td>
+									<td><small><li type="square">Good procedure for distributed cancer cells</li></small>
+									<small><li type="square">Palliative treatment when eliminating cancer tumors is impossible</li></small>
+									<small><li type="square">Helpful to shrink cancer tumors pre-surgery  or tumor leftovers post-surgery</li></small>
+									</td>
+									<td><small><li type="square">Requires high-precision in localization of cancer cells and dosage targets</li></small></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<aside class="notes">
+							<h3><a font color="blue">IGRT Treatment Planning Procedure</a></h3>
+							<ul>
+								
+								<img src="images/CASE2016/igrt.png" width="1550px", height="550px"/>
+								<li>Accurately place markers in patient's body after doctor's consultation</li>
+								<br>
+								<li>Then Perform radiation-based CT scan of the markers to localize the exact position of the tumors</li>
+								<br>
+								<li>Scan provides the size and shape of the cancer cells for computerized treatment planning calculations</li>
+							</ul>
+							<h3><a font color="blue">Radiotherapy for H&N Cancer Treatment (IMRT)</a></h3>
+							<ul>
+								<li>
+									Body cancer radiotherapy (RT) typically use IMRT or IGRT
+								</li>
+									<img src="images/CASE2016/imrt.png" width="100%", height="100%"/>
+							</ul>
+						</aside>
+					</section >
+					
+					<section data-background="#212F3C" data-background-transition="slide">
+						<h3><a font color="blue">Radiotherapy for H&N Cancer Treatment (IMRT)</a></h3>
+						<ul>
+							<li>
+								Body cancer radiotherapy (RT) typically use IMRT or IGRT
+							</li>
+								<img src="images/CASE2016/imrt.png" width="100%", height="100%"/>
+						</ul>
+					</section>
+
+					<section data-background="#212F32C" background-transition="slide">
+						<h3><a font color="blue">IGRT: Image-Guided RT</a></h3>
+							<ul>
+					<img src="images/CASE2016/igrt.png" width="1550px", height="550px"/>
+						</ul>
+
+						<aside class="notes">
+							<h3><a font color="blue">IGRT Treatment Planning Procedure</a></h3>
+							<ul>
+
+								<img src="images/CASE2016/igrt.png" width="1550px", height="550px"/>
+								<li>Accurately place markers in patient's body after doctor's consultation</li>
+								<br>
+								<li>Then Perform radiation-based CT scan of the markers to localize the exact position of the tumors</li>
+								<br>
+								<li>Scan provides the size and shape of the cancer cells for computerized treatment planning calculations</li>
+							</ul>
+						</aside>
+
+						<aside class="notes">
+							<h3><a font color="blue">IGRT Treatment Planning Procedure</a></h3>
+							<ul>
+							<li>
+								After planning session, radiation therapist uses markers to position patient on treatment table
+							</li>
+							<br>
+							<li>
+								Patient is left in treatment room and a digital imaging system (2+) is remotely used to capture tumor cells
+							</li>
+							<br>
+							<li>
+								Images are then used in guiding the motion-alignment treamnet couch (e.g. Novalis/Varian robotic couch)
+							</li>
+							<br>
+							<li>
+								treatment typically given based on a 30-min five-day-a-week schedule that could range from five to eight weeks 
+							</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section  data-background="#212F32C" style="display:block; opacity:0.98" data-background-transition="slide">
+						<h3><a font color="blue"> IGRT: Image-Guided RT </a></h3>
+						<img src="images/IGRT.png" width="130%", height="550px" />
+						<a><i><small>image adapted from Cervino et al's work</small></i></a>
+
+
+					</section>
+				</section>
+
+				<section>
+					<section data-background="#212F32C" data-transition="slide">
+						<img src="images/CASE2016/motivation.png" />
+					</section>
+
+					<section data-background="#212F3C" data-background-transition="zoom">
+						<h2><a font color="blue">Related Work</a></h2>
+						<ul>
+								<li>
+									Cervino et al. 2010: Tested accuracy of IGRT systems without rigid frames on face using deformable masks
+								</li>
+								<br>
+								<li >Compared results from an infra-red optical tracking system with the AlignRT vision software system
+								</li>
+						</ul>								
+										<img src="images/frame2.png" width="350", height = "250"/>
+										<img src="images/varian.png" width="350", height = "250" />
+					</section>
+
+					<section data-background-color="#212F3C">
+						<table>
+							<thead>
+								<u>Cervino et. al's analyses</u>
+								<tr>
+									<th>Results</th>
+									<th>Solution drawbacks</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<li type="square"><small>For different couch angles, the difference between phantom positions recorded by the two systems were within 1mm 		displacement  and 1° rotation</small></li>
+
+										<li type="square"><small>Patient motion due to couch motion was less than 0.2mm</small></li>
+									</td>
+									<td>									
+										<li type="square">
+										<small>If patient moves, therapy must be stopped; the patient must be repositioned &rArr; costs time and money</small>
+										</li>
+
+										<li type="square"><small>6DOF positioning robots model the human body rigidly</small></li>
+									</td>
+								</tr>
+								<tr>
+									<td>
+									</td>
+
+									<td>
+										<li type="square"><small>No accounting for flexibility/curvature of the neck</small>
+										</li>	
+										<li>	
+											<small>Limited positioning of patient can reduce effectiveness</small>
+										</li>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+
+
+					<section data-background="#212F32C" data-transition="slide">
+						<h3><a font-color = "blue">Research Overview</a></h3>
+						<img src="images/CASE2016/aims.png" width="130%", height="550px" />
+
+						<aside class="notes">
+							<ul>
+								<li>Demonstrate optimal control of the 1-DOF intra-cranial control of patient motion during H&N Cancer RT</li><br>
+
+								<li>using a radio-transparent actuator for motion alignment correction in real-time</li>
+
+								<li>Testbed &rArr; Mannequin head + Neck/Torso motion simulator lying in a supine position on an inflatable air bladder (IAB)</li><br>
+
+								<li> + 2 two-port NC solenoid valves, to actuate bladder</li><br>
+
+								<li>Use multiple depth sensors to properly localize patient's head motion in real-time</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section data-background="#212F32C">						
+						<a>System Setup</a>
+						<img src="images/setup2.png" width="88%" height="550px"/>
+						<br>
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"  alt="Right arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+					</a>
+				</section>
+			</section>
+
+			<section data-background="#212F32C" data-transition="slide">  				
+				<section data-background="#212F3C" data-background-transition="zoom">	
+					<h3><a font color="blue">Vision-based Head Position Estimation</a></h3>
+						<img src="images/CASE2016/vision.png" width="130%", height="550px" />
+						<aside class="notes">
+							<ul>
+								<li>
+									Use 2 Kinect RGB-D Cameras for vison-based closed-loop feedback
+								</li> <br>		
+								
+									<li>noise is a major setback for such electronic range perception systems
+								</li>
+
+								<li> What to do? 
+									<br><small>Filter out the noise from each sensor using a linear Kalman filter at a local site </small></li><br>
+
+								<li><small>then do a track-to-track fusion of the estimates at a central site</small></li>
+							</ul>
+						</aside>
+				</section>
+
+				<section data-background="#290B0B" data-transition="slide">
+					<h3><a font color="blue">Kinect Sensors</a></h3>
+					<div class="fig figcenter fighighlight"> 
+						<img src="images/CASE2016/kinectxbox.png" width="480px" height="360px"/>
+						<img src="images/CASE2016/kinectv2.gif" width="450px" height="360px"/>
+					  <div class="figcaption" align="center"><a  font color="blue">Kinect Xbox &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;Kinect v1</a>
+					  </div>
+					</div>		
+					<aside class="notes">
+						<h3>Drawbacks from the kinect1 sensor</h3>
+						<ul>
+							<li>Certain materials do not reflect infrared wavelengths of light effectively, and so ‘drop out’ pixels can be com- mon. This particularly affects hair and shiny surfaces</li>
+
+							<li>In bright sunlight, the ambient infrared can swamp the active signal preventing any depth inference</li>
+
+							<li>shiny/uneven-textured surfaces do not reflect infrared wavelengths properly </li>
+
+							<li>operates on the principle of stereo matching between an emitter and camera, which must be offset by some baseline. Consequently, an occlusion shadow appears on one side of objects in the depth camera</li>
+						</ul>
+
+						<h3>Kinect 2 sensor</h3>
+						<ul>
+							<li>Our TOF-based depth sensor uses light as its signal, and measures the phase shift of a modulation envelope of the light source as its property.</li>
+
+							<li>The distance to objects in the scene is calculated using the properties of light and the phase shift.</li>
+
+							<li>TOF sensors have the aliasing effect arising from the periodicity of the modulated signal whereby the distances to objects differing in phase by 360 degrees of phase shift are not distinguishable.</li>
+
+							<li>active infra-red filter reduces dependence on ambient lighting/other consumer device</li>
+
+							<li>temporal and spatial averaging in the neighborhood of <i>N</i> pixels improve range resolution</li>
+
+							<li>multiple exposure settings minimizes saturation from highly reflective materials</li>
+							<li>noise a critical issue in our setup, as is the case for every electronic perception system</li>
+
+							<li>	Cure? &rArr; do a multisensor data fusion to cancel jitter from both sensors' observations</li>
+
+							<li>perform local Kalman Filter (KF) estimates of each sensor's observation</li>
+
+							<li>then probabilistically fuse the estimates at a central site</li>
+						</ul>
+
+						<a href="#" class="navigate-down">
+							<img width="140" height="160" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</aside>				
+				</section>
+
+				<section data-background="#212F32C" data-transition="slide">
+					<h3><a font color="blue">Depth Map from the two Sensors</a></h3>
+						<img src="images/raw-kinects.png"/>						
+					<a href="#" class="navigate-down">
+						<img width="140" height="160" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+				</section>
+
+				<section data-background="#290B0B" data-transition="slide">
+					<h3><a font color="blue">Sensors' Limitations and Prognostics</a></h3>
+					<img src="images/CASE2016/plan.png" width="1250px" height="500px"/>		
+					<aside class="notes">
+						<h3>Drawbacks from the kinect1 sensor</h3>
+						<ul>
+
+							<li>higher noise covariance &rArr; affects the accuracy of pose measurements</li>
+
+							<li>shiny/uneven-textured surfaces do not reflect infrared wavelengths properly </li>
+
+							<li>offset baseline between the emitter and camera contributes to measurement errors</li>
+
+							<li>occluding contours of objects not properly delineated &rArr; can cause non-distinction between foreground and background</li>
+						</ul>
+
+						<h3>Kinect 2 sensor</h3>
+						<ul>
+
+							<li>active infra-red filter reduces dependence on ambient lighting/other consumer device</li>
+
+							<li>temporal and spatial averaging in the neighborhood of <i>N</i> pixels improve range resolution</li>
+
+							<li>multiple exposure settings minimizes saturation from highly reflective materials</li>
+							<li>noise a critical issue in our setup, as is the case for every electronic perception system</li>
+
+							<li>	Cure? &rArr; do a multisensor data fusion to cancel jitter from both sensors' observations</li>
+
+							<li>perform local Kalman Filter (KF) estimates of each sensor's observation</li>
+
+							<li>then probabilistically fuse the estimates at a central site</li>
+						</ul>
+					</aside>
+			
+				</section>
+
+				<section data-background="#212F32C" data-transition="slide">
+					<img src="images/CASE2016/facial.png"/>
+					<ul>	
+						<small>Reference: Paul Viola and Michael Jones. Rapid Object Detction using a Boosted Cascade of Simple Features. 2001.</small>
+					</ul>
+
+					<aside class="notes">
+						<ul>
+							<p>haar cascade classifiers is based on the Paul Viola and Michael Jones Paper in the paper "Rapid Object Detction using a Boosted Cascade of simple features" in 2001</p>
+							<li>A machine learning approach whereby a cascade function is trained from a alot of +ve and -ve images images </li>
+							<li>the cascade function is then used on new images to find similar features</li>
+							<li>the algorithm learns from the many +ve and -ve images to train the classifier from wich features are extracted</li>
+							<li>the haar features are basically convolutional kernels whereby each feature is extracted by subtracting a path of black patch of pixels are subtracted from the foreground of pixels </li>
+							<li>so all possible sizes and locations of each kernel are used to calculate plenty of features. </li>
+							<li>for each feature calculation, the sum of pixels under the white and black rectangular patches are supposedly used. this would be costly computationally</li>
+							<li>so the authors used a an integral sum of images to simplify the determination of pixels summation</li>
+							<li>to select the best features from a multitude of features, adaboost is used in the optimization search</li>
+							<li>adaboost applies every feature on all the trainijng images abd for each feature the best best threshold that classify the faces to positive and negtive </li>
+							<li>features with the lowest classification error rates are chosen through a weighted sum of the weak classifiers</li>
+							<li>opencv has trained cascades that we leveraged on for the pupils detection</li>
+							</ul>
+					</aside>
+				</section>
+
+				<section data-background="#212F32C" data-transition="slide">
+					<h3>
+						<a font color = "blue">Local Linear State Estimators</a>
+					</h3>
+						<blockquote>							
+							<small>
+								<b><a align="center">Problem Statement:</a></b>
+								Given the continuous-valued state of the measurements, statistically model how the observations from each sensor change over time. </small>
+
+						</blockquote>
+					<ul>
+						<li>Find the state estimates $\hat{\textbf{x}}(i)$ that minimize the mean-squared  error to the true sensors' state $\textbf{x}(i)$, conditioned on the observation sequence, $z(1), \cdots, z(j)$
+						</li>
+						<li> i.e., find
+							
+							\begin{align} \label{eq.est_expt}
+
+							\hat{\textbf{x}}(i|j)&= \text{arg } \min_{\hat{\textbf{x}}(i|j)\in \mathbb{R}^n}
+							\mathbb{E}\{(\textbf{x}(i) - \hat{\textbf{x}})(\textbf{x}(i) - \hat{\textbf{x}})|z(1), \cdots, z(j)\} 	\nonumber \\
+							&\triangleq\mathbb{E}\{\textbf{x}(i)|{z}(1), \cdots, {z}(j)\} \triangleq\mathbb{E}\{\textbf{x}(i)|{Z}^j\}
+
+							\end{align}		
+									
+						</li>
+							<small>with covariance defined as</small>
+							
+								\begin{align}
+								\textbf{P}(i|j)\triangleq \mathbb{E}\{(\textbf{x}(i) - \hat{\textbf{x}}(i|j)(\textbf{x}(i) - \hat{\textbf{x}}(i|j)^T | Z^j\}.
+								\end{align}
+							
+
+						<aside class="notes">
+							<li>Kalman filter incorporates explicit description of sensor models the uncertainty associated with an historical observation; hence it is suitable to problem 
+						</li>
+						</aside>
+					</ul>
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+				</section>
+
+				<section data-background="#212F32C">
+					<h3>
+						<a font color = "blue">Sensors Model</a>
+					</h3>
+					<ul>
+					<li type="disc">assume model of the state transition matrix, $F_k$, is common to both sensors</li><br>
+
+					<li type="disc">assume an unknown process noise, $G_k$</li><br>
+						
+						<li>
+							let $\textbf{x}(k)=[d(k),\,\dot{d}(k)]^T \in \mathbb{R}^2$ be the state vector of interest
+						</li><br>
+
+							<!-- <small>where $d(k)$ is the distance from the sensor's origin to the head of the mannequin and $\dot{d}(k)$ be the velocity of head motion</small> -->
+						<br>
+
+						<li>
+							if $\Delta T $ be the time between steps $k-1$ and $k$
+						</li>
+					</ul>
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+				</section>
+
+				<section data-background="#212F3C" data-transition="slide">
+					<h3>
+						<a font color="cyan">State Modeling procedure</a>					
+					</h3>
+					<ul>
+						<li>
+							it follows that
+
+								\begin{equation}
+								\textbf{x}_k = \textbf{F}_k\textbf{x}_{k-1}+\textbf{B}_k\textbf{u}_k+\textbf{G}_k\textbf{w}_k
+								\label{eq:state_model}
+								\end{equation}
+								<p><small>where 
+								$\textbf{F}(k) \in \mathbb{R}^{2\times 2}$ is the state transition matrix given by
+					
+							\begin{equation}
+							\textbf{F} = \begin{bmatrix}
+							1 & \Delta T \\
+							0	& 1
+							\end{bmatrix} 
+							\end{equation}</small></p>
+							<p><small>$\textbf{u}(k) \in \mathbb{R}^2$ is the control input, $\textbf{B}(k)$ is the control input matrix that maps inputs to system states, $\textbf{G}(k) \in \mathbb{R}^{ 2 \times 2}$ is the process noise matrix, and
+							$\textbf{w}(k) \in \mathbb{R}^2$ is a random variable that models the state uncertainty</small>
+							</p>
+						</li>
+
+						<li>	
+							note that $u(k)$ = 0 so that the model evaluates to
+							<p>
+								\begin{align}\label{eq.accelmodel}
+								\textbf{x}_k =  \textbf{F}_k \textbf{x}_{k-1}+ \textbf{G}_k \textbf{w}_k
+								\end{align}
+							</p>
+						</li>
+
+						<p><small>
+							$ \textbf{w}_k$ is the effect of an unknown input causing an acceleration $a_k$ in the head position and $ \textbf{G}_k$ applies that effect to the state vector, $ \textbf{x}_k$
+						</small></p>
+					</ul>
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+				</section>			
+				<section data-background="#212F3C" data-transition="slide">
+					<h3>
+						<a font color="blue">Sensors' State Uncertainty Model</a>						
+					</h3>
+					<ul>
+						<li>						
+						<p>
+							setting $\textbf{G}_k$ to identity and set $\textbf{w}(k) \sim \mathcal{N}(0, \textbf{Q}(k))$,
+						</p>
+						</li>
+						<li>
+							<p>the covariance matrix $\textbf{Q}(k)$ to a random walk sequence defined as
+									$\textbf{W}_k={[\frac{{\Delta T}^2}{2}, \Delta T ]}^T$ </p>
+						</li>
+						<li>we find that, 
+							\begin{align}
+							\textbf{Q} &= \textbf{W}\textbf{W}^T{\sigma_a}^2
+							= \begin{bmatrix}
+							\dfrac{{\Delta T}^4}{4} &	\dfrac{{\Delta T}^3}{2} \\
+							\dfrac{{\Delta T}^3}{2} & {\Delta T}^2
+							\end{bmatrix}{\sigma_a}^2.
+							\end{align}
+						</li>
+						<small>where ${\sigma_a}^2$ denotes the variance of the measurement sequence</small>
+					</ul>
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+				</section>
+
+				<section data-background="#212F3C" data-transition="slide">
+					<h3>
+						<a font color="blue"> State Output Model</a>						
+					</h3>
+					<ul>
+						<li>	
+							we transform kinect Xbox's observations, $z_1(k)$, into kinect v1's observation, $z_2(k)$, using the relation
+							<p>
+								\begin{equation}\label{eq:sensors_obs}
+								{z}_s= \textbf{H}_s(k)\textbf{x}(k)+{v}_s(k) \qquad \qquad s = 1,2
+								\end{equation}
+							</p>
+						</li>
+						<p><small>
+								set $\textbf{H}_s(k) ={\begin{bmatrix}  1 & 0 \end{bmatrix} }^T$ maps the system's state space into the observation space<br>
+								${v}_s(k) \in \mathbb{R}$ is a normally distributed random variable that models the sensors uncertainty with zero mean and variance $\sigma_{rs}^2$<br>
+						</small></p>					
+						<li>
+							The linear Kalman filter prediction and update phases are computed at every time step based on the prediction and update KF equations
+						</li>
+					</ul>
+					<aside class="notes">
+						<TABLE BORDER="5"    WIDTH="100%"   CELLPADDING="1" CELLSPACING="2">
+
+						    <TR>
+						      <TH COLSPAN="4"><BR><H4 ALIGN="Center" font color="cyan">Kalman Filter Equations</H4>
+						      </TH>
+						    </TR>
+
+						    <TR>
+						      <TH ALIGN="Center"><small>Prediction Phase</small></TH>
+						      <TH ALIGN="Center"><small>Update Phase</small></TH>
+						    </TR>
+
+						    <TR ALIGN="CENTER">
+						      <TD>							      	
+						      	<p><small>
+						      		\begin{align}\label{eq:predict}
+						      		\hat{\textbf{x}}_{k|k-1}&=\textbf{F}\hat{\textbf{x}}_{k-1|k-1} \nonumber \\ 
+						      		\textbf{P}_{k|k-1}&=\textbf{F}_k\textbf{P}_{k-1|k-1}{\textbf{F}_k}^T + \textbf{Q}_k
+						      		\end{align}
+						      	</small></p>
+						      </TD>
+
+						      <TD>				      	
+						      	<p><small>
+						      	\begin{align} \label{eq:update}
+						      	\textbf{K}_k &=  \textbf{P}_{k|k-1}{ \textbf{H}_k}^T{[ \textbf{H}_k \textbf{P}_{k|k-1}{ \textbf{H}_k}^T+ \textbf{R}_k]}^{-1}
+						      	\nonumber \\ 
+						      	\hat{ \textbf{x}}_{k|k}&=\hat{ \textbf{x}}_{k|k-1} +  \textbf{K}_k ( \textbf{z}_k -  \textbf{H}_k \hat{ \textbf{x}}_{k|k-1}) %\tilde{y}_k  
+						      	\nonumber \\ 
+						      	\textbf{P}_{k|k}&=( \textbf{I} -  \textbf{K}_k \textbf{H}_k) \textbf{P}_{k|k-1}
+						      	\end{align}
+						      	</small></p>
+						      </TD>   
+						    </TR>
+						</TABLE>
+						<p><small>
+							where $\hat{ \textbf{x}}_{k|k-1}$ and $ \textbf{P}_{k|k-1}$ are the state prediction vector and the prediction covariance matrix respectively, and
+						</small></p>
+
+						<p><small>
+							$ \textbf{K}_k$, $\hat{ \textbf{x}}_{k|k}$, and $ \textbf{P}_{k|k}$ are respectively the KF gain, posterior state estimate and the covariance matrix for the posterior.
+						</small></p>
+
+						<a href="#" class="navigate-down">
+							<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</aside> 
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+				</section>
+
+				<section data-background="#212F32C" data-transition="slide">
+					<h2><a font color="blue">Kalman Filtering Results</a></h2>
+				</section>
+
+				<section data-background="#212F3C" data-transition="slide">
+					<div class="fig figcenter fighighlight"> 
+					  <img src="images/CASE2016/KFXbox.png" />					 
+					  <div class="figcaption" align="center"><a  font color="blue">Kinect 1: reduction in the variance of the observation sequence = $80.81\%$</a>
+					  </div>
+					</div>
+					<a href="#" class="navigate-down" data-transition="slide">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+				</section>
+
+
+				<section data-background="#212F32C" data-transition="zoom">
+					<div class="fig figcenter fighighlight"> 
+					  <img src="images/CASE2016/KFKinect2.png" />  
+					  <div class="figcaption" align="center"><a  font color="blue">Kinect 2: reduction in the variance of the observation sequence = $60\%$</a>
+					  </div>
+					</div>
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+				</section>
+
+				<section data-background="#212F32C" data-transition="zoom">					
+					<img src="images/CASE2016/fusion-madness.png" />
+				</section>
+
+				<section data-background="#212F32C" data-transition="slide">
+					<ul>
+						<u><b>Multisensor Kalman Fusion algorithm</b></u>
+							\begin{align}
+								\hat{\textbf{x}}_{F}(k|k) &= \textbf{P}_{F}(k|k)\sum\limits_{i=1}^{N}\left[{\textbf{P}_s}^{-1}(k|k)\hat{\textbf{x}}_s(k|k)\right] \nonumber \\
+								\text{where } \textbf{P}_{F}(k|k) &= \left[\sum\limits_{i=1}^{N} {\textbf{P}_s}^{-1}(k|k)\right]^{-1} 
+								\end{align}	
+
+								and $\textbf{P}_s$ are the covariance matrices for each sensor state's uncertainty.
+					</ul>
+				</section>
+				
+
+				<section data-background="#212F32C" data-transition="slide">
+					<h3><a font color="blue">Kalman Fusion Results</a></h3>
+				</section>
+
+				<section data-background="#212F32C" data-transition="slide">
+					<img src="images/CASE2016/fusion2.png">
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+					<ul>
+						<aside class="notes">
+							<li>
+								spikes in the <a href="#/3/16">fused tracks</a> can be attributed to the noisy initialization of pixels in the sensors  before they attain their steady state values
+							</li>
+							<li>KF fusion assigns more weight to less noisy signal &rArr; goo								
+							</li>
+							<li>signal within a variance of +/- 1.5mm &rArr; good</li>
+						</aside>
+					</ul>
+				</section>
+				
+<!-- 				<section data-background="#212F32C">
+					<h3><a font color="blue">Fusion Take-aways</a></h3>
+					<img src="images/CASE2016/fusion-takeaways.png">
+					<ul>
+						<aside class="notes">
+							<li>
+								spikes in the <a href="#/3/16">fused tracks</a> can be attributed to the noisy initialization of pixels in the sensors  before they attain their steady state values
+							</li>
+						</aside>
+					</ul>
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png"  alt="Right arrow" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg);">
+					</a>
+				</section>	 -->			
+				
+			</section data-background="#212F32C">
+				
+			<section data-background="#212F32C" data-transition="slide">
+				<section data-background="#212F32C" data-transition="slide">
+					<h3><a font color="blue">Overall System Model Framework</a></h3>
+					<ul>
+						<li>
+							use fusion estimate from the two sensors for feedback control
+						</li><br>
+
+						<li>model system using a predictive error supervised learning framework</li><br>
+
+						<li>apply a linear quadratic gaussian to control the bladder in real-time</li>
+					</ul>
+				</section>
+
+				<section data-background="#212F32C" data-transition="slide">
+					<h3><a font color="blue">System Identification</a></h3>
+					<ul>
+						<li>From lagged input-output data $Z^N = \{u(1) \cdots u(N) \quad y(1) \cdots y(N)\}$to be collected; find the <i>best model</i> from a set of candidate model sets</li><br>
+
+						<small><li><i>$y(i)$</i> is the fused track estimate and <i>$u(i)$</i> = current to the pneumatic valve</li></small>
+						<br>
+						<li>assume model structure is a differentiable mapping from a connected, compact subset $\mathcal{D}_{\mathfrak{M}}$ of $\mathcal{R}^d$ to a model set $\mathfrak{M}^*$, such that the gradients of the predictor functions are stable</li><br>
+						<aside class="notes">
+							<li>model external disturbances/stochastic variables as additive white noise sequence ...
+							</li>
+						</aside>
+					</ul>
+					<a href="#" class="navigate-down">
+						<img width="78" height="78" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+					</a>
+				</section>
+
+				<section data-background="#212F32C">
+					<h3><a font color="blue">Identification procedure</a></h3>
+					<ul>
+						<li>we seek a stochastic state space sequence of the form</li>
+							\begin{align} \label{eq:sysid_stochss}
+							\mathbf{x}(k+1) = \mathbf{A x} (k) + \mathbf{B u}(k) + \mathbf{w}(k) \nonumber \\
+							\mathbf{y}(k) = \mathbf{Cx}(k) + \mathbf{Du}(k) + \mathbf{v}(k)
+							\end{align}
+						<br>
+						$\mathbf{w}(k) \text{ and } \mathbf{v}(k)$ compensate for system disturbances and model uncertainties
+
+						<li>estimate states  $\mathbf{x}(k)$ and from measurable units $u$ and $y$ and transform problem to a regression problem of the form</li>
+
+						<!-- <li> -->
+							\begin{align} \label{eq:sys_idstate_minimal}
+							Y(k) = \Theta \Phi(k) + E(k)
+							\end{align}
+						<!-- </li> -->
+						<li>
+							all the unknown matrix entries are linear combinations of measured inputs and output variables 
+						</li>
+					</ul>
+
+				</section>
+
+				<section data-background="#212F3C">
+					<ul>
+							where 
+							\[ Y(k) = \left[ \begin{array}{c}
+							\mathbf{x}(k+1) \\
+							\mathbf{y}(k)
+							\end{array} \right],
+							%
+							\hspace{0.3em}
+							%
+							\Theta= \left[ \begin{array}{cc}
+							\mathbf{A} & \mathbf{B} \\
+							\mathbf{C} & \mathbf{D}
+							\end{array}\right]
+							\]
+							
+							\[\Phi(k) = \left[\begin{array}{c}
+							\mathbf{x}(k) \\ \mathbf{u}(k)
+							\end{array} \right] \hspace{0.2em} \text{ and  }
+							%
+							{E}(k) = \left[ \begin{array}{c}
+							\mathbb{E}(w(k)) \\
+							\mathbb{E}(v(k))
+							\end{array}\right].
+							\]
+							<br>
+						<li><b>Assumption:</b>
+							Noise model is white $\rightarrow$ unbiased model
+						</li>
+						<br>
+
+						<li>
+							Estimate $\mathbf{A}, \mathbf{B}, \mathbf{C}, \text{ and } \mathbf{D}$ matrices by linear least squares regression
+						</li>
+						<br>
+
+						<li>
+							Estimate $\mathbb{E}(\mathbf{w}(k))$ and  $\mathbb{E}(\mathbf{v}(k))$ as a sampled sum of squared errors of the residuals
+						</li>
+					</ul>
+				</section>
+
+				<section data-background="#212F3C">
+					<h3>Parameter Estimation</h3>
+					<ul>
+						<li>	
+							Xtize $u(k)$ and $y(k)$ as a linear difference equation of the form
+
+							\begin{eqnarray}\label{eq:lineardiff}
+							y(k) &=-a_1y(k-1)-\cdots-a_{n_a}y(k-n_a) \nonumber \\
+							&  -b_1u(k-1) - \cdots -b_{n_b}u(k-n_b) -e(k) \nonumber \\ &-c_1e(k-1) -c_{n_c}e(k-n_c)
+							\end{eqnarray}
+						</li>
+
+						<aside class="notes">
+							$e(k)$ describes the equation error as a moving average of white noise, and we assume $e(k)$ has a bias-variance term $\lambda$.
+						</aside>
+
+						<li>
+							rearranging the equation above, we have an ARMAX model of the form
+
+							\begin{align}\label{eq:sysid_TF}
+							\hat{y}(k) &= G(q, \theta)u(k) + H(q, \theta)\hat{e}(k) \\
+							\text{where}  \quad  G(q, \theta) &= \dfrac{B(q)}{A(q)},\text{	 	 } H(q, \theta) = \dfrac{C(q)}{A(q)} \nonumber
+							\end{align}
+						</li>
+
+						<li>
+								$A(q)$, $B(q)$, and $C(q)$ are regression polynomials 
+<!-- 								<small>								
+								\begin{align}\label{eq:sysid_ABC}
+								A(q) &= 1 + a_1 q^{-1} + \cdots + a_{n_a}q^{-n_a} , \nonumber \\
+								B(q) &= b_1q^{-1}+ \cdots + b_{n_b}q^{n_b},  \nonumber  \\
+								C(q) &= 1 + c_1 q^{-1} + \cdots + c_{n_c}q^{-n_c}
+								\end{align}
+							</small> -->
+						</li>
+
+
+						<aside class="notes">
+							$q$ is the z-transform, $z^{-1}$
+							<ul>
+								<li>
+									$ G(q, \theta)$ represents the transfer function from input to output predictions, and $H(q, \theta)$ denotes the transfer function of prediction errors to the output model, $\hat{y}(k)$
+								</li>
+
+								<li>
+									the estimation problem is to predict the estimates, $\hat{y}(k|\theta)$, so that the errors, $\varepsilon(t,\theta) = \parallel y(t) - \hat{y}(t|\theta) \parallel_p$ are minimized by the choice of an appropriate p-norm criterion function e.g. <i>mean-squared error.</i>
+								</li>
+
+
+								<li>
+								$A(q)$, $B(q)$, and $C(q)$ are polynomials defined as 
+								\begin{align}\label{eq:sysid_ABC}
+								A(q) &= 1 + a_1 q^{-1} + \cdots + a_{n_a}q^{-n_a} , \nonumber \\
+								B(q) &= b_1q^{-1}+ \cdots + b_{n_b}q^{n_b},  \nonumber  \\
+								C(q) &= 1 + c_1 q^{-1} + \cdots + c_{n_c}q^{-n_c}
+								\end{align}
+								</li> <br>
+
+							</ul>
+						</aside>
+					</ul>
+				</section>
+
+<!-- 				<section data-background="#212F3C">
+					<ul>
+						<li>
+							$ G(q, \theta)$ represents the transfer function from input to output predictions, and $H(q, \theta)$ denotes the transfer function of prediction errors to the output model, $\hat{y}(k)$
+						</li>
+
+						<li>
+							the estimation problem is to predict the estimates, $\hat{y}(k|\theta)$, so that the errors, $\varepsilon(t,\theta) = \parallel y(t) - \hat{y}(t|\theta) \parallel_p$ are minimized by the choice of an appropriate p-norm criterion function e.g. <i>mean-squared error.</i>
+						</li>
+
+					</ul> 
+				</section>-->
+<!-- 
+				<section data-background="#212F3C">
+
+					<h3><a font color="blue">Identification Experiment</a></h3>
+					<ul>
+						<li>
+							For the model to be informative across all the desired frequency range, a periodic, persistently exciting uniform Gaussian White noise (UGWN) signal with clipped amplitudes corresponding to the bandwidth of the pneumatic valves was designed offline
+						</li>
+
+						<li>
+							We shop for a signal that will excite the frequencies of interest for the model's purpose
+						</li>
+
+						<li> signal designed according to
+
+							<p><small>
+							\begin{align}\label{eq:uwgn}
+							f(x) &= \frac{1}{2}A  \qquad \text{if $x < |A|$   and} \nonumber \\
+							u(x) &= 0  \qquad \text{  if $x > |A|$ }
+							\end{align}
+							where $A$ is the clipped amplitude of the valves. The expected mean, $\mu$, and the expected standard deviation, $\sigma$ of the sequence are 
+							\begin{align}
+								\mu = \mathbb{E}(x) = 0 \text{,} \qquad
+								\sigma = \left[\mathbb{E}\{(x-\mu)\}\right]^{1\over 2} = \frac{A}{\sqrt{3}}.
+							\end{align}	
+							</p></small>
+						</li>
+					</ul>
+				</section> -->
+
+				<section data-background="#212F3C">
+
+					<h3><a font color="blue">Identification Experiment</a></h3>
+					<ul>
+						<li>search for signal that will excite system across all desired frequency spectrum for control design</li>	<br>
+
+						<img src="images/CASE2016/uwgn.png">
+					</ul>
+					<aside class="notes">
+					<ul>
+						<li>
+							For the model to be informative across all the desired frequency range, a periodic, persistently exciting uniform Gaussian White noise (UGWN) signal with clipped amplitudes corresponding to the bandwidth of the pneumatic valves was designed offline
+						</li>
+
+						<li>
+							We shop for a signal that will excite the frequencies of interest for the model's purpose
+						</li>
+
+						<li> signal designed according to
+
+							<p><small>
+							\begin{align}\label{eq:uwgn}
+							f(x) &= \frac{1}{2}A  \qquad \text{if $x < |A|$   and} \nonumber \\
+							u(x) &= 0  \qquad \text{  if $x > |A|$ }
+							\end{align}
+							where $A$ is the clipped amplitude of the valves. The expected mean, $\mu$, and the expected standard deviation, $\sigma$ of the sequence are 
+							\begin{align}
+								\mu = \mathbb{E}(x) = 0 \text{,} \qquad
+								\sigma = \left[\mathbb{E}\{(x-\mu)\}\right]^{1\over 2} = \frac{A}{\sqrt{3}}.
+							\end{align}	
+							</p></small>
+						</li>
+						<li>
+							experiments showed the UWGN signal had minimal low crest-factors which makes for a good input signal spectrum
+						</li>	
+					</ul>
+				</aside>
+				</section>
+
+				<section data-background="#212F3C">
+					<h3><a font color="blue">Identification Experiment</a></h3>
+					<ul>						
+						<li>
+							so we excite the valve with the UWGN signal in an <i>open-loop informative</i> experiment 
+						</li>
+						
+						<li>
+							and collect enough samples to ensure $\lim_{N\to\infty} Z^N \rightarrow \hat{\theta}^N$
+						</li>
+						<li>
+							define lagged predictions as
+							$$\hat{Y}_r(k) = [\hat{y}(k|k-1), \cdots, \hat{y}(k+r-1)| k -1 ]^T$$  
+							$$\hat{Y} = [\hat{Y}_r(1) \cdots \hat{Y}(N)],$$ 
+							such that 
+						</li>	
+						<br>
+						<li>
+							as $N \rightarrow \infty$, there are $n$-th order minimal state space descriptions of the system if and only if the rank of the matrix of prediction vectors, $\hat{Y}$, is equal to $n$ for all $r \geq n$; and
+						</li>
+					</ul>
+					<aside class="notes">
+							<ul>							
+								<li>
+									the state vector of any minimal realization in predictions can be chosen as linear combinations of $\hat{Y}_r$ that form a row basis for $\hat{Y}$
+								</li>
+
+								<li>
+									In other words, $$x(t) = L \hat{Y}_r(k)$$ with $L$ being an $n\times pr $ matrix; $p$ being the dimension of $y(k)$ <small>[Llung, System Identification Theory for the user]</small>
+								</li>
+
+								<li>
+									express the predictor as a linear combination of a finite-amount of past input-output data
+								</li>
+
+								<li>
+									use the MATLAB function <i>ssest</i> on the training data and through a heuristic search through model estimates (guided by Akaike's final prediction error, mean-square error and fit of data), we choose an appropriate model. 
+								</li>	
+						</ul>
+					</aside>
+				</section>
+
+<!-- 				<section data-background="#212F3C">
+
+					<h3><a font color="blue">Identification Experiment</a></h3>
+
+				</section> -->
+
+				<section data-background="#212F3C">
+
+					<h3><a font color="blue">Identification Experiment</a></h3>
+					<ul>	
+					<li>
+						From the model tinkering, we settled for a second-order state-space model
+	<!--					\begin{align}
+ 						x(kT + T) &= A_T(\theta)x(kT) + B_T(\theta)u(kT) + w(kT)  \nonumber \\		
+						\text{where }\qquad A_T(\theta) &= e^{F(\theta)T}  \nonumber \\
+						\text{and   }\qquad B_T(\theta) &= \int\limits_{\tau = 0}^{T} e^{F(\theta)\tau} G(\theta) d\tau,-->
+						\begin{align} \label{eq:statemodel} 	
+						\textbf{x}(k+Ts) = \textbf{A} \textbf{x}(k) + \textbf{B} \textbf{u}(k) + \textbf{K} \textbf{e}(k) \nonumber \\
+						\textbf{y}(k) = \textbf{C} \textbf{x}(k) + \textbf{D} \textbf{u}(k) + \textbf{e}(k)
+						\end{align} 	
+						where $Ts$ is the sampling period, $\textbf{e}(k)$ is the modeled zero-mean Gaussian white noise with non-zero variance
+					</li>
+<!-- 
+						$F \in \mathbb{R}^{n\times n}$ and $G \in \mathbb{R}^{n \times m}$ are the respective matrices that map the states, $x(kT)$, and input, $u(kT)$, into $x(kT + T)$,
+					 and
+					<li>\begin{align} \label{eq:sysid_y(t)}
+						y(t) = G_T(q, \theta)u(t) + v_T(t), 	\hspace{0.4em} t = T, 2T, 3T, \ldots
+						\end{align}
+					</li> -->
+					<br>
+					<li>
+						\begin{align}  \label{eq:ControlSSModel}
+							\textbf{A} = 
+							\begin{bmatrix}
+							0    &    1	\\
+							-0.9883 &   1.988
+							\end{bmatrix}, \hspace{0.4em}
+							\textbf{B} =
+							\begin{bmatrix}
+							-3.03e-07 \\
+							-4.254e-07
+							\end{bmatrix} \nonumber \\
+							\textbf{C} = 
+							\begin{bmatrix}
+							1  &  0
+							\end{bmatrix}, \hspace{0.4em} D = 0, \text{and} \hspace{0.4em} \textbf{K} = 
+							\begin{bmatrix}
+							0.9253 &  0.9604
+							\end{bmatrix}^T.
+						\end{align}
+					</li>
+					</ul>
+				</section>				
+			</section>
+
+			<section data-background="#212F32C">
+				<section data-background="#212F3C">
+					<h3><a font color="blue">Control Design</a></h3>
+					<ul>
+						<li>
+							Choose an LQG controller and estimator to minimize the following cost function subject to the state equation above
+
+							\begin{equation}  \label{eqn:LQ-cost}
+								J = \sum\limits_{k=0}^{\mathcal{K}} x^T(k)\,Q\,x(k) + R \, u(k)^T \, u(k) + 2 x(k)^T \, N \, u(k)
+							\end{equation}  
+						</li>
+
+						<li>
+							$J$ is a quadratic cost funtional. Minimizing $J$ allows us to find the appropriate controller over the output prediction horizon, $n_y$
+
+							\begin{equation} \label{eqn:min J} 
+							\Delta u  = \text{arg } \underset{\Delta u}{\text{min }}J 
+							\end{equation}
+						</li>
+
+						<li>
+							To make a robust controller, stick an additive white noise sequence into the discrete estimator's states <li>$\rightarrow$ problem becomes a non-deterministic optimization problem that must be solved.</li>
+						</li>
+					</ul>
+				</section>
+
+				<section data-background="#212F3C">
+					<h3><a font color="blue">Control Design</a></h3>
+					<ul>
+						<li>
+							By the separation theorem, we can separately construct an estimator which asymptotically tracks the internal states of the observed fused estimates   
+						</li>
+
+						<li>
+							the algebraic Ricatti equation,
+							<p>
+							\begin{equation}    \label{eqn:Riccati}
+							\begin{split}
+							A^T P A \mbox{-}(A^T P B \mbox{+} N)(R \mbox{+} B^T P B)^{-1}(B^T P A \mbox{+} N) 
+							\mbox{+} & Q,
+							\end{split}
+							\end{equation}
+							</p>
+							allows us to solve for the optimal control law through a minimization of the resulting LQ problem
+						</li>
+
+						<li>
+							 $P$ is an unknown $n \times n$ symmetric matrix and $A$, $B$ are known coefficient matrices from the control model 
+						</li>
+						<li>
+							$Q$ is a matrix that weights the states of the model while $R$ is a symmetric. [positive-definite matrix that weights the control vector $u$.
+						</li>
+					</ul>
+				</section>
+
+				<section data-background="#212F32C">
+					<h3><a font color="blue">Control Space Search</a></h3>
+					<ul>
+						<li>
+							First set $Q$ to identity, then tune $R$ till "satisfactory" convergence is obtained
+						</li>
+						<li>
+							We found the following values to work well for our control objective
+							<p>
+								\begin{align}
+								Q = 
+								\begin{bmatrix}
+								1.0566 & 0 \\
+								0      & 1.0566 
+								\end{bmatrix}  \hspace{0.4em} 
+								R = 
+								\begin{bmatrix}
+								0.058006
+								\end{bmatrix}
+								\end{align}
+							</p>
+						</li>
+					</ul>
+				</section>
+
+				<section data-background="#212F32C">
+				<h3><a font color="blue">LQG Block</h3>
+					<img src="images/CASE2016/LQGBlock.png" />
+						<p><small><i>full online state estimator with noise processes assumed to be independednt, white Gaussian</i></small></p>
+				</section>
+
+				<section data-background="#212F32C">
+					<h3><a font color="blue">Control Design</a></h3>
+					<ul>
+						<li>
+						 The optimal controller gains, $K_{opt}$, are determined using
+							\begin{equation}
+							K_{opt} = {R}^{-1}(B^T \, P + N^T)
+							\end{equation}
+							where $P$ is the solution to the algebraic Riccati equation and 
+							$
+							\mathbb{E}[w(k)w'(\tau)] = R(k) \delta(k-\tau).
+							$	
+							<p></p>[Andersen et. al.]
+						</li>
+
+						<li>
+							The online optimal estimate,  $\hat{x}(k+1)$ of $x(k)$, is given by
+							<br>
+							\begin{align}
+							\hat{x}(k+1) = A(k)\hat{x}(k) + K_{lqg}\left[C(k)\hat{x}(k)-y(k)\right]
+							\end{align}
+							where $\hat{x}(k_0)=\mathbb{E}\left[x(k_0)\right]$
+						</li>
+
+						<li>
+							The observer is equivalent to a discrete Kalman filter which estimates the optimal state  $\hat{x}(k|k)$
+						</li>
+					</ul>
+				</section>
+				
+			</section>
+
+			<section data-background="#212F32C">
+
+				<section data-background="#212F32C">
+				<h3><a font color="blue">Experiment</a></h3>				
+				<ul>
+				<li>
+					use fused estimate from kalman fusion to track head posityion in real-time; input variable is current that excites valve; which actuates bladder
+				</li><br>
+
+				<li>
+					deploy control network on NI-RIO microcontroller; head moves in response to controller actuation
+				</li><br>
+
+				<li>
+					eliminate settling-time delay from sensors by starting the fusion algorithm well before the controller network
+				</li>
+
+				</ul>
+				</section>
+
+				<section data-background="#212F32C">
+					<img src="images/CASE2016/LQGI.png" />
+					<br>
+					<small><i>LQG Controller on Manikin Head</i></small>
+					<aside class="notes">
+						<ul>
+							<li>
+								notice a settling time of approximately 24 seconds before steady state. 
+							</li>
+							<li>
+								this delay  is not a drawback in clinical trajectory tracking where we must ensure smooth head motion to desired target
+							</li>
+							<li>
+								the controller exhibits relatively  smooth tracking within a 1.5 mm standard deviation over time after a relative overshoot of 5mm in bottom graph 
+							</li>
+							<li>
+								we conjecture that the overshoot can be explained by the estimator's search for a steady state region based on the time it takes for the pixel values of the sensors to arrive at steady state
+							</li>
+							<li>
+								controller tracks the reference to within $\pm2mm$.
+							</li>
+						</ul>	
+					</aside>
+				</section>
+
+<!-- 				<section data-background="#212F32C">
+				<h3><a font color="blue">Experimental Results </a></h3>
+					<ul>
+						<li>
+							notice a settling time of approximately 24 seconds before steady state. 
+						</li>
+						<li>
+							this delay  is not a drawback in clinical trajectory tracking where we must ensure smooth head motion to desired target
+						</li>
+						<li>
+							the controller exhibits relatively  smooth tracking within a 1.5 mm standard deviation over time after a relative overshoot of 5mm in bottom graph 
+						</li>
+						<li>
+							we conjecture that the overshoot can be explained by the estimator's search for a steady state region based on the time it takes for the pixel values of the sensors to arrive at steady state
+						</li>
+						<li>
+							controller tracks the reference to within $\pm2mm$.
+						</li>
+					</ul>
+				</section> -->
+
+<!-- 				<section data-background="#212F32C">
+					<h3><a font color="blue">Experimental Results </a></h3>
+						<ul>
+							<li>
+								We noticed certain aberrations from desired behavior from the model, e.g.
+							</li>
+							<li>
+								The applied current based on fusion feedback occasionally reaches a steady state error
+							</li>
+
+							<li>
+								We conjecture this is as a result of unmodeled nonlinearity at the inlet  valve that maps input currents to system states
+							</li>
+						</ul>
+				</section>	 -->			
+
+				<section data-background="#212F32C">
+					<img src="images/CASE2016/LQGII.png" />
+					<br>
+					<small><i>LQG Controller on Manikin Head</i></small>
+
+					<aside class="notes">
+						<ul>
+							<li>
+								We noticed certain aberrations from desired behavior from the model, e.g.
+							</li>
+							<li>
+								The applied current based on fusion feedback occasionally reaches a steady state error
+							</li>
+
+							<li>
+								We conjecture this is as a result of unmodeled nonlinearity at the inlet  valve that maps input currents to system states
+							</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section data-background="#212F32C">
+					<h3><a font color="blue">Future Work</a></h3>
+					<ul>
+						<li>
+							use a block-structured Hammerstein model to better approximate the input-states non-linearity
+						</li>
+
+						<img src="images/CASE2016/ham.png" align="center"/>
+						<small>where the $g(.)$ block represents the static nonlinearity that maps inputs to states while the $G(z^{-1})$ block maps the linear dynamics of the system's states to the sensors' measurements</small>
+
+						<li>
+							Introduce a recursive learning identifier which continualy tunes the parameters of the model to arive at better control results 
+						</li>
+					</ul>	
+				</section>
+
+			</section>
+
+			<section>
+
+				<section data-background="#212F32C">
+				<h3><a font color="blue">Summary and conclusions</a></h3>
+				<ul>
+					<li>
+						fusing data from multiple depth sensors can achieve results that scale well to clinical radiotherapy research
+					</li><br>
+
+					<li>
+						fusion results from our experiments proved to be an effective cancellation of jitter and from a low-cost depth sensor such as kinect.
+					</li><br>
+
+					<li>
+						it also shows we can achieve an accuracy of 2.5mm by actuating a single bladder with our set-up
+					</li><br>
+
+				</ul>
+					
+				</section>
+
+				<section data-background="#212F32C">
+				<h3><a font color="blue">Summary and conclusions</a></h3>
+					<ul>
+						<li>
+							effective clinical head localization during experiments require higher resolution sensors 
+						</li><br>
+
+						<li>
+							further investigate accurate multi-axis positioning using control of multiple bladders, nonlinear modeling/model free-methods to overcome limitations of the LTI model
+						</li>
+					</ul>
+				</section>
+		</section>
+
+
+			<section data-background="#212F32C">
+				<h3><a font color="blue">References</a></h3>
+				<ul>
+					<li><small>
+						Gokturk, S. B., Yalcin, H., & Bamji, C. (2004). A Time-Of-Flight Depth Sensor - System Description, Issues and Solutions. http://doi.org/10.1109/CVPR.2004.17
+					</small></li>
+					<li><small>
+					Cervino, L.I., Pawlicki, T., Lawson, J.D., Jiang, S.B., Frame-less and mask-less cranial stereotactic radiosurgery: a feasibility study. Phys. Med. Biol. 55 (2010). 1863-1873.</small>
+					</li>
+
+					<li><small>Prostrate Cancer Center: http://www.prostatecancercenterpa.com/imrtigrtbenefits.html
+					</small></li>
+
+					<li><small>Shotton, J., Sharp, T., Kipman, A., Fitzgibbon, A., Finocchio, M., Blake, A., … Moore, R. (2013). Real-Time Human Pose Recognition in Parts from Single Depth Images. CoMMuNiCatioNs of tHe aCM, 56(1). http://doi.org/10.1145/2398356.2398381</small></li>
+
+					<li><small>
+						Takakura, T., et al., The geometric accuracy of frameless stereotactic radiosurgery using a 6D robotic couch system. Phys Med Biol, 2010
+					</small></li>
+
+					<li><small>						
+						Xing, L., Dosimetric effects of patient displacement and collimator and
+						gantry angle misalignment on intensity modulated radiation therapy.
+						Radiother Oncol, 2000. 56(1): p. 97-108.
+					</small></li>
+				</ul>
+			</section>
+			
+			<section>
+				<h2>Thank You!</h2>
+				<p>Slides available <a href="https://ecs.utdallas.edu/~opo140030/dfwslides/CASE2016.html">at the author's website</a>.</p>
+				<iframe src="CASE2016.html" width="545" height="395" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+			</section>			
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// // Full list of configuration options available at:
+			// // https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				// Display the page number of the current slide
+				slideNumber: true,
+
+				// Push each slide change to the browser history
+				history: true,
+
+				// Enable keyboard shortcuts for navigation
+				keyboard: true,
+				// Turns fragments on and off globally
+				fragments: true,
+				// Flags if speaker notes should be visible to all viewers
+				// showNotes: false,
+				// Number of milliseconds between automatically proceeding to the
+				// next slide, disabled when set to 0, this value can be overwritten
+				// by using a data-autoslide attribute on your slides
+				 autoSlide: 20000,
+				// Stop auto-sliding after user input
+				autoSlideStoppable: true,
+				// Enable slide navigation via mouse wheel
+				// mouseWheel: true
+				// // Hides the address bar on mobile devices
+				 hideAddressBar: true,
+
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+
+	</body>
+</html>
