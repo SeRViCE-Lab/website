@@ -113,7 +113,7 @@
 				</section>
 
 				<section>					
-					<section data-background="212F3C">	
+					<section data-background="images/UTSW2017/igrt_setup.jpg" style="display:block;background:#000;opacity:0.75;">	
 						<h3>The case for accurate patient positioning</h3>
 						<ul>
 							<li>Modern irradiation procedures allow dose errors of a few millimeters
@@ -204,7 +204,11 @@
 					<section data-background="images/UTSW2017/igrt_setup.jpg" style="display:block;background:#000;opacity:0.75;" >	
 						<h3>Limitations of existing solutions</h3>
 						<ul>
-							<li>Frame-based immobilization systems are highly uncomfortable [Lutz, W. et. al, 1988], [Takakura, T., et al., 2010]</li><br>
+							<li>Frame-based immobilization systems are highly uncomfortable [Lutz, W. et. al, 1988], [Takakura, T., et al., 2010]
+								<ul>
+									<img src="images/UTSW2017/frame-based.jpg" align="right" width="25%", height="40%" alt=""/>
+								</ul>
+							</li>
 
 							<li>Involuntary patient movements is not a boon for  inspection-based setups  [Cervino, L.I. et. al., 2010], [Li G. et al, 2015] </li><br>
 							<!-- <li>Current frameless SRS techniques have little or no real-time correction</li> -->
@@ -289,20 +293,20 @@
 				</section>
 			</section>
 
-			<section data-background="#212F3C">
+			<section>
 
-				<section data-background="#0B4173" data-background-transition="zoom">	
+				<section data-background="#212F3C" data-background-transition="zoom">	
 					<h3> Vision-based Pose Estimation Steps</h3>
 
 					<ul>
-
 						<small><li>Find edges of 2D planar regions in scene structure [Torr and Zisserman, 2000]</small>
 							<ul>
 								<small><li>
-							$\rightarrow$ bound resulting plane indices with their 2D convex hull</li></small>
-						<img src="images/UTSW2017/faceCluttered.jpg" align="right" width="20%", height="40%" alt="" />
+							$\rightarrow$ bound resulting plane indices with their 2D convex hull
+						</li></small>
+						<img src="images/UTSW2017/faceCluttered.jpg" align="right" width="25%", height="40%" alt="" />
 						</ul> 
-						</li><br>
+						</li>
 
 						<small><li>Extract face and face-height neighbors into a predefined 2D prismatic model [Rusu, R. et. al, 2008]</li></small><br></br>
 
@@ -326,7 +330,7 @@
 					</aside>
 				</section>
 
-				<section data-background="#0B4173" data-background-transition="fade">
+				<section data-background="#212F3C" data-background-transition="fade">
 					<h3>Segmentation Result</h3>
 					<img src="images/UTSW2017/seg_cloud_nice.jpg" alt="" width="65%", height="65%"/>
 
@@ -348,9 +352,9 @@
 					<h3>Control Design Challenges</h3>
 					<ul>
 						<li>Optimal closed loop tracking given a desired trajectory</li><br>
-						<li>Stability of system states</li><br>
+						<li>Stabilize system states</li><br>
 						<!-- <li></li> -->
-						<li>Robustness to (non-)parametric uncertainties 
+						<li>Robustify system to (non-)parametric uncertainties 
 							<ul>
 								<small><li>$\rightarrow$ changing head shapes, size and other anatomic/tumor variations</li></small>
 							</ul></li>
@@ -373,14 +377,19 @@
 				</section>
 
 				<section data-background="#212F3C" data-background-transition="zoom">
-					<h3>MRAC System</h3>
+					<h3>Model Reference Adaptive System (MRAS) Design</h3>
 					<ul>
-						<small><li>Model nonlinear plant dynamics, $\dot{\textbf{y}} = \textbf{A}\textbf{y} + \textbf{B} {\Lambda} \left(\textbf{u} - f(\textbf{y}) \right) + \textbf{w}(k) $ , in real-time with a continuous memory states-based LSTM Function Approximator $\hat{f}\left(\textbf{u}(k-d), \textbf{y}(k),\textbf{w}(k)\right)$
+						<small><li>Model nonlinear plant dynamics, <br>
+
+							&nbsp; &nbsp; &nbsp; $\dot{\textbf{y}} = \textbf{A}\textbf{y} + \textbf{B} {\Lambda} \left(\textbf{u} - f(\textbf{y}) \right) + \textbf{w}(k) $ , <br>
+							in real-time with a continuous memory states LSTM Function Approximator <br> 
+
+							&nbsp; &nbsp; &nbsp; $\hat{f}\left(\textbf{u}(k-d), \textbf{y}(k),\textbf{w}(k)\right)$
 						</li></small><br></br>
 
-						<small><li>Set up control law in terms of parameter estimates from the neural network weights and Lipschitz basis functions</li></small><br></br>
+						<small><li>Set up control law in terms of parameter estimates from the neural network weights and Lipschitz basis functions, $\Phi(\textbf{y}) = \{\textbf{y}(k-d) \cdots \textbf{y}(k-d-4), \textbf{u}(k-d) \cdots \textbf{u}(k-d-5)\}$</li></small><br></br>
 
-						<small><li>Derive Adjustment mechanism from Liapunov analysis (Lyapunov Redesign Method) [Parks, P., 1966]</li></small>
+						<small><li>Derive Adaptive Adjustment mechanism from Liapunov analysis [Parks, P., 1966]</li></small>
 					</ul>
 
 					<aside class="notes" data-markdown>
@@ -404,16 +413,16 @@
 				<section data-background="#212F3C" data-background-transition="zoom">
 					<h3>Assumptions</h3>
 					<ul>
-						<small><li> a dynamic RNN with $N$ neurons, $\varphi(\textbf{y})$, exists that will map from a compact input space $\textbf{u} \subset \mathbb{U}$ to an output space $\textbf{y} \subset \mathbb{Y}$ on the Lebesgue integrable functions with closed interval $[0, T]$ or open-ended interval $[0,\infty)$; </li></small><br>
+						<small><li> a dynamic RNN with $N$ neurons, $\varphi(\textbf{y})$, exists that will map from a compact input space $\textbf{u} \subset \mathbb{U}$ to an output space $\textbf{y} \subset \mathbb{Y}$ on the Lebesgue integrable functions with closed interval $[0, T]$ or open-ended interval $[0,\infty)$; </li></small><br></br>
 							
-							<small><li> the nonlinear function $f(\textbf{y})$ is exactly $\Theta^T \Phi(\textbf{y})$ with coefficients $\Theta \in R^{N\times m}$ and a Lipschitz-continuous vector of basis functions $\Phi(\textbf{y}) \in R^N$;</li></small><br>
+							<small><li> the nonlinear function $f(\textbf{y})$ is exactly $\Theta^T \Phi(\textbf{y})$ with coefficients $\Theta \in R^{N\times m}$ and a Lipschitz-continuous vector of basis functions $\Phi(\textbf{y}) \in R^N$;</li></small><br></br>
 							
-							<small><li> inside a ball $\textbf{Y}_R$ of known, finite radius $R$, the ideal NN approximation $f(\textbf{y}): R^n \rightarrow R^m$, is realized to a sufficient degree of accuracy, $\varepsilon_f > 0$;</li></small><br>
+							<small><li> inside a ball $\textbf{Y}_R$ of known, finite radius $R$, the ideal neural network (NN) approximation $f(\textbf{y}): R^n \rightarrow R^m$, is realized to a sufficient degree of accuracy, $\varepsilon_f > 0$;</li></small><br></br>
 							
-							<small><li> the process noise $\textbf{w}(k)$ is estimated alongside model parameters by the dynamic RNN and lumped into $\varepsilon_f$; </li></small><br>
+							<small><li> the process noise $\textbf{w}(k)$ is estimated alongside model parameters by the dynamic recurrent NN (RNN) and lumped into $\varepsilon_f$; </li></small><br></br>
 
 							<small><li> outside $\textbf{Y}_R$, the NN approximation error can be upper-bounded by a known unbounded, scalar function $\varepsilon_{max}(\textbf{y})$;							
-							$\|\varepsilon(\textbf{y})\| \le \varepsilon_{max}(\textbf{y}), \quad \, \forall \quad \textbf{y} \in \textbf{Y}_R$;</li></small><br>
+							$\|\varepsilon(\textbf{y})\| \le \varepsilon_{max}(\textbf{y}), \quad \, \forall \quad \textbf{y} \in \textbf{Y}_R$;</li></small><br></br>
 							
 							<small><li> there exists an exponentially stable reference model 
 							$\dot{\textbf{y}}_m = \textbf{A}_my_m + \textbf{B}_m \textbf{r}$</li></small>
@@ -432,22 +441,20 @@
 
 			<section>
 				<section data-background="#212F3C" data-background-transition="zoom">
-					<h3>Controller</h3>
+					<h3>Controller Formulation</h3>
 					<ul>
 						<small><li>
 							$\textbf{u} = \underbrace{\hat{\textbf{K}}_y^{\textbf{T}}\textbf{y}}_{\text{state feedback}} + \underbrace{\hat{\textbf{K}}_r^{\textbf{T}} \textbf{r}}_{\text{optimal regulator}} + \underbrace{\hat{f}(\textbf{y})}_{\text{nonlinearity RNN approximator}}$
 							</li></small><br></br>
 
-						<small><li>$\hat{\textbf{K}}_y, \, \text{ and } \hat{\textbf{K}}_r$ are adaptive gains to be suitably designed</li></small>
+						<small><li>$\hat{\textbf{K}}_y \, \text{ and } \hat{\textbf{K}}_r$ are adaptive gains to be suitably designed</li></small><br>
 
-						<small><li> There are model matching conditions such that $\hat{\textbf{K}}_y = \textbf{K}_y , \, \text{ and } \hat{\textbf{K}}_r = \textbf{K}_r$ ideally</li></small>
+						<small><li> There are model matching conditions such that $\hat{\textbf{K}}_y = \textbf{K}_y , \, \text{ and } \hat{\textbf{K}}_r = \textbf{K}_r$ (ideally)</li></small><br>
 
 						<small><li>Mathematically, we can imagine the approximator as $\hat{f}(y) = \hat{{\Theta}}^T {\Phi}(\textbf{y}) + \varepsilon_f(\textbf{y})$
 							<ul>
 								<li>
-									$\hat{\Theta}^T$ denotes the vectorized weights of the neural network and $\Phi(\textbf{y})$ denotes the vector of lagged inputs and output defined as
-										${\Phi}(\textbf{y}) = \{\textbf{y}(k-d) \cdots \textbf{y}(k-d-4), \textbf{u}(k-d) \cdots \textbf{u}(k-d-5)\}$
-										and	$\varepsilon_f(\textbf{y})$ is the approximation error.
+									$\hat{\Theta}^T$ denotes the vectorized weights of the neural network and $\Phi(\textbf{y})$ denotes the vector of lagged inputs and output, $\varepsilon_f(\textbf{y})$ is the approximation error.
 								</li>
 							</ul>
 						</li></small>
@@ -484,18 +491,19 @@
 				</section>
 
 				<section data-background="#212F3C" data-background-transition="zoom">
+					<h4>Stability Analysis</h4>
 					<ul>
-						<small><li>Given the Lyapunov funcyion <br>
-							$\textbf{V}(\textbf{e}, \tilde{\textbf{K}}_y, \tilde{\textbf{K}}_r) = \textbf{e}^T\textbf{P}\textbf{e} 
-							+ \textbf{tr}(\tilde{\textbf{K}}_y^T  \Gamma_y ^{-1}  \tilde{\textbf{K}}_y |\Lambda|) \\
+						<small><li>Given the Lyapunov function <br>
+							&nbsp; &nbsp; &nbsp; &nbsp; $\textbf{V}(\textbf{e}, \tilde{\textbf{K}}_y, \tilde{\textbf{K}}_r) = \textbf{e}^T\textbf{P}\textbf{e} 
+							+ \textbf{tr}(\tilde{\textbf{K}}_y^T  \Gamma_y ^{-1}  \tilde{\textbf{K}}_y |\Lambda|) 
 							+ \textbf{tr}(\tilde{\textbf{K}}_r^T \Gamma_r^{-1} \tilde{\textbf{K}}_r^T |\Lambda|)$, 
 						</li></small>
 						<br></br>
 
 						<small><li>We can verify that the adaptation laws are <br>
-								 $\dot{\hat{\textbf{K}}}_y = -\Gamma_x \textbf{y} \textbf{e}^T \textbf{P} \, \textbf{B} \text{sgn}(\Lambda), \text{ and }  
+								 &nbsp; &nbsp; &nbsp; &nbsp; $\dot{\hat{\textbf{K}}}_y = -\Gamma_x \textbf{y} \textbf{e}^T \textbf{P} \, \textbf{B} \text{sgn}(\Lambda) \text{ and }  
 									\dot{\hat{\textbf{K}}}_r = -\Gamma_r \textbf{r} \textbf{e}^T \textbf{P} \, \textbf{B} \, \text{sgn}(\Lambda)$.
-								<ul>
+								<ul><br>
 									<li>where $\Gamma_x$ and $\Gamma_r$ are fixed symmetric, positive definite (SPD) matrices of adaptation rates. &nbsp;
 										$\textbf{tr}(\textbf{A})$ denote the trace of matrix $\textbf{A}$ and $\textbf{P}$ is a unique SPD matrix solution of the algebraic Lyapunov function
 									</li>
@@ -503,7 +511,7 @@
 								</li></small><br></br>
 
 								<small><li>We show in the paper that the time-derivative of the Lyapunov function is negative definite outside the compact set <br>
-									$\chi =\left(\textbf{e}: \|\textbf{e}\| \le \frac{2\|\textbf{PB}\|\lambda_{high}(\Lambda)\varepsilon_{max}(\textbf{y})}{\lambda_{low}(\textbf{Q})}\right).$</li></small><br></br>
+									&nbsp; &nbsp; &nbsp; &nbsp; $\chi =\left(\textbf{e}: \|\textbf{e}\| \le \frac{2\|\textbf{PB}\|\lambda_{high}(\Lambda)\varepsilon_{max}(\textbf{y})}{\lambda_{low}(\textbf{Q})}\right).$</li></small><br></br>
 
 								<small><li>Thus, the error $\textbf{e}$ is <i>uniformly ultimately bounded.</i></li></small>
 					</ul>
@@ -518,20 +526,45 @@
 					  <img src="images/UTSW2017/expt2a.jpg" width="49%" height="250" style="border-left: 1px solid black;">
 					  <img src="images/UTSW2017/expt2b.jpg" width="79%" height="250" style="border-left: 1px solid black;">
 					</div>
+
+					<aside class="notes">
+
+					</aside>
 				</section>
 
 				<section data-background="#212F3C" data-background-transition="zoom">
 					<h3>Future/Ongoing Work</h3>
+					<ul>
+						<li>
+							Explicitly formulate valve constraints into BPTT NN optimization algorithm
+						</li><br>
+
+						<li>
+							Test on varied head subjects
+						</li><br>
+
+						<li>
+							Decouple control laws along individual axes of actuation
+						</li><br>
+
+						<li>
+							Inculcate early stopping into function approximator end-to-end optimization
+						</li>
+					</ul>
 
 				</section>
 			</section>
 
-			
 			<section>
-				<h3>Questions?</h3>
-				<p><a href="UTSW2017.html/?print-pdf/gi">Export me to PDF</a></p>
-				<iframe src="UTSW2017.html" width="445" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-			</section>			
+				<section>
+					<!-- <h3>Questions?</h3> -->
+					<p><a href="UTSW2017.html/?print-pdf/gi">Questions?</a></p>
+					<iframe src="UTSW2017.html" width="465" height="385" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+				</section>	
+				<section>
+					<img src="images/UTSW2017/thank-you-back.jpg"/>
+				</section>
+			</section>		
 
 			</div>
 
@@ -548,7 +581,7 @@
 				controls: true,
 				progress: true,
 				// Display the page number of the current slide
-				slideNumber: false,
+				slideNumber: true,
 
 				// Push each slide change to the browser history
 				history: true,
