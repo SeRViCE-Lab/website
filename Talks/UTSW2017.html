@@ -380,15 +380,28 @@
 				<section data-background="#212F3C" data-background-transition="zoom">
 					<h3>Model Reference Adaptive System (MRAS) Design</h3>
 					<ul>
-						<small><li>Model nonlinear plant dynamics, <br>
+						<small><li>Model head and bladder dynamics as <br>
 
 							&nbsp; &nbsp; &nbsp; $\dot{\textbf{y}} = \textbf{A}\textbf{y} + \textbf{B} {\Lambda} \left(\textbf{u} - f(\textbf{y}) \right) + \textbf{w}(k) $ , <br>
-							in real-time with a continuous memory states LSTM Function Approximator <br> 
+							where $f(\textbf{y})$ is a nonlinear function to be  adapted for in our controller.</li></small><br></br>
 
-							&nbsp; &nbsp; &nbsp; $\hat{f}\left(\textbf{u}(k-d), \textbf{y}(k),\textbf{w}(k)\right)$
+						<small><li>	Approximate $f(\textbf{y})$ by a neural network with continuous memory states  <br> 
+
+							&nbsp; &nbsp; &nbsp; $\hat{f}\left(\textbf{u}(k-d), \textbf{y}(k),\textbf{w}(k)\right)$ 
+						<ul><small>
+							<li>$\rightarrow$ $\hat{f}(\cdot)$ is realized with a Long-Short Term Memory Cell  &nbsp; [Horchreiter and Schmidhuber, 1991, 1997]</li>
+						</small>
+						</ul>
 						</li></small><br></br>
 
-						<small><li>Set up control law in terms of parameter estimates from the neural network weights and Lipschitz basis functions, $\Phi(\textbf{y}) = \{\textbf{y}(k-d) \cdots \textbf{y}(k-d-4), \textbf{u}(k-d) \cdots \textbf{u}(k-d-5)\}$</li></small><br></br>
+						<small><li>Set up control law in terms of parameter estimates from the neural network weights and Lipschitz basis functions, $\Phi(\textbf{y}) = \{\textbf{y}(k-d) \cdots \textbf{y}(k-d-4), \textbf{u}(k-d) \cdots \textbf{u}(k-d-5)\}$<br>
+							<ul>
+							<small><li>
+								$i.e.$ network looks back in time by 5 time steps at every instant, and then makes a prediction 
+							</li></small>
+							</ul>
+
+						</li></small><br></br>
 
 						<small><li>Derive Adaptive Adjustment mechanism from Liapunov analysis [Parks, P., 1966]</li></small>
 					</ul>
@@ -398,6 +411,8 @@
 
 						-	with $\textbf{y} \in R^n, \textbf{u}\in R^m; \textbf{A} \in R^{n \times n}, \Lambda \in R^{m \times m}$
 						being unknown constant matrices, $\textbf{B} \in R^{n \times m} \,	, sgn(\Lambda)$, being known constant matrices, and $\textbf{w}(k) \in R^n$ being a bounded time-varying unknown disturbance, upper-bounded by a fixed positive scalar $\textbf{w}_{max}$
+
+						- we would like the adaptation scheme to have memory (i.e. memorize good values of parameters found); alternatively,
 
 						### Why an LSTM?
 
@@ -433,9 +448,25 @@
 					<aside class="notes" data-markdown>
 						### Design Parameters 
 
+						- In a highly nonlinear setting as this, we settle for approximations rather than exact representation
+
+
+						- we assume the relationship between input and output signals is a Borel measurable set
+							- Borel set is any set in a topological space that can be formed from open sets (or, equivalently, from closed sets) through the operations of countable union, countable intersection, and relative complement.
+
+						-	**say bullet 1 before saying next point**
+
+						- 	The recurrent network is formed from compositions and superpositions of simple tanh and sigmoidal response functions
+
 						-	with a Hurwitz matrix $\textbf{A}_m \in R^{n \times n} \text{ and } \textbf{B}_m \in R^{n \times m}$ commanded by a reference signal $\textbf{r} \in R^{m}$.
 
+						- 	Afterall, a carefully designed neural system should be able to discriminate to arbitrary precision any collection of compact disjoint subsets of $\mathbb{R}^n$
+
+						- 	Approximation property builds on Hornik, Cybenko, Funahashi works
+
 						-	design an adaptive MRAC able to operate in the presence of parametric, $\varepsilon_f$, and non-parametric, $\textbf{w}(k)$, uncertainties so as to assure the boundedness of all signals within the closed-loop dynamics. 
+
+
 					</aside>
 				</section>
 			</section>
@@ -471,19 +502,43 @@
 				</section>
 
 				<section data-background="#212F3C" data-background-transition="zoom">
-					<h3>Closed Loop Dynamics and Lyapunov Redesign</h3>
+					<h4>Recurrent Neural Network Model</h4>
+					<img src="images/UTSW2017/lstm.jpg" alt="" height="80%" width = "70%"/>
+
+					<aside class="notes" data-markdown>
+
+						###  Adaptation Memory System
+
+						-	The approximator will have the effect that the values of the adjustable parameters at time $t$ will depend not only on $e(t)$ will depend not only $e(t)$ but also on its past values: $e(\tau) \, \tau \le t$, 
+
+					</aside>
+
+				</section>
+
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h4>Closed Loop Dynamics</h4>
 					<ul>
 						<small><li>State closed loop dynamics is given by <br>
-							&nbsp; &nbsp; $\dot{\textbf{y}} =  (\textbf{A} + \textbf{B} \Lambda (\hat{\textbf{K}}_{y}^{T} \textbf{y} + \textbf{B} \Lambda (\hat{\textbf{K}}_r^T \textbf{r} + \varepsilon_f(\textbf{y}))$
+							&nbsp; &nbsp; $\dot{\textbf{y}} =  (\textbf{A} + \textbf{B} \Lambda (\hat{\textbf{K}}_{y}^{T} \textbf{y} + \textbf{B} \Lambda (\hat{\textbf{K}}_r^T \textbf{r} + \varepsilon_f)$
+							<ul>
+								where $\textbf{A}$ and $\Lambda$ are unknown matrices. The sign of $\Lambda$ is known. $\hat{\textbf{K}}_{y}^{T} \text{ and } \hat{\textbf{K}}_r^T$ are adaptation gains to be determined.
+							</ul>
 						</li></small><br></br>
 
 						<small><li>The generalized error state vector $\textbf{e}(k) = \textbf{y}(k) -\textbf{y}_m(k)$, has dynamics <br>
-							&nbsp; &nbsp; $\dot{\textbf{e}}(k)= \textbf{A}_m\textbf{e}(k) + \textbf{B} \Lambda[\tilde{\textbf{K}}_r^T \textbf{r} +\tilde{\textbf{K}}_y^T \textbf{y} - \varepsilon_f(\textbf{y}(k))] $,</li></small><br></br>
+							&nbsp; &nbsp; $\dot{\textbf{e}}(k)= \textbf{A}_m\textbf{e}(k) + \textbf{B} \Lambda[\tilde{\textbf{K}}_r^T \textbf{r} +\tilde{\textbf{K}}_y^T \textbf{y} - \varepsilon_f] $,
+							<ul>
+								<small><li>
+								$\textbf{A}_m$ is Hurwitz and known, $\textbf{B}$ is known. $\textbf{y}_m$ is assumed to be a linearmodel-following model of the form, $\dot{\textbf{y}}_m = \textbf{A}_m \textbf{y}_m + \textbf{B} \, \textbf{r}$
+								</li></small>
+							</ul>
+						</li></small><br></br>
 
+						<h4><center> Lyapunov Redesign</center></h4>
 						<small><li>$\textbf{Theorem:}$<br>							
 							Given correct choice of adaptive gains $\hat{\textbf{K}}_y$ and $\hat{\textbf{K}}_r$, the error state vector, $\textbf{e}(k)$ with closed loop time derivative given by $\dot{\textbf{e}}$ is uniformly ultimately bounded, and the state $\textbf{y}$ will converge to a neighborhood of $\textbf{r}$.
 							<ul>
-								<li>See proof in text ($\S V.A$).</li>
+								<li>See proof in <a href="http://ecs.utdallas.edu/~opo140030/media/Papers/iROS2017/iROS2017.pdf">text ($\S V.A$)</a>.</li>
 							</ul>
 						</li>
 					</small>
@@ -498,20 +553,26 @@
 							&nbsp; &nbsp; &nbsp; &nbsp; $\textbf{V}(\textbf{e}, \tilde{\textbf{K}}_y, \tilde{\textbf{K}}_r) = \textbf{e}^T\textbf{P}\textbf{e} 
 							+ \textbf{tr}(\tilde{\textbf{K}}_y^T  \Gamma_y ^{-1}  \tilde{\textbf{K}}_y |\Lambda|) 
 							+ \textbf{tr}(\tilde{\textbf{K}}_r^T \Gamma_r^{-1} \tilde{\textbf{K}}_r^T |\Lambda|)$, 
-						</li></small>
+						<ul>
+							<small><li>where $\tilde{\textbf{K}}_y = \hat{\textbf{K}}_y - {\textbf{K}}_y$ and $\tilde{\textbf{K}}_r = \hat{\textbf{K}}_r - {\textbf{K}}_r$. <br>
+
+							$\textbf{P}$ is a unique symmetric, positive definite (SPD) matrix solution of the algebraic Lyapunov equation, <br> $\textbf{P}\textbf{A}_m + \textbf{A}_m^T\textbf{P} = -\textbf{Q}$ </li></small>
+						</ul>
+						</li>
+						</small>
 						<br></br>
 
 						<small><li>We can verify that the adaptation laws are <br>
 								 &nbsp; &nbsp; &nbsp; &nbsp; $\dot{\hat{\textbf{K}}}_y = -\Gamma_x \textbf{y} \textbf{e}^T \textbf{P} \, \textbf{B} \text{sgn}(\Lambda) \text{ and }  
 									\dot{\hat{\textbf{K}}}_r = -\Gamma_r \textbf{r} \textbf{e}^T \textbf{P} \, \textbf{B} \, \text{sgn}(\Lambda)$.
 								<ul><br>
-									<li>where $\Gamma_x$ and $\Gamma_r$ are fixed symmetric, positive definite (SPD) matrices of adaptation rates. &nbsp;
-										$\textbf{tr}(\textbf{A})$ denote the trace of matrix $\textbf{A}$ and $\textbf{P}$ is a unique SPD matrix solution of the algebraic Lyapunov function
-									</li>
+									<small><li>where $\Gamma_x$ and $\Gamma_r$ are fixed SPD matrices of adaptation rates. &nbsp;
+										$\textbf{tr}(\textbf{A})$ denote the trace of matrix $\textbf{A}$.
+									</li></small>
 								</ul>
 								</li></small><br></br>
 
-								<small><li>We show in the paper that the time-derivative of the Lyapunov function is negative definite outside the compact set <br>
+								<small><li>We show in the paper that the time-derivative of the Lyapunov function is negative definite outside of the compact set <br>
 									&nbsp; &nbsp; &nbsp; &nbsp; $\chi =\left(\textbf{e}: \|\textbf{e}\| \le \frac{2\|\textbf{PB}\|\lambda_{high}(\Lambda)\varepsilon_{max}(\textbf{y})}{\lambda_{low}(\textbf{Q})}\right).$</li></small><br></br>
 
 								<small><li>Thus, the error $\textbf{e}$ is &nbsp; <i><u><b>uniformly ultimately bounded.</u></b></i></li></small>
@@ -531,7 +592,23 @@
 					<aside class="notes" data-markdown>
 						### Discuss Results
 
+						- Function Approximator shows good "remembrance properties" baed on unit of measure of goodness of approximation of system
+
+						- Head tracks trajectory to submillimeter accuracy 
+
+
 					</aside>
+				</section>
+
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h4>Note: Open Loop Expt Video <br>
+						(To be replaced with closed-loop experiment video)</h4>
+					<video controls="controls" width="760" height="540" name="Video Name" src="images/UTSW2017/video.mov"></video>
+				</section>
+
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h4>Note: Identification Expt Video <br></h4>
+					<video controls="controls" width="540" height="480" name="Video Name" src="images/UTSW2017/video2.mov"></video>
 				</section>
 
 				<section data-background="#212F3C" data-background-transition="zoom">
@@ -563,9 +640,6 @@
 					<p><a href="UTSW2017.html/?print-pdf/gi">Questions?</a></p>
 					<iframe src="UTSW2017.html" width="465" height="385" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 				</section>	
-<!-- 				<section>
-					<img src="images/UTSW2017/thank-you-back.jpg"/>
-				</section> -->
 			</section>		
 
 			</div>
