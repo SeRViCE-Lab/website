@@ -47,7 +47,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section data-background="images/CASE2016/novalis.jpg" style="display:block; background:#000; opacity: 0.56" slide-background="#000">
-					<h4>A 3-DoF Neuro-Adaptive Patient Pose Correcting System for Frameless and Maskless Cancer Radiotherapy</h4>
+					<h4>A 3-DoF Neuro-Adaptive Patient Pose Correcting System for Frameless and Maskless Cancer Radiotherapy</h4><br>
 					<p><font size="5" color="yellow">Towards Precise Patient Positioning during Head and Neck Cancer Radiotherapy</font></p><br>
 					<p>
 						<small><a href="http://ecs.utdallas.edu/~olalekan.ogunmolu">Olalekan Ogunmolu</a> | 03.24.2017</a></small><br></br>
@@ -59,8 +59,11 @@
 						<a href="http://ecs.utdallas.edu/~ngans"> N. Gans</a>
 						</small><br>
 				
-						<a font color="magenta"><small>Supported by the</small></a>
-						<a font color="magenta"><small>Radiation Oncology Department, UT SouthWestern</small></a><br></br>
+						<small>
+						Department of Electrical Engineering, UT Dallas <br>
+						Department of Mechanical Engineering, UT Dallas<br>
+						Department of Radiation Oncology, UT SouthWestern
+					</small></a><br></br>
 					</p>
 				</section>
 
@@ -131,7 +134,7 @@
 							</li>							
 							<li>But static CT scans are unrealistic during real-time patient treatment
 								<ul>
-									<li>How to minimize/eliminate <u>interfractional variations</u> during treatment?</li>
+									<li>How to minimize/eliminate <u>intrafractional variations</u> during treatment?</li>
 								</ul>
 								</li>
 						</ul>
@@ -148,7 +151,7 @@
 					</section>
 
 					<section data-background="images/UTSW2017/igrt_pose_error.jpg" style="display:block;background:#000;opacity:0.75;" >	
-						<h3>Interfractional errors</h3>
+						<h3>Setup and Session Errors </h3>
 						
 						<ul>
 							<li>Patient Positioning
@@ -618,64 +621,59 @@
 						- Head tracks trajectory to submillimeter accuracy 
 					</aside>
 				</section>
-
-				<section data-background="#212F3C" data-background-transition="zoom">
-					<h4>Closed Loop Expt Video <br></h4>
-					<video controls="controls" width="800" height="480" name="Video Name" src="images/UTSW2017/3BladdersSeqActuation0.2.mp4"></video>
 <!-- 
-					<video controls="controls" width="400" height="240" name="Video Name" src="images/UTSW2017/3BladdersSeqActuation0.3.mp4"></video> -->
+				<section data-background="#212F3C" data-background-transition="zoom">
+					<h4> Experiment I Video <br></h4>
+					<video controls="controls" width="800" height="480" name="Video Name" src="videos/UTSW2017/3BladdersSeqActuation0.2.mp4"></video>
+
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/9HN_NDmZjBc" frameborder="0" allowfullscreen></iframe>
 				</section>
 
-<!-- 				<section data-background="#212F3C" data-background-transition="zoom">
-					<h4>Closed Loop Expt Video 2<br></h4>
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/9HN_NDmZjBc" frameborder="0" allowfullscreen></iframe>
-				</section> -->
-
 				<section data-background="#212F3C" data-background-transition="zoom">
-					<h4>Closed Loop Expt Video 3<br></h4>
-					<video controls="controls" width="800" height="480" name="Video Name" src="images/UTSW2017/3BladdersSeqActuation0.3.mp4"></video>
+					<h4>Expt II Video<br></h4>
+
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/XNRVRwdEvaE" frameborder="0" allowfullscreen></iframe>
 
 					<aside class="notes">
 
 					</aside>
 				</section>
 
-				<section>
 
-					<h3>Stages of Integration</h3>
-					<ol>						
-						<img src="images/UTSW2017/future.jpg" alt="" />
-						<small><li>
-							A commercial pillow has been tested on a head dummy to evaluate the effectiveness of 1-DoF motions
-						</li></small><br></br>
-
-						<small><li>
-							We then moved on to develop and integrate a customized adjustable frame with air pillows to mechanically position patient
-						</li></small><br></br>
-
-						<small><li>
-							A wearable head helmet consisting of compliant soft actuating robots with morphological computational properties
-						</li></small>
-
-					</ol>
-
-				</section>
-
-				<section data-background="#212F3C" data-background-transition="zoom">
+	 -->		<section data-background="#212F3C" data-background-transition="zoom">
 					<h3>Future/Ongoing Work</h3>
 					<ul>
 						<li>
-							Add a QP layer before network output layer to account for valve saturation in the NN optimization algorithm
+							Add a differentiable optimization layer before neural network output layer to account for valve saturation in the end-to-end trianing algorithm
 						</li><br>
 
 						<li>
-							Test on varied head subjects
+							Test on varied head shapes, sizes and volunteer trials
 						</li><br>
 
 						<li>
 							Decouple control laws along individual axes of actuation
 						</li><br>
 					</ul>
+
+				</section>
+	 			<section>
+					<h3>Stages of Integration</h3>
+					<ol>						
+						<img src="images/UTSW2017/future.jpg" alt="" />
+						<small><li>
+							A commercial pillow tested on a mannequin testbed to study controllability along a 1-DoF motion [arXiv:1506.04787, arXiv:1610.01481].
+						</li></small><br></br>
+
+						<small><li>
+							We then developed and integrated a customized adjustable frame with air pillows to dynamically compensate motions [arXiv:1703.03821]
+						</li></small><br></br>
+
+						<small><li>
+							Next phase: A wearable head helmet consisting of compliant soft actuating robots with morphological computational properties to actuate along peripheral axes of motion
+						</li></small>
+
+					</ol>
 
 				</section>
 			</section>
@@ -691,7 +689,7 @@
 						</li></small><br>
 
 						<small><li>
-							Presentation references are fully listed in paper
+							Presentation citations are fully listed in the paper
 						</li></small>
 					</ul>
 				</section>	
