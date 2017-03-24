@@ -48,14 +48,22 @@
 			<div class="slides">
 				<section data-background="images/CASE2016/novalis.jpg" style="display:block; background:#000; opacity: 0.56" slide-background="#000">
 					<h4>A 3-DoF Neuro-Adaptive Patient Pose Correcting System for Frameless and Maskless Cancer Radiotherapy</h4>
-					<p><font size="5" color="yellow">Towards Precise Patient Positioning during Head and Neck Cancer Radiotherapy</font></p>
+					<p><font size="5" color="yellow">Towards Precise Patient Positioning during Head and Neck Cancer Radiotherapy</font></p><br>
 					<p>
-						<small><a href="http://ecs.utdallas.edu/~olalekan.ogunmolu">Olalekan Ogunmolu</a> / <a href="http://twitter.com/patmeansnoble">UT Dallas</a></small><br>
-						<small>03.24.2017</small>
+						<small><a href="http://ecs.utdallas.edu/~olalekan.ogunmolu">Olalekan Ogunmolu</a> | 03.24.2017</a></small><br></br>
+
+						<small>
+						<a href="http://ecs.utdallas.edu/~olalekan.ogunmolu">Collaborators: A. Kulkarni, </a> 
+						<a href="http://me.utdallas.edu/people/tadesse.html"> Y. Tadesse, </a>
+						<a href="http://profiles.utsouthwestern.edu/profile/133029/xuejun-gu.html">X. Gu </a>, <a href="https://profiles.utsouthwestern.edu/profile/150563/steve-jiang.html">S. Jiang, and </a>
+						<a href="http://ecs.utdallas.edu/~ngans"> N. Gans</a>
+						</small><br>
+				
+						<a font color="magenta"><small>Supported by the</small></a>
+						<a font color="magenta"><small>Radiation Oncology Department, UT SouthWestern</small></a><br></br>
 					</p>
 				</section>
 
-				<!-- Example of nested vertical slides -->
 				<section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
 					<section data-background="images/HNCancerRegions.png" style="display:block;background:#000;opacity:0.75;">
 						<h2>Background</h2>
@@ -63,7 +71,7 @@
 						<br>
 						<p>2014: 35% of all pharynx and oral cavity cancers developed led to fatility [Siegal, R. et. al]</p>
 						<br>
-						<p>Cancer kills almost 600,000 people each year in the U.S. alone. <br><a href="https://news.developer.nvidia.com/university-of-torontos-gpu-accelerated-cancer-research-wins-nvidia-foundation-award/#sthash.1asn8CaE.g665SP03.dpuf"><small><br>Source: NVIDIA Foundation Award.</small></a></p>
+						<p>Cancer kills almost ~600,000 people each year in the U.S. alone. <br><a href="https://www.cancer.gov/about-cancer/understanding/statistics"><small><br>Source: U.S. National Cancer Institute .</small></a></p>
 						<a href="#" class="navigate-down">
 							<img width="78" height="138" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="display:block;background:#000;opacity:0;">
 						</a>
@@ -71,13 +79,8 @@
 					</section>	
 
 					<section data-background="images/UTSW2017/igrt_setup.jpg" style="display:block;background:#000;opacity:0.75;">
-						<!-- <h2>Background</h2> -->
-						<p><font color="#DAF7A6" face="verdana" size="25">Radiation-based Treatment Procedures</font></p>		
-						<!-- <br> -->
-						<p>Could be IMRT and/or IGRT</p>			
-						<a href="#" class="navigate-down">
-							<img width="50" height="50" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="background:#333;opacity:1;" align="middle">
-						</a>
+						<p><font color="#DAF7A6" face="verdana" size="25">Radiation-based Treatment Procedures</font></p>	
+						<p>Could be IMRT and/or IGRT</p>					
 						<table border="5", width="80%">
 							<thead>
 								<tr>
@@ -87,16 +90,20 @@
 							<tbody>
 								<tr>
 									<td>
-										<small><li type="square">Modulates dosage/shape of radiation beam <u>to precise size of tumor cells</li></small>
+										<small><li type="square">Modulates dosage/shape of radiation beam <u>to precise size of tumor cells
+										</li></small>
 										<small><li type="square">Improves accuracy of <u>carefully</u> targeted radiation </li></small>
-										<!-- <small><li type="square">Deviations in delivered irradiation dosage possible</li></small> -->
 									</td>
 								</tr>
 								<th><font color="#DAF7A6" size="6"><center>IGRT: Image Guidance Radiation Therapy</center></font></th>
 								<tr>									
 									<td>							
 										<small><li type="square">Uncertainty in dose measures to malignant tissues necessitated use of IGRT</li></small>
-										<small><li type="square">Goal: Assure precise localization of beam to target tumor cell. </li></small>
+										<small><li type="square">Goal: Assure precise localization of beam to target tumor cell. 
+										</li></small>
+								<!-- <ul>										
+									<img src="images/UTSW2017/igrt_setup.jpg" align="right" width="35%" height="50%"/>
+								</ul> -->
 									</td>
 								</tr>
 							</tbody>
@@ -124,7 +131,7 @@
 							</li>							
 							<li>But static CT scans are unrealistic during real-time patient treatment
 								<ul>
-									<li>How to minimize/eliminate <u>interfractional variations</u> in treatment between different sessions?</li>
+									<li>How to minimize/eliminate <u>interfractional variations</u> during treatment?</li>
 								</ul>
 								</li>
 						</ul>
@@ -202,19 +209,25 @@
 						</aside>
 					</section>
 
-					<section data-background="images/UTSW2017/igrt_setup.jpg" style="display:block;background:#000;opacity:0.75;" >	
+					<section  >
+					<!-- data-background="images/UTSW2017/igrt_setup.jpg" style="display:block;background:#000;opacity:0.75;" -->	
 						<h3>Limitations of existing solutions</h3>
 						<ul>
-							<li>Frame-based immobilization systems are highly uncomfortable [Lutz, W. et. al, 1988], [Takakura, T., et al., 2010]
-								<ul>
-									<img src="images/UTSW2017/frame-based.jpg" align="right" width="25%", height="40%" alt=""/>
-								</ul>
-							</li>
 
-							<li>Involuntary patient movements is not a boon for  inspection-based setups  [Cervino, L.I. et. al., 2010], [Li G. et al, 2015] </li><br>
-							<!-- <li>Current frameless SRS techniques have little or no real-time correction</li> -->
-							<li>Existing real-time correcting proposal employs stepper motors for head motion alignment[Li, X. et al, 2015]</li>
-							<!-- <li></li> -->
+							<ul>
+								<img src="images/UTSW2017/frame-based.jpg" align="right" width="25%", height="30%" alt=""/>
+							</ul>
+							<li>Frame-based immobilization systems are highly uncomfortable [Lutz, W. et. al, 1988], Takakura, T., et al., 2010]
+							</li><br>
+
+							<li>Involuntary patient movements is not a boon for  inspection-based setups  [Cervino, L.I. et. al., 2010, Li G. et al, 2015] </li><br>
+
+							<ul>
+								<img src="images/UTSW2017/4-dof.jpg" align="right" width="20%", height="20%" alt=""/>
+							</ul>
+
+							<li>Existing real-time correcting proposal employs stepper motors for head motion alignment[Li, X. et al, 2015]
+							</li>
 						</ul>
 
 						<aside class="notes" data-markdown>
@@ -332,7 +345,7 @@
 				</section>
 
 				<section data-background="#212F3C" data-background-transition="fade">
-					<h3>Segmentation Result</h3>
+					<h3>Segmentation Results</h3>
 					<img src="images/UTSW2017/seg_cloud_nice.jpg" alt="" width="65%", height="65%"/>
 
 					<aside class="notes">
@@ -350,11 +363,12 @@
 
 			<section> <!-- Control Background-->
 				<section data-background="#212F3C" data-background-transition="zoom">
-					<h3>Control Design Challenges</h3>
+					<h3>Control Design Objectives</h3>
 					<ul>
-						<li>Optimal closed loop tracking given a desired trajectory</li><br>
 						<li>Stabilize system states</li><br>
-						<!-- <li></li> -->
+
+						<li>Optimal closed loop tracking given a desired trajectory</li><br>
+
 						<li>Robustify system to (non-)parametric uncertainties 
 							<ul>
 								<small><li>$\rightarrow$ changing head shapes, size and other anatomic/tumor variations</li></small>
@@ -381,20 +395,22 @@
 					<h3>Model Reference Adaptive System (MRAS) Design</h3>
 					<ul>
 						<small><li>Model head and bladder dynamics as <br>
+							&nbsp; &nbsp; &nbsp; $\dot{\textbf{y}} = \textbf{A}\textbf{y} + \textbf{B} {\Lambda} \left(\textbf{u} - f(\textbf{x}) \right) + \textbf{w}(k) $ , <br>
+							
+							&nbsp; &nbsp; &nbsp; <small>where $f(\textbf{x})$ is a nonlinear function to be  adapted for in our controller parameters<br>
+							&nbsp; &nbsp; &nbsp; and $\textbf{x}$ is the tuple containing past controls and current outputs </small></li></small><br></br>
 
-							&nbsp; &nbsp; &nbsp; $\dot{\textbf{y}} = \textbf{A}\textbf{y} + \textbf{B} {\Lambda} \left(\textbf{u} - f(\textbf{y}) \right) + \textbf{w}(k) $ , <br>
-							where $f(\textbf{y})$ is a nonlinear function to be  adapted for in our controller.</li></small><br></br>
-
-						<small><li>	Approximate $f(\textbf{y})$ by a neural network with continuous memory states  <br> 
+						<small><li>	Approximate $f(\textbf{x})$ by a neural network with continuous memory states  <br> 
 
 							&nbsp; &nbsp; &nbsp; $\hat{f}\left(\textbf{u}(k-d), \textbf{y}(k),\textbf{w}(k)\right)$ 
 						<ul><small>
 							<li>$\rightarrow$ $\hat{f}(\cdot)$ is realized with a Long-Short Term Memory Cell  &nbsp; [Horchreiter and Schmidhuber, 1991, 1997]</li>
+							<li><u>Purpose:</u> Remember good adaptation gains</li>
 						</small>
 						</ul>
 						</li></small><br></br>
 
-						<small><li>Set up control law in terms of parameter estimates from the neural network weights and Lipschitz basis functions, $\Phi(\textbf{y}) = \{\textbf{y}(k-d) \cdots \textbf{y}(k-d-4), \textbf{u}(k-d) \cdots \textbf{u}(k-d-5)\}$<br>
+						<small><li>Set up control law in terms of parameter estimates from the neural network weights and Lipschitz basis functions, $\Phi(\textbf{y}) = \{\textbf{y}(k-d), \cdots, \textbf{y}(k-d-4), \textbf{u}(k-d) \cdots \textbf{u}(k-d-5)\}$<br>
 							<ul>
 							<small><li>
 								$i.e.$ network looks back in time by 5 time steps at every instant, and then makes a prediction 
@@ -403,7 +419,7 @@
 
 						</li></small><br></br>
 
-						<small><li>Derive Adaptive Adjustment mechanism from Liapunov analysis [Parks, P., 1966]</li></small>
+						<small><li>Derive Adaptive Adjustment mechanism from Lyapunov analysis [Parks, P., 1966]</li></small>
 					</ul>
 
 					<aside class="notes" data-markdown>
@@ -429,19 +445,19 @@
 				<section data-background="#212F3C" data-background-transition="zoom">
 					<h3>Assumptions</h3>
 					<ul>
-						<small><li> a dynamic RNN with $N$ neurons, $\varphi(\textbf{y})$, exists that will map from a compact input space $\textbf{u} \subset \mathbb{U}$ to an output space $\textbf{y} \subset \mathbb{Y}$ on the Lebesgue integrable functions with closed interval $[0, T]$ or open-ended interval $[0,\infty)$; </li></small><br></br>
+						<small><li> a dynamic RNN with $N$ neurons, $\varphi(\textbf{x})$, exists that will map from a compact input space $\textbf{u} \subset \mathbb{U}$ to an output space $\textbf{y} \subset \mathbb{Y}$ on the Lebesgue integrable functions with closed interval $[0, T]$ or open-ended interval $[0,\infty)$; </li></small><br></br>
 							
-							<small><li> the nonlinear function $f(\textbf{y})$ is exactly $\Theta^T \Phi(\textbf{y})$ with coefficients $\Theta \in R^{N\times m}$ and a Lipschitz-continuous vector of basis functions $\Phi(\textbf{y}) \in R^N$;</li></small><br></br>
-							
-							<small><li> inside a ball $\textbf{Y}_R$ of known, finite radius $R$, the ideal neural network (NN) approximation $f(\textbf{y}): R^n \rightarrow R^m$, is realized to a sufficient degree of accuracy, $\varepsilon_f > 0$;</li></small><br></br>
-							
-							<small><li> the process noise $\textbf{w}(k)$ is estimated alongside model parameters by the dynamic recurrent NN (RNN) and lumped into $\varepsilon_f$; </li></small><br></br>
+						<small><li> the nonlinear function $f(\textbf{x})$ is exactly $\Theta^T \Phi(\textbf{x})$ with coefficients $\Theta \in R^{N\times m}$ and a Lipschitz-continuous vector of basis functions $\Phi(\textbf{x}) \in R^N$;</li></small><br></br>
+						
+						<small><li> inside a ball $\textbf{Y}_R$ of known, finite radius $R$, the ideal neural network (NN) approximation $f(\textbf{x}): R^n \rightarrow R^m$, is realized to a sufficient degree of accuracy, $\varepsilon_f > 0$;</li></small><br></br>
+						<!-- 
+						<small><li> the process noise $\textbf{w}(k)$ is estimated alongside model parameters by the dynamic recurrent NN (RNN) and lumped into $\varepsilon_f$; </li></small><br></br> -->
 
-							<small><li> outside $\textbf{Y}_R$, the NN approximation error can be upper-bounded by a known unbounded, scalar function $\varepsilon_{max}(\textbf{y})$;							
-							$\|\varepsilon(\textbf{y})\| \le \varepsilon_{max}(\textbf{y}), \quad \, \forall \quad \textbf{y} \in \textbf{Y}_R$;</li></small><br></br>
-							
-							<small><li> there exists an exponentially stable reference model 
-							$\dot{\textbf{y}}_m = \textbf{A}_my_m + \textbf{B}_m \textbf{r}$</li></small>
+						<small><li> outside $\textbf{Y}_R$, the NN approximation error can be upper-bounded by a known unbounded, scalar function $\varepsilon_{max}(\textbf{x})$;							
+						$\|\varepsilon(\textbf{x})\| \le \varepsilon_{max}(\textbf{x}), \quad \, \forall \quad \textbf{x} \in \textbf{Y}_R$;</li></small><br></br>
+						
+						<small><li> there exists an exponentially stable reference model 
+						$\dot{\textbf{y}}_m = \textbf{A}_my_m + \textbf{B}_m \textbf{r}$</li></small>
 						</li>
 					</ul>
 
@@ -466,7 +482,6 @@
 
 						-	design an adaptive MRAC able to operate in the presence of parametric, $\varepsilon_f$, and non-parametric, $\textbf{w}(k)$, uncertainties so as to assure the boundedness of all signals within the closed-loop dynamics. 
 
-
 					</aside>
 				</section>
 			</section>
@@ -476,17 +491,17 @@
 					<h3>Controller Formulation</h3>
 					<ul>
 						<small><li>
-							$\textbf{u} = \underbrace{\hat{\textbf{K}}_y^{\textbf{T}}\textbf{y}}_{\text{state feedback}} + \underbrace{\hat{\textbf{K}}_r^{\textbf{T}} \textbf{r}}_{\text{optimal regulator}} + \underbrace{\hat{f}(\textbf{y})}_{\text{nonlinearity RNN approximator}}$
+							$\textbf{u} = \underbrace{\hat{\textbf{K}}_y^{\textbf{T}}\textbf{y}}_{\text{state feedback}} + \underbrace{\hat{\textbf{K}}_r^{\textbf{T}} \textbf{r}}_{\text{optimal regulator}} + \underbrace{\hat{f}(\textbf{x})}_{\text{nonlinearity RNN approximator}}$
 							</li></small><br></br>
 
 						<small><li>$\hat{\textbf{K}}_y \, \text{ and } \hat{\textbf{K}}_r$ are adaptive gains to be suitably designed</li></small><br>
 
 						<small><li> There are model matching conditions such that $\hat{\textbf{K}}_y = \textbf{K}_y , \, \text{ and } \hat{\textbf{K}}_r = \textbf{K}_r$ (ideally)</li></small><br>
 
-						<small><li>Mathematically, we can imagine the approximator as $\hat{f}(y) = \hat{{\Theta}}^T {\Phi}(\textbf{y}) + \varepsilon_f(\textbf{y})$
+						<small><li>Mathematically, we can imagine the approximator as $\hat{f}(\textbf{x}) = \hat{{\Theta}}^T {\Phi}(\textbf{x}) + \varepsilon_f(\textbf{x})$
 							<ul>
 								<li>
-									$\hat{\Theta}^T$ denotes the vectorized weights of the neural network and $\Phi(\textbf{y})$ denotes the vector of lagged inputs and output, $\varepsilon_f(\textbf{y})$ is the approximation error.
+									$\hat{\Theta}^T$ denotes the vectorized weights of the neural network and $\Phi(\textbf{x})$ denotes the vector of lagged inputs and output, $\varepsilon_f(\textbf{x})$ is the approximation error.
 								</li>
 							</ul>
 						</li></small>
@@ -529,14 +544,14 @@
 							&nbsp; &nbsp; $\dot{\textbf{e}}(k)= \textbf{A}_m\textbf{e}(k) + \textbf{B} \Lambda[\tilde{\textbf{K}}_r^T \textbf{r} +\tilde{\textbf{K}}_y^T \textbf{y} - \varepsilon_f] $,
 							<ul>
 								<small><li>
-								$\textbf{A}_m$ is Hurwitz and known, $\textbf{B}$ is known. $\textbf{y}_m$ is assumed to be a linearmodel-following model of the form, $\dot{\textbf{y}}_m = \textbf{A}_m \textbf{y}_m + \textbf{B} \, \textbf{r}$
+								$\textbf{A}_m$ is Hurwitz and known, $\textbf{B}$ is known. &nbsp; $\textbf{y}_m$ is assumed to be a linear model-following model of the form, $\dot{\textbf{y}}_m = \textbf{A}_m \textbf{y}_m + \textbf{B} \, \textbf{r}$.
 								</li></small>
 							</ul>
 						</li></small><br></br>
 
 						<h4><center> Lyapunov Redesign</center></h4>
 						<small><li>$\textbf{Theorem:}$<br>							
-							Given correct choice of adaptive gains $\hat{\textbf{K}}_y$ and $\hat{\textbf{K}}_r$, the error state vector, $\textbf{e}(k)$ with closed loop time derivative given by $\dot{\textbf{e}}$ is uniformly ultimately bounded, and the state $\textbf{y}$ will converge to a neighborhood of $\textbf{r}$.
+							Given correct choice of adaptive gains $\hat{\textbf{K}}_y$ and $\hat{\textbf{K}}_r$, the error state vector, $\textbf{e}(k)$ with closed loop time derivative $\dot{\textbf{e}}$, is <i><u><b>uniformly ultimately bounded</b></u></i>, and the state $\textbf{y}$ will converge to a neighborhood of $\textbf{r}$.
 							<ul>
 								<li>See proof in <a href="http://ecs.utdallas.edu/~opo140030/media/Papers/iROS2017/iROS2017.pdf">text ($\S V.A$)</a>.</li>
 							</ul>
@@ -556,17 +571,17 @@
 						<ul>
 							<small><li>where $\tilde{\textbf{K}}_y = \hat{\textbf{K}}_y - {\textbf{K}}_y$ and $\tilde{\textbf{K}}_r = \hat{\textbf{K}}_r - {\textbf{K}}_r$. <br>
 
-							$\textbf{P}$ is a unique symmetric, positive definite (SPD) matrix solution of the algebraic Lyapunov equation, <br> $\textbf{P}\textbf{A}_m + \textbf{A}_m^T\textbf{P} = -\textbf{Q}$ </li></small>
+							$\textbf{P}$ is a unique symmetric, positive definite (SPD) matrix solution of the algebraic Lyapunov equation, $\textbf{P}\textbf{A}_m + \textbf{A}_m^T\textbf{P} = -\textbf{Q}$ </li></small>
 						</ul>
 						</li>
 						</small>
 						<br></br>
 
 						<small><li>We can verify that the adaptation laws are <br>
-								 &nbsp; &nbsp; &nbsp; &nbsp; $\dot{\hat{\textbf{K}}}_y = -\Gamma_x \textbf{y} \textbf{e}^T \textbf{P} \, \textbf{B} \text{sgn}(\Lambda) \text{ and }  
+								 &nbsp; &nbsp; &nbsp; &nbsp; $\dot{\hat{\textbf{K}}}_y = -\Gamma_y \textbf{y} \textbf{e}^T \textbf{P} \, \textbf{B} \text{sgn}(\Lambda) \text{ and }  
 									\dot{\hat{\textbf{K}}}_r = -\Gamma_r \textbf{r} \textbf{e}^T \textbf{P} \, \textbf{B} \, \text{sgn}(\Lambda)$.
 								<ul><br>
-									<small><li>where $\Gamma_x$ and $\Gamma_r$ are fixed SPD matrices of adaptation rates. &nbsp;
+									<small><li>where $\Gamma_y$ and $\Gamma_r$ are fixed SPD matrices of adaptation rates. &nbsp;
 										$\textbf{tr}(\textbf{A})$ denote the trace of matrix $\textbf{A}$.
 									</li></small>
 								</ul>
@@ -575,7 +590,13 @@
 								<small><li>We show in the paper that the time-derivative of the Lyapunov function is negative definite outside of the compact set <br>
 									&nbsp; &nbsp; &nbsp; &nbsp; $\chi =\left(\textbf{e}: \|\textbf{e}\| \le \frac{2\|\textbf{PB}\|\lambda_{high}(\Lambda)\varepsilon_{max}(\textbf{y})}{\lambda_{low}(\textbf{Q})}\right).$</li></small><br></br>
 
-								<small><li>Thus, the error $\textbf{e}$ is &nbsp; <i><u><b>uniformly ultimately bounded.</u></b></i></li></small>
+								<small><li>Thus, the error $\textbf{e}$ is &nbsp; <i><u><b>uniformly ultimately bounded.</u></b></i>
+								<ul>
+									<li>
+										$i.e.$ $\textbf{y}(t) \rightarrow 0$ as $t \rightarrow \infty$ is sufficient for us.
+									</li>	
+								</ul>
+								</li></small>
 					</ul>
 				</section>
 			</section>
@@ -595,27 +616,56 @@
 						- Function Approximator shows good "remembrance properties" baed on unit of measure of goodness of approximation of system
 
 						- Head tracks trajectory to submillimeter accuracy 
-
-
 					</aside>
 				</section>
 
 				<section data-background="#212F3C" data-background-transition="zoom">
-					<h4>Note: Open Loop Expt Video <br>
-						(To be replaced with closed-loop experiment video)</h4>
-					<video controls="controls" width="760" height="540" name="Video Name" src="images/UTSW2017/video.mov"></video>
+					<h4>Closed Loop Expt Video <br></h4>
+					<video controls="controls" width="400" height="240" name="Video Name" src="images/UTSW2017/3BladdersSeqActuation0.2.mp4"></video>
+
+					<video controls="controls" width="400" height="240" name="Video Name" src="images/UTSW2017/3BladdersSeqActuation0.3.mp4"></video>
 				</section>
 
+<!-- 				<section data-background="#212F3C" data-background-transition="zoom">
+					<h4>Closed Loop Expt Video 2<br></h4>
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/9HN_NDmZjBc" frameborder="0" allowfullscreen></iframe>
+				</section> -->
+
 				<section data-background="#212F3C" data-background-transition="zoom">
-					<h4>Note: Identification Expt Video <br></h4>
-					<video controls="controls" width="540" height="480" name="Video Name" src="images/UTSW2017/video2.mov"></video>
+					<h4>Closed Loop Expt Video 3<br></h4>
+					<video controls="controls" width="400" height="240" name="Video Name" src="images/UTSW2017/3BladdersSeqActuation0.3.mp4"></video>
+
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+				<section>
+
+					<h3>Stages of Integration</h3>
+					<ol>						
+						<img src="images/UTSW2017/future.jpg" alt="" />
+						<small><li>
+							A commercial pillow has been tested on a head dummy to evaluate the effectiveness of 1-DoF motions
+						</li></small><br></br>
+
+						<small><li>
+							We then moved on to develop and integrate a customized adjustable frame with air pillows to mechanically position patient
+						</li></small><br></br>
+
+						<small><li>
+							A wearable head helmet consisting of compliant soft actuating robots with morphological computational properties
+						</li></small>
+
+					</ol>
+
 				</section>
 
 				<section data-background="#212F3C" data-background-transition="zoom">
 					<h3>Future/Ongoing Work</h3>
 					<ul>
 						<li>
-							Explicitly formulate valve constraints into BPTT NN optimization algorithm
+							Add a QP layer before network output layer to account for valve saturation in the NN optimization algorithm
 						</li><br>
 
 						<li>
@@ -625,10 +675,6 @@
 						<li>
 							Decouple control laws along individual axes of actuation
 						</li><br>
-
-						<li>
-							Inculcate early stopping into function approximator end-to-end optimization
-						</li>
 					</ul>
 
 				</section>
@@ -636,9 +682,18 @@
 
 			<section>
 				<section>
-					<!-- <h3>Questions?</h3> -->
 					<p><a href="UTSW2017.html/?print-pdf/gi">Questions?</a></p>
 					<iframe src="UTSW2017.html" width="465" height="385" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+					<ul>
+						<small><li>
+							ArXiv Paper ID: 1703.03821v1
+						</li></small><br>
+
+						<small><li>
+							Presentation references are fully listed in paper
+						</li></small>
+					</ul>
 				</section>	
 			</section>		
 
