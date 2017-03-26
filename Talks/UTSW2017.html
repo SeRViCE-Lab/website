@@ -101,7 +101,7 @@
 								<th><font color="#DAF7A6" size="6"><center>IGRT: Image Guidance Radiation Therapy</center></font></th>
 								<tr>									
 									<td>							
-										<small><li type="square">Uncertainty in dose measures to malignant tissues necessitated use of IGRT</li></small>
+										<!--<small><li type="square">Uncertainty in  dose measures to malignant tissues necessitated use of IGRT</li></small> -->
 										<small><li type="square">Goal: Assure precise localization of beam to target tumor cell. 
 										</li></small>
 								<!-- <ul>										
@@ -169,10 +169,10 @@
 								</ul></li>
 
 							<li>Anatomic variations during treatment.
-								<ul>
+<!-- 								<ul>
 									<small><li>Changing tumor density during treatment $\rightarrow$ tissue attenuation of beams</li></small>
 									<small><li>Weight loss, or inflammatory reaction in the course of treatment could reduce attenuation of X-ray beam or expose neighboring entity</li></small>
-									</ul>
+								</ul> -->
 							</li>
 
 						</ul>
@@ -537,7 +537,7 @@
 					<h4>Closed Loop Dynamics</h4>
 					<ul>
 						<small><li>State closed loop dynamics is given by <br>
-							&nbsp; &nbsp; $\dot{\textbf{y}} =  (\textbf{A} + \textbf{B} \Lambda (\hat{\textbf{K}}_{y}^{T} \textbf{y} + \textbf{B} \Lambda (\hat{\textbf{K}}_r^T \textbf{r} + \varepsilon_f)$
+							&nbsp; &nbsp; $\dot{\textbf{y}} =  \textbf{A} + \textbf{B} \Lambda (\hat{\textbf{K}}_{y}^{T} \textbf{y} + \textbf{B} \Lambda (\hat{\textbf{K}}_r^T \textbf{r} + \varepsilon_f))$
 							<ul>
 								where $\textbf{A}$ and $\Lambda$ are unknown matrices. The sign of $\Lambda$ is known. $\hat{\textbf{K}}_{y}^{T} \text{ and } \hat{\textbf{K}}_r^T$ are adaptation gains to be determined.
 							</ul>
@@ -730,7 +730,7 @@
 				// Number of milliseconds between automatically proceeding to the
 				// next slide, disabled when set to 0, this value can be overwritten
 				// by using a data-autoslide attribute on your slides
-				 autoSlide: 0,	
+				 autoSlide: 1500,	
 				// Stop auto-sliding after user input
 				autoSlideStoppable: true,
 				// Opens links in an iframe preview overlay
