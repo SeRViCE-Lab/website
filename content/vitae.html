@@ -16,7 +16,7 @@ description: Demos and Talks
   ga('send', 'pageview' '/research.html');
   ga('send', 'pageview' '/speaking.html');
   ga('send', 'pageview'  '/projects.html');
-  ga('send', 'pageview' 'http://lakehanne.github.io/');
+  ga('send', 'pageview' 'http://scriptedonachip.com/');
   ga('send', 'pageview' '/dfwslides');
 
 </script>
@@ -26,12 +26,27 @@ description: Demos and Talks
 
 <h1>Publications</h1>
 <hr/>
-<h4><font color="#711E0C">A 3-DOF Neuro-Adaptive Pose Correction System For Frameless and Maskless Cancer Radiotherapy.</font></h4>
-    <p><font color="#110D0C">Precise patient positioning during treatment of cancers of the head and neck region is essential for successful
-clinical removal of malignant tumors. We propose a 3-DOF soft-robot head and neck position correcting mechanism, consisting of 3 independent inflatable air bladders that adaptively move patient’s head with respect to set trajectory along 3-axes without sacrificing safety and comfort. An adaptive-neurocontroller consisting of a state feedback regulator, a command reference tracking component, and a neural-network function approximator regulates the amount of actuation that each soft-robot experiences. Feedback is provided by a precise 3D stereo camera for surface imaging and pose measurement of the head. This paper is a trial of the correcting soft-actuation mechanism and neuro-adaptive controller on a 3D printed head-and-necksimulator. We demonstrate that our control exhibits real-time learning and adaptive actuation that compensates for correct intrafractional patient positioning deviations.
+
+<h4><font color="#711E0C">Minimax Iterative Dynamic Game : Application to Nonlinear Robot Control.</font></h4>
+    <p><font color="#110D0C">Deep reinforcement learning policies provide good
+control decision strategies in high-dimensional state spaces, par- ticularly in complex autonomous tasks. However, they exhibit weak performance guarantees in the presence of disturbance, model mismatch, or model uncertainties. This brittleness limits their use in high-risk scenarios. We present how to quantify the sensitivity of deep reinforcement learning policies – this would inform of its robustness capacity. We then formulate a minimax iterative dynamic game for designing robust policies in the presence of an adversarial input. The algorithm is simple and is adaptable for designing meta-learning/deep policies that are robust against disturbances, model mismatch or model uncertainities, up to a disturbance bound. Videos of our results can be seen <a href="https://goo.gl/JhshTB">here</a>.
+ </font><br>
+    <font color="blue"><b>Olalekan Ogunmolu*</b>, Nicholas Gans, and Tyler Summers</font>. 
+    <br>
+    <a href="http://ecs.utdallas.edu/~opo140030/iros18/IROS2018.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a> 
+    <a href="https://github.com/lakehanne/soft-neuro-adapt"> <b>Code (Github)&nbsp;</b> </a>
+    <a href="http://ecs.utdallas.edu/~opo140030/iros18/iros2018.html"> <b>Videos website&nbsp;</b> </a>
+  </p>
+
+
+<h4><font color="#711E0C">Soft-NeuroAdapt: A 3-DOF neuro-adaptive patient pose correction system for frameless and maskless cancer radiotherapy.</font></h4>
+    <p><font color="#110D0C">Precise patient positioning is fundamental to successful removal of malignant tumors during treatment of head and neck cancers. Errors in patient positioning have been known to damage critical organs and cause complications. To better address issues of patient positioning and motion, we introduce a 3-DOF neuro-adaptive soft-robot, called Soft-NeuroAdapt to correct deviations along 3 axes. The robot consists of inflatable air bladders that adaptively control head deviations from target while ensuring patient safety and comfort. The adaptive-neuro controller combines a state feedback component, a feedforward regulator, and a neural network that ensures correct adaptation. States are measured by a 3D vision system. We validate Soft-NeuroAdapt on a 3D printed head-and-neck dummy, and demonstrate that the controller provides adaptive actuation that compensates for intrafractional deviations in patient positioning.
  </font><br>
     <font color="blue"><b>Olalekan Ogunmolu*</b>, Adwait Kulkarni, Yonas Tadesse, Xuejun Gu, Steve Jiang, and Nicholas Gans</font>. 
     <br>
+    <a href="http://ecs.utdallas.edu/~opo140030/media/Papers/IROS2017.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a> 
+    <a href="https://arxiv.org/abs/1703.03821v3"><b> arXiv &nbsp;</b></a> 
+    <a href="https://github.com/lakehanne/soft-neuro-adapt"> <b>Code (Github)&nbsp;</b> </a>
   </p>
 
 <h4><font color="#711E0C">Nonlinear Systems Identification Using Deep Dynamic Neural Networks.</font></h4>
