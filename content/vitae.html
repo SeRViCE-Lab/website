@@ -21,39 +21,92 @@ description: Demos and Talks
 
 </script>
 
-  
+
 <html>
 
 <h1>Publications</h1>
 <hr/>
 
-<h4><font color="#711E0C">Minimax Iterative Dynamic Game : Application to Nonlinear Robot Control.</font></h4>
-    <p><font color="#110D0C">Deep reinforcement learning policies provide good
-control decision strategies in high-dimensional state spaces, par- ticularly in complex autonomous tasks. However, they exhibit weak performance guarantees in the presence of disturbance, model mismatch, or model uncertainties. This brittleness limits their use in high-risk scenarios. We present how to quantify the sensitivity of deep reinforcement learning policies – this would inform of its robustness capacity. We then formulate a minimax iterative dynamic game for designing robust policies in the presence of an adversarial input. The algorithm is simple and is adaptable for designing meta-learning/deep policies that are robust against disturbances, model mismatch or model uncertainities, up to a disturbance bound. Videos of our results can be seen <a href="https://goo.gl/JhshTB">here</a>.
+<h4><font color="#711E0C">Deep BOO: Automating Beam Orientation Optimization in Intensity Modulated Radiation Therapy. Part I: Methodologies.</font></h4>
+    <p><font color="#110D0C">Finding the optimal beam angle set from a robot's tool frame from which to aim radiation to cancer tumor(s) whilst simultaneously minimizing radiation intensity to organs-at-risks during intensity modulated radiation therapy is an exhaustive combinatorial search/human-based parameters-tuning process. So far, traditional optimization approaches for solving this problem have not yielded real-time feasible results. Aiming to automate the selection process, we introduce novel techniques from (i) pattern recognition, (ii) monte carlo evaluations, (iii) game theory, and (iv)  neuro-dynamic programming. This is so as to find admissible policies for beamlets selection duringh IMRT treatment planning. In this sentiment, we optimize a deep neural network policy which guides monte carlo simulations and evaluations of promising beamlets within the robot gantry's phase space. Our goal is not to exclusively find the minimum of an objective as traditional approaches try to do, but rather to go uphill every so often so as to arrive at a pair of saddle point equilibrium strategy for the system. We let  two fictitious neural network players,  within a zero-sum markov game framework  alternatingly play a best response to their opponent's mixed strategy profile during epsidoes of a markov decision process. At inference time, we run the trained policy on test patients' target volumes to predict feasible beam angles. This part of our paper describes the problem and formally introduces our approach. The implementation  details and results are presented in the addendum to this paper~\cite{Ogunmolu2018b}.
  </font><br>
-    <font color="blue"><b>Olalekan Ogunmolu*</b>, Nicholas Gans, and Tyler Summers</font>. 
+    <font color="blue"><b>Olalekan Ogunmolu*</b></font>.
     <br>
-    <a href="http://ecs.utdallas.edu/~opo140030/iros18/IROS2018.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a> 
+    <a href="http://scriptedonachip.com/assets/papers/wafr.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
+    <a href="https://github.com/lakehanne/boo_optim.git"> <b>Code (Github)&nbsp;</b> </a>
+  </p>
+
+
+<h4><font color="#711E0C">Deep BOO: Automating Beam Orientation Optimization in Intensity Modulated Radiation Therapy. Part II: Initial Results.</font></h4>
+    <p><font color="#110D0C"> This paper is the addendum to the two-part paper on automating the beam orientation optimization in intensity modulated radiotherapy treatment planning systems~\cite{Ogunmolu2018a}. The first part presented our methods and formulation using neuro-dynamic programming and monte carlo tree search. In this follow-up paper, we present numerical experiments on the result of training the neural network dynamical system and policy for anonymized prostate cases using select coplanar beams. The results demonstrate the feasibility of our proposal and provides a time-efficient alternative to manually tuning robot gantry angles by dosimetrists in beam orientation optimization scenarios in clinics. 
+ </font><br>
+    <font color="blue"><b>Olalekan Ogunmolu*</b>,</font>.
+    <br>
+    <a href="http://scriptedonachip.com/assets/papers/wafr2.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
+    <a href="https://github.com/lakehanne/boo_optim.git"> <b>Code (Github)&nbsp;</b> </a>
+  </p>
+
+
+<h4><font color="#711E0C">
+Automating Beam Orientation Optimization during IMRT Cancer Treatment Planning: A Deep Reinforcement Learning Approach).</font></h4>
+    <p><font color="#110D0C">This work focuses on automating beam orientation optimization (BOO) during IMRT treatment planning. Being a nonconvex problem, we develop a hybrid approach – combining techniques from deep reinforcement learning (DRL), and fluence map optimization (FMO), to find beam orientations that yield satisfactory local minima, in terms of IMRT treatment plan quality.
+ </font><br>
+    <font color="blue"><b>Olalekan Ogunmolu*</b>, Dan Nguyen, Chenyang Shen, Xun Jia, Weiguo Lu, Nicholas Gans, and Steve Jiang</font>.
+    <br>
+    <font color="#110D0C"><i>American Association of Physicists in Medicine (AAPM) Meeting </i>. Nashville, TN. July 2018.</font> <br>
+      <a href="http://ecs.utdallas.edu/~opo140030/media/Papers/AAPM2018/AAPM.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
+  </p>
+
+<h4><font color="#711E0C">Minimax Iterative Dynamic Game : Application to Nonlinear Robot Control Tasks.</font></h4>
+    <p><font color="#110D0C">Multistage decision policies provide useful control strategies in high-dimensional state spaces, particularly in complex control tasks.  However, they exhibit weak performance guarantees in the presence of disturbance, model mismatch, or model uncertainties. This brittleness limits their use in high-risk scenarios. We present how to quantify the sensitivity of such policies  in order to inform of their robustness capacity. We also propose  a minimax iterative dynamic game framework for designing robust policies in the presence of disturbance/uncertainties. We test the quantification hypothesis on a carefully designed deep neural network policy; we then pose a minimax iterative dynamic game (iDG) framework for improving policy robustness in the presence of adversarial disturbances. We evaluate our iDG framework on a mecanum-wheeled robot, whose goal is to find a ocally robust optimal multistage policy that achieve a given goal-reaching task. The algorithm is simple and adaptable for designing meta-learning/deep policies that are robust against disturbances, model mismatch, or model uncertainties, up to a disturbance bound. Videos of the results are on the author's  <a href="http://ecs.utdallas.edu/~opo140030/iros18/iros2018.html">website</a>, while the codes for reproducing our experiments are on <a href="https://github.com/lakehanne/youbot/tree/rilqg"> github</a>. A self-contained environment for reproducing our results is on <a href="https://hub.docker.com/r/lakehanne/youbotbuntu14">docker</a>.
+ </font><br>
+    <font color="blue"><b>Olalekan Ogunmolu*</b>, Nicholas Gans, and Tyler Summers</font>.
+    <br>
+    <font color="#110D0C"><i>Intelligent Robots and Systems (IROS)</i> 2018 </i>.Madrid, Spain. 2018.</font> <br>
+    <a href="http://ecs.utdallas.edu/~opo140030/iros18/IROS2018.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
     <a href="https://github.com/lakehanne/soft-neuro-adapt"> <b>Code (Github)&nbsp;</b> </a>
+    <a href="https://hub.docker.com/r/lakehanne/youbotbuntu14/"> <b>Code (Docker Image)&nbsp;</b> </a>
     <a href="http://ecs.utdallas.edu/~opo140030/iros18/iros2018.html"> <b>Videos website&nbsp;</b> </a>
+  </p>
+
+
+<h4><font color="#711E0C">Minimax Iterative Dynamic Game : Application to Nonlinear Robot Control Tasks.</font></h4>
+    <p><font color="#110D0C">Multistage decision policies provide useful control strategies in high-dimensional state spaces, particularly in complex control tasks.  However, they exhibit weak performance guarantees in the presence of disturbance, model mismatch, or model uncertainties. This brittleness limits their use in high-risk scenarios. We present how to quantify the sensitivity of such policies  in order to inform of their robustness capacity. We also propose  a minimax iterative dynamic game framework for designing robust policies in the presence of disturbance/uncertainties. We test the quantification hypothesis on a carefully designed deep neural network policy; we then pose a minimax iterative dynamic game (iDG) framework for improving policy robustness in the presence of adversarial disturbances. We evaluate our iDG framework on a mecanum-wheeled robot, whose goal is to find a ocally robust optimal multistage policy that achieve a given goal-reaching task. The algorithm is simple and adaptable for designing meta-learning/deep policies that are robust against disturbances, model mismatch, or model uncertainties, up to a disturbance bound. Videos of the results are on the author's  <a href="http://ecs.utdallas.edu/~opo140030/iros18/iros2018.html">website</a>, while the codes for reproducing our experiments are on <a href="https://github.com/lakehanne/youbot/tree/rilqg"> github</a>. A self-contained environment for reproducing our results is on <a href="https://hub.docker.com/r/lakehanne/youbotbuntu14">docker</a>.
+ </font><br>
+    <font color="blue"><b>Olalekan Ogunmolu*</b>, Nicholas Gans, and Tyler Summers</font>.
+    <br>
+    <font color="#110D0C"><i>Machine Learning for Planning and Control Workshop, International Conference on Robotics and Automation</i> 2018 </i>.Brisbane, Australia. 2018.</font> <br>
+    <a href="http://scriptedonachip.com/assets/papers/Minimax_ICRAMLPC.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
+    <a href="https://github.com/lakehanne/soft-neuro-adapt"> <b>Code (Github)&nbsp;</b> </a>
+    <a href="https://hub.docker.com/r/lakehanne/youbotbuntu14/"> <b>Code (Docker Image)&nbsp;</b> </a>
+    <a href="http://ecs.utdallas.edu/~opo140030/iros18/iros2018.html"> <b>Videos website&nbsp;</b> </a>
+  </p>
+
+
+<h4><font color="#711E0C">
+    Design and Development of Soft Robots for Head and Neck Cancer Radiotherapy.</font></h4>
+    <p>
+    <font color="blue">Yara Almubarak, <b>Olalekan Ogunmolu*</b>, Xuejun Gu, Steve Jiang, Nicholas Gans, and Yonas Tadesse</font>.
+    <br>
+    <font color="#110D0C"><i>SPIE: Smart Structures + Nondestructive Evaluation</i>. Denver, CO, U.S.A. March 2018.</font> <br>
   </p>
 
 
 <h4><font color="#711E0C">Soft-NeuroAdapt: A 3-DOF neuro-adaptive patient pose correction system for frameless and maskless cancer radiotherapy.</font></h4>
     <p><font color="#110D0C">Precise patient positioning is fundamental to successful removal of malignant tumors during treatment of head and neck cancers. Errors in patient positioning have been known to damage critical organs and cause complications. To better address issues of patient positioning and motion, we introduce a 3-DOF neuro-adaptive soft-robot, called Soft-NeuroAdapt to correct deviations along 3 axes. The robot consists of inflatable air bladders that adaptively control head deviations from target while ensuring patient safety and comfort. The adaptive-neuro controller combines a state feedback component, a feedforward regulator, and a neural network that ensures correct adaptation. States are measured by a 3D vision system. We validate Soft-NeuroAdapt on a 3D printed head-and-neck dummy, and demonstrate that the controller provides adaptive actuation that compensates for intrafractional deviations in patient positioning.
  </font><br>
-    <font color="blue"><b>Olalekan Ogunmolu*</b>, Adwait Kulkarni, Yonas Tadesse, Xuejun Gu, Steve Jiang, and Nicholas Gans</font>. 
+    <font color="blue"><b>Olalekan Ogunmolu*</b>, Adwait Kulkarni, Yonas Tadesse, Xuejun Gu, Steve Jiang, and Nicholas Gans</font>.
     <br>
-    <a href="http://ecs.utdallas.edu/~opo140030/media/Papers/IROS2017.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a> 
-    <a href="https://arxiv.org/abs/1703.03821v3"><b> arXiv &nbsp;</b></a> 
+    <font color="#110D0C">In proceedings of <i>Intelligent Robots and Systems (IROS)</i> 2017</i>. Vancouver, BC, Canada. 2017.</font> <br>
+    <a href="http://ecs.utdallas.edu/~opo140030/media/Papers/IROS2017.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
+    <a href="https://arxiv.org/abs/1703.03821v3"><b> arXiv &nbsp;</b></a>
     <a href="https://github.com/lakehanne/soft-neuro-adapt"> <b>Code (Github)&nbsp;</b> </a>
   </p>
 
 <h4><font color="#711E0C">Nonlinear Systems Identification Using Deep Dynamic Neural Networks.</font></h4>
     <p><font color="#110D0C">An investigation of the effectiveness of deep neural networks in the modeling of dynamical systems with complex behavior. Three deep neural network structures are trained on sequential data, and we investigate the effectiveness of these networks in modeling associated characteristics of the underlying dynamical systems. </font><br>
-    <font color="blue"><b>Olalekan Ogunmolu*</b>, Xuejun Gu, Steve Jiang, and Nicholas Gans</font>. <font color="#110D0C">To appear in <i>American Control Conference (ACC)</i>. Seattle, WA. May 2017.</font> <br>
-    <a href="{{ media_url('Papers/ACC2016/ACC2016.pdf') }}" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a> 
-    <a href="https://arxiv.org/abs/1610.01439"><b> arXiv &nbsp;</b></a> 
+    <a href="{{ media_url('Papers/ACC2016/ACC2016.pdf') }}" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
+    <a href="https://arxiv.org/abs/1610.01439"><b> arXiv &nbsp;</b></a>
     <a href="https://github.com/lakehanne/FARNN"> <b>Code (Github)&nbsp;</b> </a>
     <a href="http://lakehanne.github.io/Deep-Nets-Identification"> <b>Blog &nbsp;</b> </a>
   </p>
@@ -63,9 +116,9 @@ control decision strategies in high-dimensional state spaces, par- ticularly in 
 <h4><font color="#711E0C">Vision-based control of a soft-robot for Maskless Cancer Radiotherapy.</font></h4>
     <p><font color="#110D0C">An LQG-based controller for a soft-robot targeted towards accurate patient positioning systems in maskless head and neck cancer radiotherapy. With two RGB-D sensors in a multisensor kalman fusion scenario, we estimate the position of a patient during simulated maskless cancer RT in real-time. </font> <br>
     <font color="blue"><b>Olalekan Ogunmolu*</b>, Xuejun Gu, Steve Jiang, and Nicholas Gans</font>.<font color="#110D0C"><i> IEEE Conference on Automation Science and Engineering (CASE).</i> Fort-Worth, Texas, August 2016. </font><br>
-<i class="fa fa-file-pdf-o"></i> <a href="{{ media_url('Papers/CASE2016/CASE2016.pdf') }}" class="border"><b>PDF &nbsp;</b></a> 
-<a href="https://arxiv.org/abs/1610.01481"><b> arXiv &nbsp;</b></a> 
-<a href="https://github.com/SeRViCE-Lab/RAL-Codes"> <b>Code (Github)</b> &nbsp; </a> 
+<i class="fa fa-file-pdf-o"></i> <a href="{{ media_url('Papers/CASE2016/CASE2016.pdf') }}" class="border"><b>PDF &nbsp;</b></a>
+<a href="https://arxiv.org/abs/1610.01481"><b> arXiv &nbsp;</b></a>
+<a href="https://github.com/SeRViCE-Lab/RAL-Codes"> <b>Code (Github)</b> &nbsp; </a>
 <a href="dfwslides/CASE2016.html"> <b> Slides</b></a>
 
 
@@ -74,9 +127,9 @@ control decision strategies in high-dimensional state spaces, par- ticularly in 
     <p><font color="#110D0C"> Use of inflatable air bladders in controlling the flexion/extension cranial motion of a simulated patient during maskless cancer radiotherapy. We imitate IGRT by using RGB-D depth sensors to generate surface images of a patient and extract the pose information from the reconstructed mesh. Results show that the system is capable of controlling head motion to within 2mm with respect to a reference trajectory. </font> <br>
     <font color="blue"><b>Olalekan Ogunmolu*</b>, Xuejun Gu, Steve Jiang, and Nicholas Gans</font>.<font color="#110D0C"><i> IEEE Conference on Automation Science and Engineering (CASE).</i> Gothenburg, Sweden, August 2015. <br>
     </font>
-  <a href="{{ media_url('Papers/CASE2015/CASE2015.pdf') }}" class="border"><b><i class="fa fa-file-pdf-o"></i> PDF &nbsp;</b></a> 
-  <a href="https://arxiv.org/abs/1506.04787"><b> arXiv &nbsp;</b></a> 
-  <a href="https://github.com/lakehanne/CASE_LabVIEW_Code"> <b>Code (Github)</b> &nbsp; </a> 
+  <a href="{{ media_url('Papers/CASE2015/CASE2015.pdf') }}" class="border"><b><i class="fa fa-file-pdf-o"></i> PDF &nbsp;</b></a>
+  <a href="https://arxiv.org/abs/1506.04787"><b> arXiv &nbsp;</b></a>
+  <a href="https://github.com/lakehanne/CASE_LabVIEW_Code"> <b>Code (Github)</b> &nbsp; </a>
   <a href="dfwslides"> <b>Slides&nbsp;</b></a>
   <b>doi: 10.1109/CoASE.2015.7294318 </b>
 
@@ -85,7 +138,7 @@ control decision strategies in high-dimensional state spaces, par- ticularly in 
       <p><font color="#110D0C"> Use of inflatable air bladders in controlling the flexion/extension cranial motion of a simulated patient during maskless cancer radiotherapy. We imitate IGRT by using RGB-D depth sensors to generate surface images of a patient and extract the pose information from the reconstructed mesh. Results show that the system is capable of controlling head motion to within 2mm with respect to a reference trajectory. </font> <br>
       <font color="blue"><b>Olalekan Ogunmolu*</b>, Nick Gans, Steve Jiang, Xuejun Gu</font>.<font color="#110D0C"><i> American Association of Physicists in Medicine (AAPM) Annual Meeting.</i> Anaheim, CA, July 2015. <br>
       </font>
-    <a href="http://www.aapm.org/meetings/2015AM/PRAbs.asp?mid=99&aid=29621" class="border"><b><i class="fa fa-file-pdf-o"></i> Abstract &nbsp;</b></a> 
+    <a href="http://www.aapm.org/meetings/2015AM/PRAbs.asp?mid=99&aid=29621" class="border"><b><i class="fa fa-file-pdf-o"></i> Abstract &nbsp;</b></a>
 
 <hr/>
 <h4><font color="#711E0C">Autonomous Navigation of a Rotor-craft unmanned aerial vehicle
@@ -94,17 +147,17 @@ using machine vision.</font></h4>
     compare results with calibrated helipad image; we learn actual helipad features by computing matching variance and then estimate the UAV pose in a hovering condition to plan landing.
 </font> <br>
     <font color="blue"><b>Olalekan Ogunmolu.</b></font>.<font color="#110D0C"><i> MS Thesis. ACSE Dept, The University of Sheffield. </i> Sheffield, United Kingdom, August 2012. <br></font>
-  <a href="http://lakehanne.github.io/downloads/MS_Thesis.pdf" class="border"><b><i class="fa fa-file-pdf-o"></i> PDF &nbsp;</b></a> 
+  <a href="http://lakehanne.github.io/downloads/MS_Thesis.pdf" class="border"><b><i class="fa fa-file-pdf-o"></i> PDF &nbsp;</b></a>
 
 <br></br>
 <hr/>
 <h3>Curriculum Vitae</h3>
-<p><a href="{{ media_url('pdfs/CV.pdf') }}"><b> Academic CV (.pdf).<br></br>
+<p><a href="http://scriptedonachip.com/downloads/cv/resume.pdf"><b> Academic CV (.pdf).<br></br>
 	<small>Last updated: December, 2016</small></b></a>.</p>
 <hr/>
 
 <br/>
 <h3>Concise Resume</h3>
-<p><a href="{{ media_url('pdfs/Concise_CV.pdf') }}"><b> Resume (.pdf).<br></br>
+<p><a href="http://scriptedonachip.com/downloads/cv/Concise_CV.pdf"><b> Resume (.pdf).<br></br>
   <small>Last updated: December, 2016</small></b></a>.</p>
 <hr/>
