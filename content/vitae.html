@@ -27,25 +27,19 @@ description: Demos and Talks
 <h1>Publications</h1>
 <hr/>
 
-<h4><font color="#711E0C">Deep BOO: Automating Beam Orientation Optimization in Intensity Modulated Radiation Therapy. Part I: Methodologies.</font></h4>
-    <p><font color="#110D0C">Finding the optimal beam angle set from a robot's tool frame from which to aim radiation to cancer tumor(s) whilst simultaneously minimizing radiation intensity to organs-at-risks during intensity modulated radiation therapy is an exhaustive combinatorial search/human-based parameters-tuning process. So far, traditional optimization approaches for solving this problem have not yielded real-time feasible results. Aiming to automate the selection process, we introduce novel techniques from (i) pattern recognition, (ii) monte carlo evaluations, (iii) game theory, and (iv)  neuro-dynamic programming. This is so as to find admissible policies for beamlets selection duringh IMRT treatment planning. In this sentiment, we optimize a deep neural network policy which guides monte carlo simulations and evaluations of promising beamlets within the robot gantry's phase space. Our goal is not to exclusively find the minimum of an objective as traditional approaches try to do, but rather to go uphill every so often so as to arrive at a pair of saddle point equilibrium strategy for the system. We let  two fictitious neural network players,  within a zero-sum markov game framework  alternatingly play a best response to their opponent's mixed strategy profile during epsidoes of a markov decision process. At inference time, we run the trained policy on test patients' target volumes to predict feasible beam angles. This part of our paper describes the problem and formally introduces our approach. The implementation  details and results are presented in the addendum to this paper~\cite{Ogunmolu2018b}.
- </font><br>
+<h4>
+  <font color="#711E0C">
+  Deep BOO: Automating Beam Orientation Optimization in Intensity Modulated Radiation Therapy. </font></h4>
+    <p>
+      <font color="#110D0C"> 
+        Intensity-Modulated Radiation Therapy (IMRT) is a method for treating cancers by aiming radiation to cancer tumor(s) while minimizing radiation to organs-at-risk from a robot's tool frame. Computationally finding the correct treatment plan for a target volume is often an exhaustive combinatorial search problem where traditional optimization methods have not yielded real-time feasible results. Aiming to automate the beam orientation and intensity modulation process, we introduce a novel set of techniques leveraging (i) pattern recognition, (ii) monte carlo evaluations, (iii) game theory, and (iv)  neuro-dynamic programming. We optimize a deep neural network policy that guides Monte Carlo simulations of promising beamlets. 
+        Seeking a saddle equilibrium, we let  two fictitious neural network players,  within a zero-sum markov game framework, alternatingly play a best response to their opponent's mixed strategy profile during episodes of a two-player markov decision game. During inference, the optimized policy predicts feasible beam angles on test target volumes. This work merges the beam orientation and fluence map optimization subproblems in IMRT sequential treatment planning system into one pipeline. We formally introduce our approach, and present numerical results for coplanar beam angles on prostate cases..
+      </font><br>
     <font color="blue"><b>Olalekan Ogunmolu</b></font>.
     <br>
     <a href="http://scriptedonachip.com/assets/papers/wafr.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
     <a href="https://github.com/lakehanne/boo_optim.git"> <b>Code (Github)&nbsp;</b> </a>
   </p>
-
-
-<h4><font color="#711E0C">Deep BOO: Automating Beam Orientation Optimization in Intensity Modulated Radiation Therapy. Part II: Initial Results.</font></h4>
-    <p><font color="#110D0C"> This paper is the addendum to the two-part paper on automating the beam orientation optimization in intensity modulated radiotherapy treatment planning systems~\cite{Ogunmolu2018a}. The first part presented our methods and formulation using neuro-dynamic programming and monte carlo tree search. In this follow-up paper, we present numerical experiments on the result of training the neural network dynamical system and policy for anonymized prostate cases using select coplanar beams. The results demonstrate the feasibility of our proposal and provides a time-efficient alternative to manually tuning robot gantry angles by dosimetrists in beam orientation optimization scenarios in clinics. 
- </font><br>
-    <font color="blue"><b>Olalekan Ogunmolu</b>,</font>.
-    <br>
-    <a href="http://scriptedonachip.com/assets/papers/wafr2.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
-    <a href="https://github.com/lakehanne/boo_optim.git"> <b>Code (Github)&nbsp;</b> </a>
-  </p>
-
 
 <h4><font color="#711E0C">
 Automating Beam Orientation Optimization during IMRT Cancer Treatment Planning: A Deep Reinforcement Learning Approach).</font></h4>
