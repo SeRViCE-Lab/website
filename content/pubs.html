@@ -29,16 +29,63 @@ description: Demos and Talks
 
 <h4>
   <font color="#711E0C">
-  Deep BOO: Automating Beam Orientation Optimization in Intensity Modulated Radiation Therapy. </font></h4>
+  A Monte Carlo Tree Game for Beam Orientation Optimization
+  </font></h4>
     <p>
-      <font color="#110D0C"> 
-        Intensity-Modulated Radiation Therapy (IMRT) is a method for treating cancers by aiming radiation to cancer tumor(s) while minimizing radiation to organs-at-risk from a robot's tool frame. Computationally finding the correct treatment plan for a target volume is often an exhaustive combinatorial search problem where traditional optimization methods have not yielded real-time feasible results. Aiming to automate the beam orientation and intensity modulation process, we introduce a novel set of techniques leveraging (i) pattern recognition, (ii) monte carlo evaluations, (iii) game theory, and (iv)  neuro-dynamic programming. We optimize a deep neural network policy that guides Monte Carlo simulations of promising beamlets. 
-        Seeking a saddle equilibrium, we let  two fictitious neural network players,  within a zero-sum markov game framework, alternatingly play a best response to their opponent's mixed strategy profile during episodes of a two-player markov decision game. During inference, the optimized policy predicts feasible beam angles on test target volumes. This work merges the beam orientation and fluence map optimization subproblems in IMRT sequential treatment planning system into one pipeline. We formally introduce our approach, and present numerical results for coplanar beam angles on prostate cases..
+      <font color="#110D0C">
+        We present an improvement to our formalism in <a href="http://scriptedonachip.com/assets/papers/wafr.pdf">WAFR</a> wherein we devised the beam orientation problem in intensity-modulated radiation therapy as an approximate dynamic programming problem. Here, we improve the Monte-Carlo planning portion of the algorithm using a variant of approximate policy iteration: a batched alternating iteration of approximate policy evaluation and approximate policy improvement. Suppose that $\eta$  is the cardinality of all beam angles in a treatment setup, which together with a patient’s geometry, $\Upsilon$, constitute a deep neural network (DNN) policy input, $\Upsilon$=[$Y, \eta$]. A column generation DNN policy, $\Pi$, chooses a feasible angle based on a $\Upsilon$,  and generates a profile map, $\zeta \in R^n$, whose argmax informs the next candidate beamlet that must selected (n=180 in our implementation) until we fulfill a beam plan requirement. This is the policy evaluation stage. We repeat the selection process for multiple patients and re-evaluate $\Pi$ based on a mean square error cost function. $\Pi$ essentially learns a mapping f:\Upsilon -->\zeta.  With Monte-Carlo evaluations and tree search, we generate new training data in a policy improvement stage. We then project the new training data to the cost function space of $\Pi$. An alternating iteration of training $\Pi$ and improving $\Pi$ via our computed tree search policy, $\Gamma$, produces an improved policy, $\Pi^\star$  which we eventually use to evaluate treatment plans.
+      </font><br>
+    <font color="blue"><b>Olalekan Ogunmolu</b>, Azar Sadeghnejad Barkousaraie, Dan Nguyen, and Steve Jiang</font>.
+    <br>
+    <font color="#110D0C">Under review at <i>	The 19th International Conference on the use of Computers in Radiotherapy (ICCR), Montreal, Canada.</i><br>
+    </font> <br>
+    <a href="{{ media_url('Papers/BOO/iccr19.pdf') }}" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
+  </p>
+
+<h4>
+  <font color="#711E0C">
+  Deep Learning Neural Network for Beam Orientation Optimization
+  </font></h4>
+    <p>
+      <font color="#110D0C">
+        In intensity modulated radiation therapy, the optimal choice of beam orientations has a significant impact
+on the treatment plan quality, influencing the final treatment outcome. In current treatment planning
+workflow, the beam direction selection is manually done by the planner, typically yielding suboptimal
+solutions. Beam Orientation Optimization (BOO) methods are used to find the optimal beam directions.
+Conventional BOO methods need to previously compute the dose influence matrices (Dij) for multiple
+beam orientations (around 100-200 to cover all potential beam angles), and use them to perform Fluence
+Map Optimization (FMO). However, both the computation of Dij matrices and FMO are very complex
+and time intensive operations (can be several hours for all BOO candidate beams), which hampers their
+implementations in clinical routine. In contrast, artificial intelligence (AI) is an attractive tool for solving
+BOO problems, given its superior speed and promising results for medical applications. This work aims to
+develop a fast BOO method based on deep neural networks that provides a solution in about a second, and
+therefore, can be implemented in clinical routine.
+      </font><br>
+    <font color="blue">Azar Sadeghnejad Barkousaraie, <b>Olalekan Ogunmolu</b>, Steve Jiang, and Dan Nguyen</font>.
+    <br>
+    <font color="#110D0C">Under review at <i>	The 19th International Conference on the use of Computers in Radiotherapy (ICCR), Montreal, Canada.</i><br>
+    </font> <br>
+    <a href="{{ media_url('Papers/BOO/ICCR19_Azar.pdf') }}" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
+  </p>
+
+<h4>
+  <font color="#711E0C">
+  Deep BOO! Automating Beam Orientation Optimization in Intensity Modulated Radiation Therapy.
+  </font></h4>
+    <p>
+      <font color="#110D0C">
+        Intensity-Modulated Radiation Therapy (IMRT) is a method for treating cancers by aiming radiation to cancer tumor(s) while minimizing radiation to organs-at-risk from a robot's tool frame. Computationally finding the correct treatment plan for a target volume is often an exhaustive combinatorial search problem where traditional optimization methods have not yielded real-time feasible results. Aiming to automate the beam orientation and intensity modulation process, we introduce a novel set of techniques leveraging (i) pattern recognition, (ii) monte carlo evaluations, (iii) game theory, and (iv)  neuro-dynamic programming. We optimize a deep neural network policy that guides Monte Carlo simulations of promising beamlets.
+        Seeking a saddle equilibrium, we let  two fictitious neural network players,  within a zero-sum markov game framework, alternatingly play a best response to their opponent's mixed strategy profile during episodes of a two-player markov decision game. During inference, the optimized policy predicts feasible beam angles on test target volumes. This work merges the beam orientation and fluence map optimization subproblems in IMRT sequential treatment planning system into one pipeline. We formally introduce our approach, and present numerical results for coplanar beam angles on prostate cases.
       </font><br>
     <font color="blue"><b>Olalekan Ogunmolu,</b>  Michael Folkerts, Dan Nguyen, Nicholas Gans and Steve Jiang</font>.
     <br>
-    <a href="http://scriptedonachip.com/assets/papers/wafr.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;</b></a>
-    <a href="https://github.com/lakehanne/deep-boo.git"> <b>Code (Github)&nbsp;</b> </a>
+    <font color="#110D0C"><i>Algorithm Foundations of Robotics Workshop (WAFR) XIII, Merida, Mexico.</i><br>
+      Published in Springer’s Proceedings in Advanced Robotics (SPAR) Book (2019).
+    </font> <br>
+    <a href="http://scriptedonachip.com/assets/papers/wafr.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>PDF &nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+    <a href="https://github.com/lakehanne/deep-boo.git"> <b>Code (Github)&nbsp;&nbsp;&nbsp;&nbsp;</b> </a>
+      <a href="http://algorithmic-robotics.org/wafr2018/ppr_files/WAFR_2018_paper_17.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>WAFR Submission PDF &nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+      <a href="http://scriptedonachip.com/assets/papers/wafr.pdf" class="border"><i class="fa fa-file-pdf-o"></i><b>Camera Ready PDF &nbsp;</b></a>
   </p>
 
 <h4><font color="#711E0C">
